@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
   
   [SerializeField]
   float MinDashTimeNeeded = 1.0f;
+  
+  float VerticalBound;
+  float HorizontalBound;
 
   // Use this for initialization
   void Start () 
@@ -32,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
     Camcontrol = Camera.GetComponent<CameraController>();
+    VerticalBound = CentrePoint.transform.position.y;
+    HorizontalBound = CentrePoint.transform.position.x;
   }
   
   // Update is called once per frame
@@ -50,20 +55,19 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 centrup = CentrePoint.transform.position * transform.up;
          //if transform (up) is less than CentrePoint's transform (up)
         print(transform.up);
-        if (Input.GetKey("w") && transform.position.y <= CentrePoint.transform.position.y + MaximumDistance)
+        if (Input.GetKey("w") && CalcBound(0))
         {
            dir += transform.up * MovementSpeed;
         }
-        else if (Input.GetKey("s") && transform.position.y >= CentrePoint.transform.position.y - MaximumDistance)
+        else if (Input.GetKey("s") && CalcBound(1))
         {
           dir -= transform.up * MovementSpeed;
         }
-        
-        if (Input.GetKey("a") && transform.position.x >= CentrePoint.transform.position.x - MaximumDistance)
+        if (Input.GetKey("a") && transform.position.x >= HorizontalBound - MaximumDistance)
         {
           dir -= transform.right * MovementSpeed;
         }
-        else if (Input.GetKey("d") && transform.position.x <= CentrePoint.transform.position.x + MaximumDistance)
+        else if (Input.GetKey("d") && transform.position.x <= HorizontalBound + MaximumDistance)
         {
           dir += transform.right * MovementSpeed;
         }
@@ -156,19 +160,7 @@ public class PlayerMovement : MonoBehaviour
     
   }
   
-  void OnCollisionEnter(Collision collision)
-  {
-      // if colliding with an asteroid (or anything remotely hazardous
-    if (collision.gameObject.tag == "Hazard")
-    {
-      print("OW");
-      GetComponent<Health>().DecrementHealth();
-    }
-      // if colliding with a rift (or collectible)
-    
-    
-    
-  }
+
   
   void OnTriggerEnter(Collider other)
   {
@@ -178,11 +170,44 @@ public class PlayerMovement : MonoBehaviour
       Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
     }
+    else if (other.gameObject.tag == "Hazard")
+    {
+      print("OW");
+      GetComponent<Health>().DecrementHealth();
+    }
   }
   
   void RecalculateBounds()
   {
     
+  }
+  
+  bool CalcBound(int edge) //0 = up, 1 = down, 2 = left, 3 = right
+  {
+    if (edge == 0)
+    {
+      if (transform.up.y == 1)
+      {
+        return transform.position.y <= VerticalBound + MaximumDistance;
+      }
+    }
+    else if (edge == 1)
+    {
+      if (transform.up.y == 1)
+      {
+        return transform.position.y >= VerticalBound - MaximumDistance;
+      }
+      
+    }
+    else if (edge == 2)
+    {
+      
+    }
+    else if (edge == 3)
+    {
+      
+    }
+    return false;
   }
   
   bool MovementKeyDown()

@@ -84,7 +84,7 @@ public class CameraController : MonoBehaviour
       y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
       
         //Clamp the y-rotation so we don't have weird circle camera shenanigans 
-      y = ClampAngle(y, -89f, 89f); 
+      y = ClampAngle(y, -85f, 85f); 
       
    
  
