@@ -19,9 +19,9 @@ public class RiftSpawner : MonoBehaviour
   GameObject CentrePoint;
   GameObject Player;
   GameObject Camera;
-  CameraController Camcontrol;
+  CameraController CameraController;
   
-
+  PlayerMovement pMove;
   
 
   // Use this for initialization
@@ -31,15 +31,15 @@ public class RiftSpawner : MonoBehaviour
     Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
-    Camcontrol = Camera.GetComponent<CameraController>();
+    CameraController = Camera.GetComponent<CameraController>();
     SpawnTimer = SpawnTime;
-
+    pMove = Player.GetComponent<PlayerMovement>();
   }
   
   // Update is called once per frame
   void Update () 
   {
-    if (Camcontrol.GetPTime() || Camcontrol.GetETime())
+    if (CameraController.GetPTime() || CameraController.GetETime())
       return;
     
     SpawnTimer -= Time.deltaTime;
@@ -59,6 +59,7 @@ public class RiftSpawner : MonoBehaviour
   
   public void LaunchRift()
   {
+    /*
     Vector3 SpawnPos = CentrePoint.transform.forward*350;
     
     float offsetx = (CentrePoint.transform.right.x + CentrePoint.transform.up.x) * 5.0f;
@@ -66,6 +67,7 @@ public class RiftSpawner : MonoBehaviour
     float offsetz = (CentrePoint.transform.right.z + CentrePoint.transform.up.z) * 5.0f;
     Vector3 offset = new Vector3(Random.Range(-offsetx, offsetx), Random.Range(-offsety, offsety),
             Random.Range(-offsetz, offsetz));
+    
     
   
     //Have random location be in one of the 9 sections at the very least
@@ -88,6 +90,8 @@ public class RiftSpawner : MonoBehaviour
     }
     
     SpawnPos += offset;
+    */
+    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
     
     /*int CreationChance = (int)Mathf.Clamp(Random.Range(0.0f,100.0f + Player.GetComponent<PlayerMovement>().SpeedStacks),
                                           0, 300); //max craziness limiter to prevent only large Rifts from spawning

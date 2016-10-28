@@ -33,6 +33,8 @@ public class AsteroidSpawner : MonoBehaviour
   GameObject Camera;
   CameraController Camcontrol;
   
+  PlayerMovement pMove;
+  
 
   
 
@@ -45,6 +47,7 @@ public class AsteroidSpawner : MonoBehaviour
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
     Camcontrol = Camera.GetComponent<CameraController>();
     SpawnTimer = SpawnTime;
+    pMove = Player.GetComponent<PlayerMovement>();
     /*
     Instantiate(enemyPrefab, newPos, Quaternion.identity
     */
@@ -53,7 +56,7 @@ public class AsteroidSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (Camcontrol.GetPTime() || Camcontrol.GetETime())
+    if (CameraController.GetPTime() || CameraController.GetETime())
       return;
     
     SpawnTimer -= Time.deltaTime;
@@ -78,15 +81,16 @@ public class AsteroidSpawner : MonoBehaviour
   
   public void LaunchAsteroid(int spawntype) // 0 = normal, 1 = small, 2 = medium, 3 = large
   {
-    Vector3 SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*500;
+    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
     
-    float offsetx = (CentrePoint.transform.right.x + CentrePoint.transform.up.x) * 5.0f;
+    /*
+    float offsetx = pMiove[Random.Range(0, pMove.Points.Size)];
     float offsety = (CentrePoint.transform.right.y + CentrePoint.transform.up.y) * 5.0f;
     float offsetz = (CentrePoint.transform.right.z + CentrePoint.transform.up.z) * 5.0f;
     Vector3 offset = new Vector3(Random.Range(-offsetx, offsetx), Random.Range(-offsety, offsety),
             Random.Range(-offsetz, offsetz));
     SpawnPos += offset;
-  
+    */
     //Have random location be in one of the 9 sections at the very least
   
     
@@ -95,6 +99,7 @@ public class AsteroidSpawner : MonoBehaviour
     if (Spawns % BigSpawn == 0)
     {
       CreationChance += CreationChanceModifier;
+      
     }
         if (spawntype == 1)
             CreationChance = 0;
@@ -116,6 +121,7 @@ public class AsteroidSpawner : MonoBehaviour
     }
     else
     {
+      SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*500;
       GameObject Asteroid = (GameObject)Instantiate(LargeAsteroid, SpawnPos, Quaternion.identity);
     }
     

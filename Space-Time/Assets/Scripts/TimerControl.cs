@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpacerControl : MonoBehaviour 
+public class TimerControl : MonoBehaviour 
 {
   
   [SerializeField]
@@ -28,6 +28,9 @@ public class SpacerControl : MonoBehaviour
   [SerializeField]
   GameObject Body;
   
+  [SerializeField]
+  float ETime = 4.0f;
+  
   float AttackTimer = 0.0f;
 
   Vector3 RotateDir = new Vector3(-1,1,0);
@@ -38,8 +41,11 @@ public class SpacerControl : MonoBehaviour
     Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     CalcRelativePosition();
+    
     StartTime = Time.time;
     PercentDone = Vector3.Distance(transform.position, CentrePoint.transform.position + AdditionalPos);
+    
+    SetETime(true);
 	}
 	
 	// Update is called once per frame
@@ -61,13 +67,13 @@ public class SpacerControl : MonoBehaviour
     else
     {
       transform.position = Vector3.Lerp(transform.position, CentrePoint.transform.position + AdditionalPos, 
-                                                                        TimeZone.DeltaTime() * 150.0f);
+                                                                        TimeZone.DeltaTime(false) * 150.0f);
     }
     //CalcRelativePosition();
     
-    if (AttackTimer < AttackInterval && !CameraController.GetPTime())
+    if (AttackTimer < AttackInterval)
     {
-      AttackTimer += TimeZone.DeltaTime();
+      AttackTimer += TimeZone.DeltaTime(false);
       if (AttackTimer >= AttackInterval)
       {
         Fire();
