@@ -6,6 +6,7 @@ public class LevelGlobals : MonoBehaviour
   public GameObject Player;
   public GameObject CentrePoint;
   public GameObject Camera;
+  public TimeZone timezone;
   
   [SerializeField]
   public bool Debugging = true;
@@ -13,6 +14,7 @@ public class LevelGlobals : MonoBehaviour
 	// Use this for initialization
 	void Start () 
   {
+    TimeZone.SetTimeScale(1f);
     Camera = GameObject.FindWithTag("MainCamera");
     Player = GameObject.FindWithTag("Player");
     CentrePoint = GameObject.FindWithTag("Centrepoint");
