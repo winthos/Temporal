@@ -22,16 +22,18 @@ public class HUDController : MonoBehaviour
   GameObject TimeStopFilter;
   
   int dTime = 0;
+  float independentTime;
   float startTime = 0.0f;
 	// Use this for initialization
 	void Start () 
   {
-	
+    independentTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () 
   {
+    independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
     TimeBarUpdate();
     SpeedUpdate();
@@ -63,13 +65,13 @@ public class HUDController : MonoBehaviour
       return;
     else if (dTime > 0)
     {
-      TimeStopFilter.transform.localScale = Vector3.Lerp(TimeStopFilter.transform.localScale, new Vector3(25,25,25), Time.time - startTime);
+      TimeStopFilter.transform.localScale = Vector3.Lerp(TimeStopFilter.transform.localScale, new Vector3(25,25,25), independentTime - startTime);
       if (TimeStopFilter.transform.localScale.x == 25)
         dTime = 0;
     }
     else if (dTime < 0)
     {
-      TimeStopFilter.transform.localScale = Vector3.Lerp(TimeStopFilter.transform.localScale, new Vector3(0,0,0), Time.time - startTime);
+      TimeStopFilter.transform.localScale = Vector3.Lerp(TimeStopFilter.transform.localScale, new Vector3(0,0,0), independentTime - startTime);
       if (TimeStopFilter.transform.localScale.x == 0)
         dTime = 0;
     }
@@ -79,6 +81,6 @@ public class HUDController : MonoBehaviour
   public void TimeSet(int t)
   {
     dTime = t;
-    startTime = Time.time;
+    startTime = independentTime;
   }
 }
