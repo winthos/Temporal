@@ -182,12 +182,12 @@ public class CameraController : MonoBehaviour
   
   public static void SetPTime(bool time)
   {
-    PTimeSTop = time;
+    PTimeStop = time;
   }
   
   public static void SetETime(bool time)
   {
-    ETimeSTop = time;
+    ETimeStop = time;
   }
   
   public void ToggleTimeStop()
