@@ -45,7 +45,7 @@ public class TimerControl : MonoBehaviour
     StartTime = Time.time;
     PercentDone = Vector3.Distance(transform.position, CentrePoint.transform.position + AdditionalPos);
     
-    SetETime(true);
+    CameraController.SetETime(true);
 	}
 	
 	// Update is called once per frame
