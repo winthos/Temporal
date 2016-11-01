@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
     defaultTimer += TimeZone.DeltaTime(false);
     if (TimeMove == -1) //stop time
     {
-      TimeZone.SetTimeScale(Mathf.Lerp(Time.timeScale, 0.01f, 0.5f));
+      TimeZone.SetTimeScale(Mathf.Lerp(Time.timeScale, 0.00001f, 0.5f));
       if (Time.timeScale <= 0.05f)
         TimeMove = 0;
     }
