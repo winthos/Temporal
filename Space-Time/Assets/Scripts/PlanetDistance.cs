@@ -12,6 +12,9 @@ public class PlanetDistance : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        //add some variance to size
+        transform.localScale *= Random.Range(0.9f, 1.3f);
+        //set the distance at which the planet will always stay
         distance = transform.position - player.transform.position;
 	}
 	
