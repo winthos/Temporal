@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*
+ * Written by Kaila Harris
+ * Color Palette Class
+ */
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,6 +16,11 @@ public class ColorPalette
 
     public ColorPalette()
     {
+    }
+
+    public ColorPalette(string _name)
+    {
+        name = _name;
     }
 
     public void SetName(string _name)
