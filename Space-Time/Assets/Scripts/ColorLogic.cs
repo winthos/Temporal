@@ -9,46 +9,68 @@ using System.Collections.Generic;
 
 public class ColorLogic : MonoBehaviour
 {
-    [SerializeField]
-    bool RandomizedColors = false;
-
     Renderer rend; //Renderer of our Cube
     float transitionTime = 5f;
 
     GameObject ColorManager;
-    ColorPalette pinkTriad;
+    ColorPalette currentColorPalette;
 
     void Start()
     {
         ColorManager = GameObject.Find("LevelGlobals");
-        pinkTriad = ColorManager.GetComponent<ColorManager>().palPinkTriad;
+        if (ColorManager != null)
+        {
+            currentColorPalette = ColorManager.GetComponent<ColorManager>().palCurrent;
 
-        rend = GetComponent<Renderer>();
-
-        if (gameObject.tag == "Planet")
-            SetPlanetColors(pinkTriad.GetPlanetColors());
+            rend = GetComponent<Renderer>();
+            UpdateObjectWithCurrentPalette();
+        }
 
     }
 
     void Update()
     {
+        //testing code
+        if (Input.anyKeyDown)
+        {
+            UpdateObjectWithCurrentPalette();
+        }
+        // testing code end
     }
 
+    // sets all objects to chosen palette
+    void UpdateObjectWithCurrentPalette()
+    {
+        if (gameObject.tag == "Planet")
+            SetPlanetColors(currentColorPalette.GetPlanetColors());
+    }
+
+    // sets planet and satellite colors randomly
     void SetPlanetColors(List<Color> _list)
     {
-        int planCol = Random.Range(0, (_list.Count));
-        SetObjectColor(_list[planCol]);
-        _list.RemoveAt(planCol);
-
-        foreach (Transform child in transform)
+        // picks a random color from available list
+        int pIndex = Random.Range(0, (_list.Count - 1));
+        // sets planet to said color
+        if (pIndex < _list.Count)
         {
-            int num = Random.Range(0, (_list.Count));
-            child.gameObject.GetComponent<ColorLogic>().SetObjectColor(_list[num]);
+            SetObjectColor(_list[pIndex]);
+
+            // removes planet color from list of options for satellites
+            List<Color> temp = _list;
+            temp.RemoveAt(pIndex);
+
+            // sets the colors for each satellite
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.GetComponent<ColorLogic>() != null)
+                    child.gameObject.GetComponent<ColorLogic>().SetObjectColor(temp[Random.Range(0, (temp.Count))]);
+            }
         }
     }
 
     void SetObjectColor(Color _color)
     {
-        rend.material.SetColor("_Color", _color);
+        if(rend != null)
+            rend.material.SetColor("_Color", _color);
     }
 }
