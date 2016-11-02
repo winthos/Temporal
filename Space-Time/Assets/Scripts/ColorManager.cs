@@ -54,8 +54,7 @@ public class ColorManager : MonoBehaviour
 
     ColorPalette PinkTriad()
     {
-        ColorPalette palPinkTriad = new ColorPalette();
-        palPinkTriad.SetName("PinkTriad");
+        ColorPalette palPinkTriad = new ColorPalette("PinkTriad");
 
         palPinkTriad.SetPlanetsAndSatellites(
             convertHex.toRGB("9612B2"),
@@ -69,8 +68,7 @@ public class ColorManager : MonoBehaviour
 
     ColorPalette StreetsOfMorioh2()
     {
-        ColorPalette palStreetsOfMorioh2 = new ColorPalette();
-        palStreetsOfMorioh2.SetName("StreetsOfMorioh2");
+        ColorPalette palStreetsOfMorioh2 = new ColorPalette("StreetsOfMorioh2");
 
         palStreetsOfMorioh2.SetPlanetsAndSatellites(
             convertHex.toRGB("19A2AD"),
@@ -84,8 +82,7 @@ public class ColorManager : MonoBehaviour
 
     ColorPalette JosephAndCeasar()
     {
-        ColorPalette palJosephAndCeasar = new ColorPalette();
-        palJosephAndCeasar.SetName("JosephAndCeasar");
+        ColorPalette palJosephAndCeasar = new ColorPalette("JosephAndCeasar");
 
         palJosephAndCeasar.SetPlanetsAndSatellites(
             convertHex.toRGB("FB80B7"),

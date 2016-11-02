@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class ColorPalette
 {
-    string name = "";
+    public string name = "";
     bool bColorBlindOK;
 
     //always set values
@@ -19,11 +19,6 @@ public class ColorPalette
     }
 
     public ColorPalette(string _name)
-    {
-        name = _name;
-    }
-
-    public void SetName(string _name)
     {
         name = _name;
     }
