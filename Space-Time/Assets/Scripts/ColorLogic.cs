@@ -12,37 +12,31 @@ public class ColorLogic : MonoBehaviour
     Renderer rend; //Renderer of our Cube
     float transitionTime = 5f;
 
-    GameObject ColorManager;
-    ColorPalette currentColorPalette;
+    ColorManager colorManager;
 
     void Start()
     {
-        ColorManager = GameObject.Find("LevelGlobals");
-        if (ColorManager != null)
+        colorManager = GameObject.Find("LevelGlobals").GetComponent<ColorManager>();
+        if (colorManager != null)
         {
-            currentColorPalette = ColorManager.GetComponent<ColorManager>().palCurrent;
-
+            colorManager.colorLog.Add(this);
             rend = GetComponent<Renderer>();
-            UpdateObjectWithCurrentPalette();
+            UpdateObjectWithCurrentPalette(colorManager.palCurrent);
         }
 
     }
 
     void Update()
     {
-        //testing code
-        if (Input.anyKeyDown)
-        {
-            UpdateObjectWithCurrentPalette();
-        }
-        // testing code end
+ 
     }
 
     // sets all objects to chosen palette
-    void UpdateObjectWithCurrentPalette()
+    public void UpdateObjectWithCurrentPalette(ColorPalette _palette)
     {
         if (gameObject.tag == "Planet")
-            SetPlanetColors(currentColorPalette.GetPlanetColors());
+            SetPlanetColors(_palette.GetPlanetColors());
+        
     }
 
     // sets planet and satellite colors randomly
@@ -50,20 +44,23 @@ public class ColorLogic : MonoBehaviour
     {
         // picks a random color from available list
         int pIndex = Random.Range(0, (_list.Count - 1));
+
         // sets planet to said color
         if (pIndex < _list.Count)
         {
             SetObjectColor(_list[pIndex]);
 
-            // removes planet color from list of options for satellites
-            List<Color> temp = _list;
-            temp.RemoveAt(pIndex);
-
             // sets the colors for each satellite
             foreach (Transform child in transform)
             {
                 if (child.gameObject.GetComponent<ColorLogic>() != null)
-                    child.gameObject.GetComponent<ColorLogic>().SetObjectColor(temp[Random.Range(0, (temp.Count))]);
+                {
+                    int sIndex = Random.Range(0, (_list.Count));
+                    while (sIndex == pIndex)
+                        sIndex = Random.Range(0, (_list.Count));
+
+                    child.gameObject.GetComponent<ColorLogic>().SetObjectColor(_list[sIndex]);
+                }
             }
         }
     }
@@ -72,5 +69,10 @@ public class ColorLogic : MonoBehaviour
     {
         if(rend != null)
             rend.material.SetColor("_Color", _color);
+    }
+    
+    void OnDestroy()
+    {
+        colorManager.colorLog.Remove(this);
     }
 }
