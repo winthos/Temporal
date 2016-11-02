@@ -47,6 +47,7 @@ public class ColorManager : MonoBehaviour
     {
         allPalettes.Add(PinkTriad());
         allPalettes.Add(StreetsOfMorioh2());
+        allPalettes.Add(JosephAndCeasar());
     }
 
     ColorPalette PinkTriad()
@@ -77,5 +78,20 @@ public class ColorManager : MonoBehaviour
             new Color(0.964706f, 0.980392f, 0.937255f));
 
         return palStreetsOfMorioh2;
+    }
+
+    ColorPalette JosephAndCeasar()
+    {
+        ColorPalette palJosephAndCeasar = new ColorPalette();
+        palJosephAndCeasar.SetName("JosephAndCeasar");
+
+        palJosephAndCeasar.SetPlanetsAndSatellites(
+            new Color(0.984314f, 0.501961f, 0.717647f),
+            new Color(0.972549f, 0.356863f, 0.462745f),
+            new Color(0.447059f, 0.180392f, 0.505882f),
+            new Color(0.156863f, 0.964706f, 0.811765f),
+            new Color(0.196078f, 0.796078f, 0.917647f));
+
+        return palJosephAndCeasar;
     }
 }
