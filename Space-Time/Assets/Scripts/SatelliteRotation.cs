@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*
+ * Written by Kaila Harris
+ * controls the rotation of satellite objects around a gameObject
+ * must be a child of the target object
+ */
+ using UnityEngine;
 using System.Collections;
 
 public class SatelliteRotation : MonoBehaviour
@@ -17,13 +22,9 @@ public class SatelliteRotation : MonoBehaviour
 	void Update ()
     {
         if (CameraController.GetPTime() == true)
-        {
             return;
-        }
         else
-        {
             transform.RotateAround(Planet.transform.position, Vector3.up, RotationSpeed * TimeZone.DeltaTime());
-        }
             
     }
 }
