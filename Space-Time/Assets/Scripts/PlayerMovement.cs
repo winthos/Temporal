@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
   float VerticalBound;
   float HorizontalBound;
   
-  int GridPos = 5;
+  public int GridPos = 5;
 
   // Use this for initialization
   void Start () 
@@ -254,6 +254,10 @@ public class PlayerMovement : MonoBehaviour
     {
       print("OW");
       GetComponent<Health>().DecrementHealth();
+    }
+    else if (other.gameObject.tag == "Spacer")
+    {
+      other.gameObject.GetComponent<Health>().DecrementHealth();
     }
   }
   

@@ -18,9 +18,11 @@ public class Laser : MonoBehaviour
 	void Update () 
 	{
     //IsTimeStopped = GameObject.Find("LevelGlobals").GetComponent<LevelGlobals>().TimeStopped;
+    if (CameraController.GetPTime() || CameraController.GetETime())
+      return;
     RaycastHit hit;
     transform.LookAt(Player.transform);
-    if(Physics.Raycast(transform.position, transform.forward, out hit))
+    if(Physics.Raycast(transform.position, transform.forward, out hit, 200.0f))
     {
         if(hit.collider && hit.collider.gameObject.name == "Player" )
         {
@@ -36,7 +38,7 @@ public class Laser : MonoBehaviour
     else
     {
         //if(IsTimeStopped == false)
-        line.SetPosition(1, new Vector3(0, 0, 5000));
+        line.SetPosition(1, new Vector3(0, 0, 200));
     }
 	}
 }
