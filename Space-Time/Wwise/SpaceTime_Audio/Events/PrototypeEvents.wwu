@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" SchemaVersion="72">
+	<Events>
+		<WorkUnit Name="PrototypeEvents" ID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="event_timeStop" ID="{CCC99315-7AD6-4C5C-BDF5-71FB5D22DF2F}">
+					<ChildrenList>
+						<Action Name="Play" ID="{AAFB5D80-A725-4F98-A3BD-71BE896BA493}" ShortID="64377605" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{8E302061-8F61-454B-999F-3C4441A740A8}" Global="false">
+									<ObjectRef Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{3BDBE69E-02E2-42B1-B068-109DC0574D11}" ShortID="866288913" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{6334365D-6AFB-462B-ADA3-47DDA8377165}" Global="false">
+									<ObjectRef Name="TimeSlowsSound" ID="{9C42A90C-7CDD-4D47-BE22-CDA8BEEF4DA4}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_timeResume" ID="{872B84C4-20CE-4F7E-921C-373E8932F40A}">
+					<ChildrenList>
+						<Action Name="Play" ID="{913CE69B-70A4-4593-B06A-ED8DBC40D549}" ShortID="400925692" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{0023E2EF-99B0-4C58-B0C8-DCC82753D2B3}" Global="false">
+									<ObjectRef Name="TimeSpeedsUpSound" ID="{E5A11BAB-01BB-4E4F-8E11-5E37BB563991}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{8492405C-663B-49E6-9C29-1BBBFCEFCC1A}" ShortID="863607218" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{5E467E7E-80D1-49A6-8570-A9D56C945D7F}" Global="false">
+									<ObjectRef Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_bg_audio" ID="{66D68228-114C-4756-A57A-0A6A37D51B43}">
+					<ChildrenList>
+						<Action Name="Play" ID="{E75065D4-C519-444C-A9B0-A2802EA35B23}" ShortID="1005472316" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{CEC14B30-79B8-4FBA-A006-68E64CF7F651}" Global="false">
+									<ObjectRef Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
