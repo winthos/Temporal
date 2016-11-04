@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	3363080024	play_bg_music_temp			\Default Work Unit\play_bg_music_temp	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	273025137	Space-Time_a_groves_StylePiece	C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Wwise\.cache\Windows\SFX\Space-Time_a.groves_StylePiece_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Space-Time_a_groves_StylePiece		18275612
-
