@@ -3,7 +3,7 @@
 	<RootPaths>
 		<ProjectRoot>C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Wwise\</ProjectRoot>
 		<SourceFilesRoot>C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Wwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<SoundBanksRoot>C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
 		<ExternalSourcesOutputRoot>C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Wwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
@@ -11,41 +11,78 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="623086306" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Sound</ObjectPath>
-			<ShortName>Sound</ShortName>
-			<Path>Sound.bnk</Path>
+		<SoundBank Id="94698703" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\boop_SoundBank</ObjectPath>
+			<ShortName>boop_SoundBank</ShortName>
+			<Path>boop_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4217369903" Name="play_boop_temp" ObjectPath="\Events\Default Work Unit\play_boop_temp"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="741923930" Language="SFX">
+					<ShortName>boopsound.wav</ShortName>
+					<Path>SFX\boopsound_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="579011794" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\timeSpeedUp_SoundBank</ObjectPath>
+			<ShortName>timeSpeedUp_SoundBank</ShortName>
+			<Path>timeSpeedUp_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2087021338" Name="play_timeSpeedUp_temp" ObjectPath="\Events\Default Work Unit\play_timeSpeedUp_temp"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="62458981" Language="SFX">
+					<ShortName>TimeSpeedsUpSound.wav</ShortName>
+					<Path>SFX\TimeSpeedsUpSound_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1076467492" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\timeStop_SoundBank</ObjectPath>
+			<ShortName>timeStop_SoundBank</ShortName>
+			<Path>timeStop_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2939232458" Name="play_timeStop_temp" ObjectPath="\Events\Default Work Unit\play_timeStop_temp"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="484017071" Language="SFX">
+					<ShortName>TimeStopSoundTest.wav</ShortName>
+					<Path>SFX\TimeStopSoundTest_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1831431028" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\testSoundBank</ObjectPath>
-			<ShortName>testSoundBank</ShortName>
-			<Path>testSoundBank.bnk</Path>
+		<SoundBank Id="3531298438" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\bg_SoundBank</ObjectPath>
+			<ShortName>bg_SoundBank</ShortName>
+			<Path>bg_SoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2272535601" Name="tempEvent" ObjectPath="\Events\Default Work Unit\tempEvent"/>
+				<Event Id="3363080024" Name="play_bg_music_temp" ObjectPath="\Events\Default Work Unit\play_bg_music_temp"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="211524629" Language="SFX">
-					<ShortName>Temp_Loop_01.wav</ShortName>
-					<Path>SFX\Temp_Loop_01_4B8CC0C5.wem</Path>
+				<File Id="273025137" Language="SFX">
+					<ShortName>Space-Time_a.groves_StylePiece.wav</ShortName>
+					<Path>SFX\Space-Time_a.groves_StylePiece_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="3348718080" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\stopTimeBank</ObjectPath>
-			<ShortName>stopTimeBank</ShortName>
-			<Path>stopTimeBank.bnk</Path>
+		<SoundBank Id="3769422919" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\timeSlow_SoundBank</ObjectPath>
+			<ShortName>timeSlow_SoundBank</ShortName>
+			<Path>timeSlow_SoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2983522775" Name="timeStopSound" ObjectPath="\Events\Default Work Unit\timeStopSound"/>
+				<Event Id="2380689439" Name="play_timeSlow_temp" ObjectPath="\Events\Default Work Unit\play_timeSlow_temp"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="484017071" Language="SFX">
-					<ShortName>TimeStopSoundTest.wav</ShortName>
-					<Path>SFX\TimeStopSoundTest_9E69E797.wem</Path>
+				<File Id="527866794" Language="SFX">
+					<ShortName>TimeSlowsSound.wav</ShortName>
+					<Path>SFX\TimeSlowsSound_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

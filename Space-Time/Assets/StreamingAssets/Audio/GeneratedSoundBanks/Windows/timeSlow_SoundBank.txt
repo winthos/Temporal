@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2380689439	play_timeSlow_temp			\Default Work Unit\play_timeSlow_temp	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	527866794	TimeSlowsSound	C:\Users\Kaila Harris\repos\ZaWarudo\Space-Time\Wwise\.cache\Windows\SFX\TimeSlowsSound_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\TimeSlowsSound		293632
+
