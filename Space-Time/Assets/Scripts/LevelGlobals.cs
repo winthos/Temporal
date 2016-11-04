@@ -24,7 +24,7 @@ public class LevelGlobals : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (Input.GetKey("i"))
+    if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
     if (Input.GetKey("escape"))
             Application.Quit();
