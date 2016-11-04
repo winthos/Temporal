@@ -17,8 +17,6 @@ public class Laser : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-    if (CameraController.GetPTime() || CameraController.GetETime())
-      return;
     //IsTimeStopped = GameObject.Find("LevelGlobals").GetComponent<LevelGlobals>().TimeStopped;
     RaycastHit hit;
     transform.LookAt(Player.transform);
