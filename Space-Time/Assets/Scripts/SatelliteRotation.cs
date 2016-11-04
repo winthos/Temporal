@@ -16,6 +16,8 @@ public class SatelliteRotation : MonoBehaviour
 	void Start ()
     {
         Planet = gameObject.transform.parent.gameObject;
+        transform.localScale *= Random.Range(1f, 1.3f);
+        RotationSpeed = Random.Range(10, 20);
     }
 	
 	// Update is called once per frame

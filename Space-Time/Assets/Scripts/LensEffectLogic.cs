@@ -30,7 +30,7 @@ public class LensEffectLogic : MonoBehaviour
 
             transform.localScale = Vector3.Lerp(Vector3.zero, InitialScale, count / speed);
             count += TimeZone.DeltaTime(false);
-            print(count);
+            //print(count);
         }
 
         if (CameraController.GetPTime() == false)
