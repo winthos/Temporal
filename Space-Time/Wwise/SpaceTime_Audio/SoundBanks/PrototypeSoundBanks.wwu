@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C3ED7CD7-8CCC-4489-AAA9-188EC4A241C3}" SchemaVersion="72">
+	<SoundBanks>
+		<WorkUnit Name="PrototypeSoundBanks" ID="{C3ED7CD7-8CCC-4489-AAA9-188EC4A241C3}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="sb_background_audio" ID="{C6E949DA-16D3-490B-BB6D-4C29763369E8}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_bg_audio" ID="{66D68228-114C-4756-A57A-0A6A37D51B43}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_timeStop" ID="{963BB16C-CC69-4D70-B158-91A2AE8CD452}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_timeStop" ID="{CCC99315-7AD6-4C5C-BDF5-71FB5D22DF2F}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_timeResume" ID="{006749C3-F321-43E2-92A9-57F5D0313366}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_timeResume" ID="{872B84C4-20CE-4F7E-921C-373E8932F40A}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

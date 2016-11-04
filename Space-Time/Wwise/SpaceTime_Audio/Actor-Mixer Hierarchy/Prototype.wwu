@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}" SchemaVersion="72">
+	<AudioObjects>
+		<WorkUnit Name="Prototype" ID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" ShortID="822799727" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="boopsound" ID="{F4A2A1D8-876A-492C-9671-66700A4B5432}" ShortID="573320345">
+							<Language>SFX</Language>
+							<AudioFile>boopsound.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="boopsound" ID="{F4A2A1D8-876A-492C-9671-66700A4B5432}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="TimeSlowsSound" ID="{9C42A90C-7CDD-4D47-BE22-CDA8BEEF4DA4}" ShortID="1034550095" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="TimeSlowsSound" ID="{BDC583E2-2870-4CCD-A09E-4AC1F2450DD9}" ShortID="832729178">
+							<Language>SFX</Language>
+							<AudioFile>TimeSlowsSound.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="TimeSlowsSound" ID="{BDC583E2-2870-4CCD-A09E-4AC1F2450DD9}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="TimeSpeedsUpSound" ID="{E5A11BAB-01BB-4E4F-8E11-5E37BB563991}" ShortID="593058453" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="TimeSpeedsUpSound" ID="{20F112D0-E12E-4C47-9F06-781464DC8D40}" ShortID="872459602">
+							<Language>SFX</Language>
+							<AudioFile>TimeSpeedsUpSound.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="TimeSpeedsUpSound" ID="{20F112D0-E12E-4C47-9F06-781464DC8D40}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" ShortID="555591837" Type="SoundFX">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Space-Time_a_groves_StylePiece" ID="{2A2F5575-E109-42D0-84C1-E4BDA0F9EE08}" ShortID="35848392">
+							<Language>SFX</Language>
+							<AudioFile>Space-Time_a.groves_StylePiece.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Space-Time_a_groves_StylePiece" ID="{2A2F5575-E109-42D0-84C1-E4BDA0F9EE08}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

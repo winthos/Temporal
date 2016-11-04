@@ -5,10 +5,15 @@ public class TimeStopFX : MonoBehaviour {
 
     //CameraController CameraScript;
     bool timeStopped;
-    bool timeFXplayed = false;
+    bool timeFXplayed = true;
 
-	// Use this for initialization
-	void Start ()
+    private bool SeriouslyDontDoThisTheFirstTime = false;
+
+    uint timeStopID;
+    uint timeResumeID;
+
+    // Use this for initialization
+    void Start ()
     {
         //CameraScript = GameObject.Find("Main Camera").GetComponent<CameraController>();
         timeStopped = CameraController.GetPTime();
@@ -18,14 +23,27 @@ public class TimeStopFX : MonoBehaviour {
 	void Update ()
     {
         timeStopped = CameraController.GetPTime();
+        
+        //this flawless code right here makes ths time resume sound not play the first time
+        if(!timeStopped && timeFXplayed == false)
+        {
+            SeriouslyDontDoThisTheFirstTime = true;
+        }
 
-        if (!timeStopped)
+        //normal time
+        if (!timeStopped && timeFXplayed == false && SeriouslyDontDoThisTheFirstTime == true)
+        {
+            AkSoundEngine.StopPlayingID(timeStopID);
+            timeResumeID = AkSoundEngine.PostEvent("event_timeResume", this.gameObject);
             timeFXplayed = true;
+        }
 
 
+        //stopped time
         if (timeStopped && timeFXplayed)
         {
-            AkSoundEngine.PostEvent("timeStopSound", this.gameObject);
+            AkSoundEngine.StopPlayingID(timeResumeID);
+            timeStopID = AkSoundEngine.PostEvent("event_timeStop", this.gameObject);
             timeFXplayed = false;
         }
 	}
