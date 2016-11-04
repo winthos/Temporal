@@ -33,6 +33,12 @@ public class CameraController : MonoBehaviour
   
   float x = 0.0f;
   float y = 0.0f;
+  
+  [SerializeField]
+  float minxMove = 0.2f;
+  [SerializeField]
+  float minyMove = 0.2f;
+  
   float Distance = 15.0f;
 
   bool TimeRegen = false;
@@ -42,8 +48,17 @@ public class CameraController : MonoBehaviour
   [SerializeField]
   float CamSnapSpeed = 1.5f;
     
+  [SerializeField]
+  float yClamp = 70.0f;
     
   int TimeMove = 0;
+  
+  
+  Quaternion CharacterTargetRot;
+  Quaternion CameraTargetRot;
+  bool smooth = false;
+  float smoothTime = 5f;
+  
 	// Use this for initialization
 	void Start () 
   {
@@ -56,7 +71,9 @@ public class CameraController : MonoBehaviour
 	  LevelGlobals = GameObject.FindWithTag("Globals");
     Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
-    
+      
+    CharacterTargetRot = CentrePoint.transform.localRotation;
+    CameraTargetRot = transform.localRotation;
     Distance = Vector3.Distance(transform.position, CentrePoint.transform.position);
 	}
 	
@@ -85,9 +102,15 @@ public class CameraController : MonoBehaviour
     if (!GetPTime() && !GetETime())
     {
       if (Vector3.Distance(Player.transform.position, CentrePoint.transform.position) > 0.01)
+      {
+       //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Player.transform.position + CentrePoint.transform.position)/2), CamSnapSpeed * 5);
         transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+      }
       else
+      {
+        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(CentrePoint.transform.position), CamSnapSpeed * 5);
         transform.LookAt(CentrePoint.transform.position);
+      }
       
       if (IsTimeTransitioning())
         {
@@ -100,12 +123,36 @@ public class CameraController : MonoBehaviour
     }
     else if (GetPTime())
     {
+      /*
+      float yRot = Input.GetAxis("Mouse X") * xSpeed * Distance * 0.02f;
+      float xRot = Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+
+      CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
+      CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
+
+      
+
+      if(smooth)
+      {
+          CentrePoint.transform.localRotation = Quaternion.Slerp (CentrePoint.transform.localRotation, CharacterTargetRot,
+              smoothTime * Time.deltaTime);
+          transform.localRotation = Quaternion.Slerp (transform.localRotation, CameraTargetRot,
+              smoothTime * Time.deltaTime);
+      }
+      else
+      {
+          CentrePoint.transform.localRotation = CharacterTargetRot;
+          transform.localRotation = CameraTargetRot;
+      }
+      */
         //Get mouse movement to determine the new angle
+      if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
       x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
+      if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
       y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
       
         //Clamp the y-rotation so we don't have weird circle camera shenanigans 
-      y = ClampAngle(y, -85f, 85f); 
+      y = ClampAngle(y, -yClamp, yClamp); 
       
    
  
@@ -117,7 +164,7 @@ public class CameraController : MonoBehaviour
       Vector3 Pos = Rotation * NegativeDistance + CentrePoint.transform.position /*+ (CentrePoint.transform.up * 1.15f)*/;
       
       //transform.rotation = Rotation;
-      transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, (defaultTimer - lerpTime) *CamSnapSpeed); //1.5f
+      transform.rotation = Quaternion.Slerp(transform.localRotation, Rotation, (defaultTimer - lerpTime) *CamSnapSpeed); //1.5f
       
       //transform.position = Pos;
       transform.position = Vector3.Slerp(transform.position, Pos, (defaultTimer - lerpTime) *CamSnapSpeed);
