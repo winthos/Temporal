@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="72">
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1197488201" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory Crankcase REV.wwu" DateLow="4218150690" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="3594103131" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="3598047195" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Prototype.wwu" DateLow="1827662429" DateHigh="30553821"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Attenuations\Default Work Unit.wwu" DateLow="1197222313" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Audio Devices\Default Work Unit.wwu" DateLow="1198194888" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Control Surface Sessions\Default Work Unit.wwu" DateLow="1198149768" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Conversion Settings\Default Work Unit.wwu" DateLow="1198034473" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Conversion Settings\Factory Conversion Settings.wwu" DateLow="3609092549" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1197092061" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Default Work Unit.wwu" DateLow="1197853993" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Altiverb - Outdoor and More.wwu" DateLow="3900921748" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Auro Headphone.wwu" DateLow="3625257889" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Convolution Reverb Effects.wwu" DateLow="3995161345" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Effects.wwu" DateLow="3595496843" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Box Modeler.wwu" DateLow="3995417050" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Delay.wwu" DateLow="3743355562" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Dynamics.wwu" DateLow="3756899264" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Filters.wwu" DateLow="3745270677" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Hybrid Reverb Effects.wwu" DateLow="3763327148" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="3755459731" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="3743350545" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory McDSP Effects.wwu" DateLow="3721206269" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Events\Default Work Unit.wwu" DateLow="1197803848" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Events\PrototypeEvents.wwu" DateLow="1568609609" DateHigh="30553821"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Game Parameters\Default Work Unit.wwu" DateLow="1197733678" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="3591936082" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1197016763" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1197618359" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Mixing Sessions\Default Work Unit.wwu" DateLow="1197307532" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Modulators\Default Work Unit.wwu" DateLow="1198089706" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Presets\Default Work Unit.wwu" DateLow="1197924201" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Queries\Default Work Unit.wwu" DateLow="1197367696" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Queries\Factory Queries.wwu" DateLow="3604747107" DateHigh="30547395"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SoundBanks\Default Work Unit.wwu" DateLow="1197673538" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SoundBanks\PrototypeSoundBanks.wwu" DateLow="2441474128" DateHigh="30553822"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1197979315" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SpaceTime_Audio.Kaila Harris.wsettings" DateLow="2886430414" DateHigh="30553825"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SpaceTime_Audio.wproj" DateLow="1087952364" DateHigh="30553822"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\States\Default Work Unit.wwu" DateLow="1197548168" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Switches\Default Work Unit.wwu" DateLow="1197432869" DateHigh="30553819"/>
-	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Triggers\Default Work Unit.wwu" DateLow="1197167167" DateHigh="30553819"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3025055948" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory Crankcase REV.wwu" DateLow="3025116091" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="3025587460" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="3026098791" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Actor-Mixer Hierarchy\Prototype.wwu" DateLow="3026158955" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Attenuations\Default Work Unit.wwu" DateLow="3026279349" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Audio Devices\Default Work Unit.wwu" DateLow="3026339099" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Control Surface Sessions\Default Work Unit.wwu" DateLow="3026384244" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Conversion Settings\Default Work Unit.wwu" DateLow="3026429384" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Conversion Settings\Factory Conversion Settings.wwu" DateLow="3026469474" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Dynamic Dialogue\Default Work Unit.wwu" DateLow="3026519591" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Default Work Unit.wwu" DateLow="3026559710" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Altiverb - Outdoor and More.wwu" DateLow="3026727616" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Auro Headphone.wwu" DateLow="3026777753" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Convolution Reverb Effects.wwu" DateLow="3026958225" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory Effects.wwu" DateLow="3027028412" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Box Modeler.wwu" DateLow="3027138722" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Delay.wwu" DateLow="3027178824" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Dynamics.wwu" DateLow="3027218931" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Filters.wwu" DateLow="3027284191" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Hybrid Reverb Effects.wwu" DateLow="3027324301" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="3027394484" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="3027459739" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Effects\Factory McDSP Effects.wwu" DateLow="3027098595" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Events\Default Work Unit.wwu" DateLow="3027499830" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Events\PrototypeEvents.wwu" DateLow="3027539932" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Game Parameters\Default Work Unit.wwu" DateLow="3027570045" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="3027580047" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="3030291314" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3030331289" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Mixing Sessions\Default Work Unit.wwu" DateLow="3030371199" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Modulators\Default Work Unit.wwu" DateLow="3030410969" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Presets\Default Work Unit.wwu" DateLow="3152235729" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Queries\Default Work Unit.wwu" DateLow="3152356020" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Queries\Factory Queries.wwu" DateLow="3152426228" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SoundBanks\Default Work Unit.wwu" DateLow="3152461325" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SoundBanks\PrototypeSoundBanks.wwu" DateLow="3152511458" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Soundcaster Sessions\Default Work Unit.wwu" DateLow="3152546572" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SpaceTime_Audio.Kaila Harris.wsettings" DateLow="2321731436" DateHigh="30553840"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\SpaceTime_Audio.wproj" DateLow="3152747097" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\States\Default Work Unit.wwu" DateLow="3152787229" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Switches\Default Work Unit.wwu" DateLow="3152817284" DateHigh="30553834"/>
+	<ValidationCacheItem File="C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\Triggers\Default Work Unit.wwu" DateLow="3152847364" DateHigh="30553834"/>
 </ValidationCache>

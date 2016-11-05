@@ -50,6 +50,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="event_riftGet" ID="{38A2A33C-B620-4ACC-B1DA-391F95975F28}">
+					<ChildrenList>
+						<Action Name="Play" ID="{DB552574-EC51-44DF-B9A3-DCE61153E8D3}" ShortID="44961692" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{E4272C2B-CBB5-49A8-AC50-58646F575158}" Global="false">
+									<ObjectRef Name="Pickup_Rift" ID="{6FB46954-F2D6-4D6E-BB33-612DEE4D6E47}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_directionChange" ID="{4E539892-9A5F-498A-9700-73787F134B5C}">
+					<ChildrenList>
+						<Action Name="Play" ID="{DB8ED1C3-945A-40E5-8D68-A53A5E8F667C}" ShortID="330145981" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{AB04D78D-BF97-4562-8B2A-FF6DAF30161F}" Global="false">
+									<ObjectRef Name="Direction_Change" ID="{72DF73C0-3DE2-4A7C-B674-10F366BAC177}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

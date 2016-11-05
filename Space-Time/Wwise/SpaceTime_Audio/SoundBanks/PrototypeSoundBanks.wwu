@@ -24,6 +24,20 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="sb_riftGet" ID="{9D84FE34-95CF-4909-A5FB-870037347674}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_riftGet" ID="{38A2A33C-B620-4ACC-B1DA-391F95975F28}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_directionChange" ID="{A559ABFB-4129-4DF2-8038-CCF687636252}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_directionChange" ID="{4E539892-9A5F-498A-9700-73787F134B5C}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>

@@ -82,6 +82,132 @@
 						<ActiveSource Name="Space-Time_a_groves_StylePiece" ID="{2A2F5575-E109-42D0-84C1-E4BDA0F9EE08}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Pickup_Rift" ID="{6FB46954-F2D6-4D6E-BB33-612DEE4D6E47}" ShortID="941493296" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Pickup_Rift" ID="{9E997D39-18B5-4F47-B0BC-42AAFEB93952}" ShortID="79971464">
+							<Language>SFX</Language>
+							<AudioFile>Pickup_Rift.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Pickup_Rift" ID="{9E997D39-18B5-4F47-B0BC-42AAFEB93952}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<RandomSequenceContainer Name="Direction_Change" ID="{72DF73C0-3DE2-4A7C-B674-10F366BAC177}" ShortID="275648327">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Direction_Change_01" ID="{D8EB42CB-A41C-4463-8581-AD8C6F0CEF2D}" ShortID="42725003" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Direction_Change_01" ID="{E5A1A3D5-8454-41A7-85AD-1759CAE87DBE}" ShortID="23795851">
+									<Language>SFX</Language>
+									<AudioFile>Direction_Change_01.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Direction_Change_01" ID="{E5A1A3D5-8454-41A7-85AD-1759CAE87DBE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Direction_Change_05" ID="{4DD04357-0D5A-462B-8940-70E74FFF95DB}" ShortID="561925568" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Direction_Change_05" ID="{F187CC51-5218-4A48-9A9B-05A2BFA3721A}" ShortID="977947792">
+									<Language>SFX</Language>
+									<AudioFile>Direction_Change_05.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Direction_Change_05" ID="{F187CC51-5218-4A48-9A9B-05A2BFA3721A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Direction_Change_03" ID="{6E66BC48-06AF-44EF-ABC8-807B072E8D63}" ShortID="305425336" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Direction_Change_03" ID="{85E0EF16-A4C4-4F61-801B-59761785724C}" ShortID="337683074">
+									<Language>SFX</Language>
+									<AudioFile>Direction_Change_03.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Direction_Change_03" ID="{85E0EF16-A4C4-4F61-801B-59761785724C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Direction_Change_02" ID="{5D5BC1BF-57C7-415E-B5ED-40E93AC0FC74}" ShortID="863050704" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Direction_Change_02" ID="{E6C9CCF9-555D-4E65-A9B2-AA60828BD9C1}" ShortID="533306455">
+									<Language>SFX</Language>
+									<AudioFile>Direction_Change_02.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Direction_Change_02" ID="{E6C9CCF9-555D-4E65-A9B2-AA60828BD9C1}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Direction_Change_04" ID="{03CCA348-AE63-48DD-9D1A-9AFC0DB30959}" ShortID="400378242" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{9DE79A6E-0363-46CD-8295-8F0DB3E35B33}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Direction_Change_04" ID="{690638DE-D08B-424E-B6BF-B824269D7BA7}" ShortID="477793937">
+									<Language>SFX</Language>
+									<AudioFile>Direction_Change_04.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Direction_Change_04" ID="{690638DE-D08B-424E-B6BF-B824269D7BA7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

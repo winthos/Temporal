@@ -43,6 +43,36 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
+		<SoundBank Id="1206888968" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_directionChange</ObjectPath>
+			<ShortName>sb_directionChange</ShortName>
+			<Path>sb_directionChange.bnk</Path>
+			<IncludedEvents>
+				<Event Id="74161701" Name="event_directionChange" ObjectPath="\Events\PrototypeEvents\event_directionChange"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="23795851" Language="SFX">
+					<ShortName>Direction_Change_01.wav</ShortName>
+					<Path>SFX\Direction_Change_01_9E69E797.wem</Path>
+				</File>
+				<File Id="337683074" Language="SFX">
+					<ShortName>Direction_Change_03.wav</ShortName>
+					<Path>SFX\Direction_Change_03_9E69E797.wem</Path>
+				</File>
+				<File Id="477793937" Language="SFX">
+					<ShortName>Direction_Change_04.wav</ShortName>
+					<Path>SFX\Direction_Change_04_9E69E797.wem</Path>
+				</File>
+				<File Id="533306455" Language="SFX">
+					<ShortName>Direction_Change_02.wav</ShortName>
+					<Path>SFX\Direction_Change_02_9E69E797.wem</Path>
+				</File>
+				<File Id="977947792" Language="SFX">
+					<ShortName>Direction_Change_05.wav</ShortName>
+					<Path>SFX\Direction_Change_05_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
@@ -63,6 +93,20 @@
 				<File Id="832729178" Language="SFX">
 					<ShortName>TimeSlowsSound.wav</ShortName>
 					<Path>SFX\TimeSlowsSound_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="2988724476" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_riftGet</ObjectPath>
+			<ShortName>sb_riftGet</ShortName>
+			<Path>sb_riftGet.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3656834517" Name="event_riftGet" ObjectPath="\Events\PrototypeEvents\event_riftGet"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="79971464" Language="SFX">
+					<ShortName>Pickup_Rift.wav</ShortName>
+					<Path>SFX\Pickup_Rift_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

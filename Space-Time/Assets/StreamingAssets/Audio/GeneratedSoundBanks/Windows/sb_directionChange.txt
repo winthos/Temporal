@@ -1,0 +1,10 @@
+Event	ID	Name			Wwise Object Path	Notes
+	74161701	event_directionChange			\PrototypeEvents\event_directionChange	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	23795851	Direction_Change_01	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Direction_Change_01_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Direction_Change\Direction_Change_01		100832
+	337683074	Direction_Change_03	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Direction_Change_03_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Direction_Change\Direction_Change_03		101124
+	477793937	Direction_Change_04	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Direction_Change_04_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Direction_Change\Direction_Change_04		99664
+	533306455	Direction_Change_02	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Direction_Change_02_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Direction_Change\Direction_Change_02		101480
+	977947792	Direction_Change_05	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Direction_Change_05_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Direction_Change\Direction_Change_05		101532
+
