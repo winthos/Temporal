@@ -64,11 +64,13 @@ public class SpacerControl : MonoBehaviour
   {
     if (CameraController.GetPTime() /*|| !Ready*/)
     {
-      
-      return;
+            transform.position = Vector3.Lerp(transform.position, CentrePoint.transform.position + AdditionalPos,
+                                                                             TimeZone.DeltaTime(false) * 150.0f);
+
+            return;
     }
     float dist = (Time.time - StartTime);
-    float perc = (dist / PercentDone)*15000;
+    float perc = (dist / PercentDone)*800;
     
     
     //lerp smoothly to designated position
@@ -76,7 +78,7 @@ public class SpacerControl : MonoBehaviour
     if (perc < 1.0f)
     {
       transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
-                                                                        TimeZone.DeltaTime() * 15.0f);
+                                                                     perc);
       
       
     }
