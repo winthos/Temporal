@@ -36,4 +36,9 @@ public class ColorPalette
     {
         return PlanetsAndSatellites;
     }
+
+    public void ClearAllPalettes()
+    {
+
+    }
 }

@@ -1,0 +1,7 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1264224157	event_timeStop			\PrototypeEvents\event_timeStop	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	573320345	boopsound	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\boopsound_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\boopsound		659264
+	832729178	TimeSlowsSound	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\TimeSlowsSound_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\TimeSlowsSound		293632
+

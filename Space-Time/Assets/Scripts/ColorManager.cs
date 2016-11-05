@@ -77,9 +77,17 @@ public class ColorManager : MonoBehaviour
 
     void OnDestroy()
     {
-        //clear all lists
+        // clear palCurrent list
+
+        //clear all palette lists
+        foreach (ColorPalette colPal in allPalettes)
+        {
+            //clear the lists in the palette
+        }
+        //clear allPalettes of empty palettes 
+        // clear colorLog list
     }
-    
+
 
 
     ColorPalette PinkTriad()
