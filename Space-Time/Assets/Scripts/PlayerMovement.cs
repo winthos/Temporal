@@ -246,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
   {
     if (other.gameObject.tag == "Rift")
     {
+      AkSoundEngine.PostEvent("event_riftGet", this.gameObject);
       SpeedStacks++;
       Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
@@ -314,6 +315,8 @@ public class PlayerMovement : MonoBehaviour
   public GameObject CalcNextGridPos(int dir)  //1 = up, 2 = down, 4 = left, 8 = right,
                                               //5 = UL, 9 = UR, 6 = DL, 10 = DR
   {
+    AkSoundEngine.PostEvent("event_DirectionChange", this.gameObject);
+
     int oldPos = GridPos;
     if (dir == 1) //up
     {
