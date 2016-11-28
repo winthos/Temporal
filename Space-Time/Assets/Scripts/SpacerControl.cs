@@ -45,6 +45,7 @@ public class SpacerControl : MonoBehaviour
   
   float AttackTimer = 0.0f;
 
+  [SerializeField]
   Vector3 RotateDir = new Vector3(-1,1,0);
 	// Use this for initialization
 	void Start () 
@@ -62,9 +63,12 @@ public class SpacerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (CameraController.GetPTime() /*|| !Ready*/)
+    if (CameraController.GetPTime() /*|| !Ready*/ || PauseController.Paused)
     {
-      
+      if (PauseController.Paused)
+      {
+        StartTime = Time.time;
+      }
       return;
     }
     float dist = (Time.time - StartTime);

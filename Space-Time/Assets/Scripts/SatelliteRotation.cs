@@ -23,7 +23,7 @@ public class SatelliteRotation : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (CameraController.GetPTime() == true)
+        if (CameraController.GetPTime() == true || PauseController.Paused)
             return;
         else
             transform.RotateAround(Planet.transform.position, Vector3.up, RotationSpeed * TimeZone.DeltaTime());

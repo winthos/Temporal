@@ -19,6 +19,8 @@ public class LaserController : MonoBehaviour
 	void Update () 
   {
     //fly at the player when time is not stopped
+    if (PauseController.Paused)
+      return;
     transform.position = Vector3.Lerp(transform.position, transform.position + MoveDir*FireSpeed, 
                                       TimeZone.DeltaTime()*FireSpeed);
 	}
