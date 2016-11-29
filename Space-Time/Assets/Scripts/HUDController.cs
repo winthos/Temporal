@@ -24,26 +24,65 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject PauseBlock;
   
+  [SerializeField]
+  GameObject DefaultPauseScreen;
+  /*
+  [SerializeField]
+  GameObject HTPButton;
+  
+  [SerializeField]
+  GameObject ResumeButton;
+  
+  [SerializeField]
+  GameObject TitleButton;
+  */
+  
+  [SerializeField]
+  GameObject HTPScreen;
+  
+  [SerializeField]
+  GameObject LoseScreen;
+  
+  
+  /*
+  [SerializeField]
+  GameObject RetryButton;
+  */
+  
   int dTime = 0;
   float independentTime;
   float startTime = 0.0f;
 	// Use this for initialization
+  
+  
 	void Start () 
   {
     independentTime = Time.time;
+    PauseController.Paused = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
   {
-    
-    if (PauseController.Paused)
+    if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused)
     {
+      Cursor.lockState = CursorLockMode.None;
+      LoseScreen.SetActive(true);
+      return;
+    }
+    else if (PauseController.Paused)
+    {
+      print("Currently paused");
       PauseBlock.SetActive(true);
+      Cursor.lockState = CursorLockMode.None;
       return;
     }
     else
+    {
+      DefaultPauseScreen.SetActive(true);
       PauseBlock.SetActive(false);
+      Cursor.lockState = CursorLockMode.Locked;
+    }
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
     TimeBarUpdate();
@@ -93,5 +132,44 @@ public class HUDController : MonoBehaviour
   {
     dTime = t;
     startTime = independentTime;
+  }
+  
+  public void HowToPlayOn()
+  {
+    HTPScreen.SetActive(true);
+    DefaultPauseScreen.SetActive(false);
+  }
+  
+  public void Resume()
+  {
+    //DefaultPauseScreen.SetActive(true);
+    HTPScreen.SetActive(false);
+    PauseController.SetPause(false);
+    print("BUTTON CLICKED");
+    
+  }
+  
+  public void DefaultPauseOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(true);
+  }
+  
+  public void Retry()
+  {
+    PauseController.SetPause(false);
+    PauseBlock.SetActive(false);
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    LoseScreen.SetActive(false);
+    LevelGlobals.calcHighScores();
+    
+    Application.LoadLevel(Application.loadedLevel);
+    //do other retry things
+  }
+  
+  public void ReturnToTitle()
+  {
+    //Application.LoadLevel("Title");
   }
 }

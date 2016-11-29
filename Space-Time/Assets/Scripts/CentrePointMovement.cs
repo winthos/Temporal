@@ -67,7 +67,7 @@ public class CentrePointMovement : MonoBehaviour
   
   
   
-  float GetTrueSpeed()
+  public float GetTrueSpeed()
   {
     return Mathf.Clamp(GetMovementSpeed() * Player.GetComponent<PlayerMovement>().SpeedStacks * StackGainMultiplier,GetMovementSpeed(),100);
   }

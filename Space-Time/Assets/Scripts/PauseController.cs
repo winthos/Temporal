@@ -19,6 +19,17 @@ public class PauseController : MonoBehaviour
       {
         print(Paused);
         Paused = !Paused;
+        
       }
 	}
+  
+  public static void TogglePause()
+  {
+    Paused = !Paused;
+  }
+  
+  public static void SetPause(bool pause)
+  {
+    Paused = pause;
+  }
 }
