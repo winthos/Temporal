@@ -27,6 +27,8 @@ public class PlanetDistance : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+      if (PauseController.Paused)
+        return;
         if(player != null)
             transform.position = player.transform.position + distance;
     }

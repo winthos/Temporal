@@ -33,6 +33,8 @@ public class CentrePointMovement : MonoBehaviour
     // Update is called once per frame
   void Update () 
   {
+    if (PauseController.Paused)
+      return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {
       if (Input.GetMouseButton(0) && !SpeedUp)
@@ -65,7 +67,7 @@ public class CentrePointMovement : MonoBehaviour
   
   
   
-  float GetTrueSpeed()
+  public float GetTrueSpeed()
   {
     return Mathf.Clamp(GetMovementSpeed() * Player.GetComponent<PlayerMovement>().SpeedStacks * StackGainMultiplier,GetMovementSpeed(),100);
   }

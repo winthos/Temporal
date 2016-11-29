@@ -36,8 +36,19 @@ public class Health : MonoBehaviour
     // Update is called once per frame
   void Update ()
   {
-    if (Boom)
-      Destroy(gameObject);
+    if (Boom && !PauseController.Paused)
+    {
+      if (gameObject.tag == "Player")
+      {
+        gameObject.GetComponent<Renderer>().material.Lerp(GetComponent<PlayerMovement>().defaultMaterial, 
+                                                          GetComponent<PlayerMovement>().KOMaterial, TimeZone.DeltaTime(false)* 50.0f);
+        TimeZone.SetTimeScale(Mathf.Lerp(TimeZone.DeltaTime(), 0.0000000001f, TimeZone.DeltaTime(false)* 15.0f));
+        PauseController.Paused = true;
+      }
+      else
+        Destroy(gameObject);
+      
+    }
     
   }
   
@@ -47,18 +58,23 @@ public class Health : MonoBehaviour
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
     {
       print("hp 0");
+      
       if (CreateOnDeath != null && CreateOnDeath.Length > 0)
       {
         GameObject create;
         for (int i = 0; i < CreateOnDeath.Length; i++)
         {
           create = (GameObject)Instantiate(CreateOnDeath[i], transform.position, Quaternion.identity);
+
         }
       }
+      
       if (gameObject.tag == "Spacer")
       {
         EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetGridPos(), false);
       }
+      
+      
       StartCoroutine(Wait());
     }
       //destroy!
