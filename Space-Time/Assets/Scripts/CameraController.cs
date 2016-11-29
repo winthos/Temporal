@@ -16,7 +16,9 @@ public class CameraController : MonoBehaviour
     // For checking if any enemies have stopped time or not
   private static bool ETimeStop = false;
   
-  public static GameObject[] ETimers;
+  
+  
+  public static int ETimers;
   
   GameObject LevelGlobals;
   GameObject Player;
@@ -80,6 +82,9 @@ public class CameraController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
+    if (PauseController.Paused)
+      return;
+    
     defaultTimer += TimeZone.DeltaTime(false);
     if (TimeMove == -1) //stop time
     {
@@ -235,6 +240,13 @@ public class CameraController : MonoBehaviour
   public static void SetETime(bool time)
   {
     ETimeStop = time;
+  }
+  
+  public static void ETimerDecrement()
+  {
+    ETimers--;
+    if (ETimers <= 0)
+     ETimeStop = false;
   }
   
   public void ToggleTimeStop()

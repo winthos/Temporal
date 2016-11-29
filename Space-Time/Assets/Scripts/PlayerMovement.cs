@@ -52,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
       //Vector3 dir = new Vector3();
       //allow WASD input yay
       //dir = transform.position;
-      
+      if (PauseController.Paused)
+        return;
       if (Input.anyKey && DashTo == null)
       {
         /*

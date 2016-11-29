@@ -21,6 +21,9 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject TimeStopFilter;
   
+  [SerializeField]
+  GameObject PauseBlock;
+  
   int dTime = 0;
   float independentTime;
   float startTime = 0.0f;
@@ -33,6 +36,14 @@ public class HUDController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
+    
+    if (PauseController.Paused)
+    {
+      PauseBlock.SetActive(true);
+      return;
+    }
+    else
+      PauseBlock.SetActive(false);
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
     TimeBarUpdate();

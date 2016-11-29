@@ -3,9 +3,7 @@ using System.Collections;
 
 public class TimerControl : MonoBehaviour 
 {
-  
-  [SerializeField]
-  float AttackInterval = 5.0f;
+
   
   [SerializeField]
   Vector2 RelativeToPlayer = new Vector2();
@@ -31,8 +29,17 @@ public class TimerControl : MonoBehaviour
   [SerializeField]
   float ETime = 4.0f;
   
-  float AttackTimer = 0.0f;
+  [SerializeField]
+  GameObject TimeBar;
+  
+  [SerializeField]
+  int ExplosionSize = 1; //1, 4, 9, are acceptable
+  
+  [SerializeField]
+  GameObject Explosion;
+  
 
+  [SerializeField]
   Vector3 RotateDir = new Vector3(-1,1,0);
 	// Use this for initialization
 	void Start () 
@@ -51,6 +58,14 @@ public class TimerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
+    if (PauseController.Paused)
+      return;
+    if (ETime > 0.0f)
+    {
+      ETime -= TimeZone.DeltaTime(false);
+      if (ETime <= 0.0f)
+        StartCoroutine(Explode());
+    }
     float dist = (Time.time - StartTime);
     float perc = dist / PercentDone;
     
@@ -70,18 +85,10 @@ public class TimerControl : MonoBehaviour
                                                                         TimeZone.DeltaTime(false) * 150.0f);
     }
     //CalcRelativePosition();
-    
-    if (AttackTimer < AttackInterval)
-    {
-      AttackTimer += TimeZone.DeltaTime(false);
-      if (AttackTimer >= AttackInterval)
-      {
-        Fire();
-        AttackTimer = 0.0f;
-      }
-    }
+ 
     Body.transform.Rotate(RotateDir, 40.0f * Time.deltaTime);
 	}
+  
   
   void CalcRelativePosition()
   {
@@ -99,13 +106,47 @@ public class TimerControl : MonoBehaviour
     
   }
   
-  void Fire()
+
+  IEnumerator Explode()
   {
-    GameObject laser = (GameObject)Instantiate(Projectile, transform.position, Quaternion.identity);
-    LaserController lcontrol = laser.GetComponent<LaserController>();
-    if (lcontrol != null)
-    {
-      lcontrol.SetMoveDir(Vector3.Normalize(Player.transform.position - transform.position));
-    }
+    //change material to signify its about to blow up
+    yield return new WaitForSeconds(0.125f);
+    /*
+      //Creates explosion hitboxes on designated squares based on current position (offset based on explo size)
+      GameObject boom;
+      if (ExplosionSize >= 1)
+      {
+        boom = Instantiate(transform.position, "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+      }
+      if (ExplosionSize >= 4) //cardinal only
+      {
+        boom = Instantiate(transform.position + Vector3(5,0,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(-5,0,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(0,5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(0,-5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+      }
+      if (ExplosionSize >= 9) //cardinal + diagonals
+      {
+        boom = Instantiate(transform.position + Vector3(5,5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(5,-5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(-5,5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+        
+        boom = Instantiate(transform.position + Vector3(-5,-5,0), "Explosion", Quaternion.identity);
+        boom.transform.parent = CentrePoint.transform;
+      }
+    */
   }
 }
