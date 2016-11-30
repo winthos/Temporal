@@ -11,8 +11,10 @@ public class LevelGlobals : MonoBehaviour
   public static float distanceTraveled;
   public static float highestDistance;
   
+  public static float runningTime;
+  
   [SerializeField]
-  public bool Debugging = true;
+  public static bool Debugging = false;
   
   
 
@@ -20,6 +22,7 @@ public class LevelGlobals : MonoBehaviour
 	void Start () 
   {
     distanceTraveled = 0;
+    runningTime = 0;
     TimeZone.SetTimeScale(1f);
     Camera = GameObject.FindWithTag("MainCamera");
     Player = GameObject.FindWithTag("Player");
@@ -30,7 +33,9 @@ public class LevelGlobals : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed();
+    if (!CameraController.GetPTime())
+      distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed() / 2.0f;
+    runningTime += TimeZone.DeltaTime(true);
     if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
     if (Input.GetKey("escape"))

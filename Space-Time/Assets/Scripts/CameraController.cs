@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
   
   public static int ETimers;
   
-  GameObject LevelGlobals;
+  GameObject levelGlobals;
   GameObject Player;
   GameObject CentrePoint;
   
@@ -70,9 +70,9 @@ public class CameraController : MonoBehaviour
     x = transform.eulerAngles.x;
     y = transform.eulerAngles.y;
     
-	  LevelGlobals = GameObject.FindWithTag("Globals");
-    Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
-    CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
+	  levelGlobals = GameObject.FindWithTag("Globals");
+    Player = levelGlobals.GetComponent<LevelGlobals>().Player;
+    CentrePoint = levelGlobals.GetComponent<LevelGlobals>().CentrePoint;
       
     CharacterTargetRot = CentrePoint.transform.localRotation;
     CameraTargetRot = transform.localRotation;
@@ -180,7 +180,7 @@ public class CameraController : MonoBehaviour
       
      
       /*
-      if (Input.GetMouseButton(0) && LevelGlobals.GetComponent<LevelGlobals>().Debugging) // if left mouse is held
+      if (Input.GetMouseButton(0) && levelGlobals.GetComponent<levelGlobals>().Debugging) // if left mouse is held
       {
          CentrePoint.transform.rotation = Rotation;
          float speed = CentrePoint.GetComponent<CentrePointMovement>().GetMovementSpeed();
@@ -190,7 +190,7 @@ public class CameraController : MonoBehaviour
       */
       if (PTimeStopTimer > 0.0f )
       {
-        if (!LevelGlobals.GetComponent<LevelGlobals>().Debugging)
+        if (!LevelGlobals.Debugging)
           PTimeStopTimer -= TimeZone.DeltaTime(false);
         if (PTimeStopTimer <= 0.0f && PTimeStop)
         {
