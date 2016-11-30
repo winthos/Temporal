@@ -30,11 +30,15 @@ public class PlayerMovement : MonoBehaviour
   float HorizontalBound;
   
   public int GridPos = 5;
+  
+  public Material defaultMaterial;
+  [SerializeField]
+  public Material KOMaterial;
 
   // Use this for initialization
   void Start () 
   {
-    
+    defaultMaterial = GetComponent<Renderer>().material;
     LevelGlobals = GameObject.FindWithTag("Globals");
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
@@ -52,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
       //Vector3 dir = new Vector3();
       //allow WASD input yay
       //dir = transform.position;
-      
+      if (PauseController.Paused)
+        return;
       if (Input.anyKey && DashTo == null)
       {
         /*

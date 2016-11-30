@@ -56,7 +56,7 @@ public class AsteroidSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (CameraController.GetPTime() || CameraController.GetETime())
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused)
       return;
     
     SpawnTimer -= Time.deltaTime;
