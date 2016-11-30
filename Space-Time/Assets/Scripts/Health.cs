@@ -54,6 +54,8 @@ public class Health : MonoBehaviour
   
   public void DecrementHealth()
   {
+    if (gameObject.tag == "Player" && LevelGlobals.Debugging)
+      return;
     hp--;
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
     {
