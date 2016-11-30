@@ -43,6 +43,15 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject LoseScreen;
   
+  [SerializeField]
+  GameObject DebugText;
+  
+  [SerializeField]
+  GameObject DistTraveled;
+  
+  [SerializeField]
+  GameObject TimePassed;
+  
   
   /*
   [SerializeField]
@@ -52,6 +61,7 @@ public class HUDController : MonoBehaviour
   int dTime = 0;
   float independentTime;
   float startTime = 0.0f;
+  
 	// Use this for initialization
   
   
@@ -88,6 +98,7 @@ public class HUDController : MonoBehaviour
     TimeBarUpdate();
     SpeedUpdate();
     TimeAlter();
+    OtherUpdate();
     
 	}
   
@@ -128,10 +139,26 @@ public class HUDController : MonoBehaviour
     
     
   }
+  
   public void TimeSet(int t)
   {
     dTime = t;
     startTime = independentTime;
+  }
+  
+  public void OtherUpdate()
+  {
+    if (LevelGlobals.Debugging)
+      DebugText.SetActive(true);
+    else
+      DebugText.SetActive(false);
+    
+    DistTraveled.GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
+    DistTraveled.transform.GetChild(0).GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
+    TimePassed.GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
+                                                    + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
+    TimePassed.transform.GetChild(0).GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
+                                                    + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
   }
   
   public void HowToPlayOn()
