@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class HUDController : MonoBehaviour 
 {
@@ -190,8 +191,8 @@ public class HUDController : MonoBehaviour
     DefaultPauseScreen.SetActive(false);
     LoseScreen.SetActive(false);
     LevelGlobals.calcHighScores();
-    
-    Application.LoadLevel(Application.loadedLevel);
+
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     //do other retry things
   }
   
