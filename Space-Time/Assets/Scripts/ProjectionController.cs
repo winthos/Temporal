@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Jordan Yong
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+
+using UnityEngine;
 using System.Collections;
 
 public class ProjectionController : MonoBehaviour 
@@ -35,27 +40,27 @@ public class ProjectionController : MonoBehaviour
     RaycastHit hit;
     if(Physics.Raycast(transform.position, transform.forward, out hit, MaxRayDistance))
     {
-       if(hit.collider)
+     if(hit.collider)
+      {
+        if (hit.collider.gameObject.tag == "Hazard")
         {
-          if (hit.collider.gameObject.tag == "Hazard")
-          {
-            renderer.material.SetColor("_Color", HazardColour);
-          }
-          else if (hit.collider.gameObject.tag == "Rift")
-          {
-            renderer.material.SetColor("_Color", RiftColour);
-          }
-          
-          //spacer
-          //time bomb
+          renderer.material.SetColor("_Color", HazardColour);
         }
+        else if (hit.collider.gameObject.tag == "Rift")
+        {
+          renderer.material.SetColor("_Color", RiftColour);
+        }
+        
+        //spacer
+        //time bomb
+      }
     }
 
     else
     {
-        //if(IsTimeStopped == false)
-        renderer.material.SetColor("_Color", DefaultColour);
-          
+      //if(IsTimeStopped == false)
+      renderer.material.SetColor("_Color", DefaultColour);
+        
     }
 	}
 }

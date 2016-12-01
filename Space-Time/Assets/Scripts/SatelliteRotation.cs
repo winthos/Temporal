@@ -1,8 +1,9 @@
-﻿/*
- * Written by Kaila Harris
- * controls the rotation of satellite objects around a gameObject
- * must be a child of the target object
- */
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//  controls the rotation of satellite objects around a gameObject
+//  must be a child of the target object
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
  using UnityEngine;
 using System.Collections;
 
