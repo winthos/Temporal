@@ -1,7 +1,10 @@
-﻿/*
- * Written by Kaila Harris, 11/01/2016
- * converts hex colors to rgb
- */
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//  11/01/2016
+//  converts hex colors to rgb
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+
 using System;
 using UnityEngine;
 

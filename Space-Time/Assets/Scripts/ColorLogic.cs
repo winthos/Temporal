@@ -1,7 +1,8 @@
-﻿/*
- * Written by Kaila Harris
- * Goes on every visible object in the game
- */
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//  Goes on every visible object in the game
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
 using System.Collections;

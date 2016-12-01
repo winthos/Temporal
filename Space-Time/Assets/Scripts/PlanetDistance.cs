@@ -1,7 +1,8 @@
-/*
- * Written by Kaila Harris
- * Keeps planets and other large bodies away from player at constant distance
- */
+////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//  Keeps planets and other large bodies away from player at constant distance
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
  using UnityEngine;
 using System.Collections;
 

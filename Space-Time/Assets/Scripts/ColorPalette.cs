@@ -1,7 +1,8 @@
-﻿/*
- * Written by Kaila Harris
- * Color Palette Class
- */
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//  Color Palette Class
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
