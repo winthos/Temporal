@@ -55,7 +55,7 @@ public class SpacerControl : MonoBehaviour
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     //RandomCalcPosition();
     CalcGridPos();
-    transform.parent = CentrePoint.transform;
+    transform.parent = Player.transform;
     CalcRelativePosition();
     ReStartMovement();
 	}
@@ -65,12 +65,17 @@ public class SpacerControl : MonoBehaviour
   {
     if (CameraController.GetPTime() /*|| !Ready*/ || PauseController.Paused)
     {
+      
       if (PauseController.Paused)
       {
         StartTime = Time.time;
       }
+      else
+        transform.parent = CentrePoint.transform;
       return;
     }
+    
+    transform.parent = Player.transform;
     float dist = (Time.time - StartTime);
     float perc = (dist / PercentDone)*15000;
     
