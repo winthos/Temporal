@@ -38,8 +38,8 @@ public class LevelGlobals : MonoBehaviour
     runningTime += TimeZone.DeltaTime(true);
     if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
-    if (Input.GetKey("escape"))
-            Application.Quit();
+    //if (Input.GetKey("escape"))
+            //Application.Quit();
         
 	}
   
