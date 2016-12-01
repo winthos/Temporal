@@ -27,6 +27,9 @@ public class HUDController : MonoBehaviour
   
   [SerializeField]
   GameObject DefaultPauseScreen;
+  
+  [SerializeField]
+  GameObject DestructiveActionScreen;
   /*
   [SerializeField]
   GameObject HTPButton;
@@ -166,6 +169,7 @@ public class HUDController : MonoBehaviour
   {
     HTPScreen.SetActive(true);
     DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
   }
   
   public void Resume()
@@ -181,6 +185,14 @@ public class HUDController : MonoBehaviour
   {
     HTPScreen.SetActive(false);
     DefaultPauseScreen.SetActive(true);
+    DestructiveActionScreen.SetActive(false);
+  }
+  
+  public void DestructiveActionOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(true);
   }
   
   public void Retry()
@@ -200,4 +212,10 @@ public class HUDController : MonoBehaviour
   {
     //Application.LoadLevel("Title");
   }
+  
+  public void Quit()
+  {
+    Application.Quit();
+  }
+  
 }
