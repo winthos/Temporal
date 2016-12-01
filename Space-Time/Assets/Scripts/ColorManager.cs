@@ -1,7 +1,8 @@
-﻿/*
- * Written by Kaila Harris
- * Goes on the Level Globals or Game Manager object
- */
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+// Goes on the Level Globals or Game Manager object
+//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
