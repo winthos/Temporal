@@ -59,9 +59,9 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
-				<SoundBank Name="sb_logoScreen" ID="{74535DB3-FACD-4C9D-ACC6-4B7E34CFCCF2}">
+				<SoundBank Name="sb_splashScreen" ID="{74535DB3-FACD-4C9D-ACC6-4B7E34CFCCF2}">
 					<ObjectInclusionList>
-						<ObjectRef Name="event_logo" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="event_splashScreen" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

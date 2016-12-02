@@ -29,6 +29,20 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
+		<SoundBank Id="265878028" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_splashScreen</ObjectPath>
+			<ShortName>sb_splashScreen</ShortName>
+			<Path>sb_splashScreen.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3342360411" Name="event_splashScreen" ObjectPath="\Events\PrototypeEvents\event_splashScreen"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="936566417" Language="SFX">
+					<ShortName>Intro_Splashscreen.wav</ShortName>
+					<Path>SFX\Intro_Splashscreen_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
 		<SoundBank Id="816522258" Language="SFX">
 			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_background_audio</ObjectPath>
 			<ShortName>sb_background_audio</ShortName>
@@ -81,9 +95,9 @@
 				<Event Id="4115145659" Name="event_menuHover" ObjectPath="\Events\PrototypeEvents\event_menuHover"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="565113125" Language="SFX">
-					<ShortName>TheLibrarybyMTC_UI_Alert_01.wav</ShortName>
-					<Path>SFX\TheLibrarybyMTC_UI_Alert_01_9E69E797.wem</Path>
+				<File Id="885788820" Language="SFX">
+					<ShortName>Menu_Hover.wav</ShortName>
+					<Path>SFX\Menu_Hover_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
@@ -132,9 +146,9 @@
 				<Event Id="3632858267" Name="event_menuSelect" ObjectPath="\Events\PrototypeEvents\event_menuSelect"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="1063607758" Language="SFX">
-					<ShortName>StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction.wav</ShortName>
-					<Path>SFX\StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction_9E69E797.wem</Path>
+				<File Id="1053854738" Language="SFX">
+					<ShortName>Menu_Select.wav</ShortName>
+					<Path>SFX\Menu_Select_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
@@ -149,20 +163,6 @@
 				<File Id="696804393" Language="SFX">
 					<ShortName>Sinematic - Complex Tech Hits - 04.wav</ShortName>
 					<Path>SFX\Sinematic - Complex Tech Hits - 04_9E69E797.wem</Path>
-				</File>
-			</IncludedMemoryFiles>
-		</SoundBank>
-		<SoundBank Id="4080826804" Language="SFX">
-			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_logoScreen</ObjectPath>
-			<ShortName>sb_logoScreen</ShortName>
-			<Path>sb_logoScreen.bnk</Path>
-			<IncludedEvents>
-				<Event Id="3720641635" Name="event_logo" ObjectPath="\Events\PrototypeEvents\event_logo"/>
-			</IncludedEvents>
-			<IncludedMemoryFiles>
-				<File Id="831799380" Language="SFX">
-					<ShortName>SOS 090.wav</ShortName>
-					<Path>SFX\SOS 090_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
