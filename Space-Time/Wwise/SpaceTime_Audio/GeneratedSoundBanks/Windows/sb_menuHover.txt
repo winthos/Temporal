@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4115145659	event_menuHover			\PrototypeEvents\event_menuHover	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	565113125	TheLibrarybyMTC_UI_Alert_01	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\TheLibrarybyMTC_UI_Alert_01_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\TheLibrarybyMTC_UI_Alert_01		317500
+
