@@ -2,5 +2,5 @@ Event	ID	Name			Wwise Object Path	Notes
 	3632858267	event_menuSelect			\PrototypeEvents\event_menuSelect	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	1063607758	StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction		132156
+	1053854738	Menu_Select	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Menu_Select_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Menu_Select		19520
 
