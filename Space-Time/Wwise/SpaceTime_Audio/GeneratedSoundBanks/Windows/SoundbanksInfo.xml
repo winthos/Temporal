@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="118">
 	<RootPaths>
-		<ProjectRoot>C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -73,6 +73,20 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
+		<SoundBank Id="1214898830" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_menuHover</ObjectPath>
+			<ShortName>sb_menuHover</ShortName>
+			<Path>sb_menuHover.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4115145659" Name="event_menuHover" ObjectPath="\Events\PrototypeEvents\event_menuHover"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="565113125" Language="SFX">
+					<ShortName>TheLibrarybyMTC_UI_Alert_01.wav</ShortName>
+					<Path>SFX\TheLibrarybyMTC_UI_Alert_01_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
@@ -107,6 +121,48 @@
 				<File Id="79971464" Language="SFX">
 					<ShortName>Pickup_Rift.wav</ShortName>
 					<Path>SFX\Pickup_Rift_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="3679795968" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_menuSelect</ObjectPath>
+			<ShortName>sb_menuSelect</ShortName>
+			<Path>sb_menuSelect.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3632858267" Name="event_menuSelect" ObjectPath="\Events\PrototypeEvents\event_menuSelect"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="1063607758" Language="SFX">
+					<ShortName>StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction.wav</ShortName>
+					<Path>SFX\StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="3853930508" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_playerDeath</ObjectPath>
+			<ShortName>sb_playerDeath</ShortName>
+			<Path>sb_playerDeath.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3849644161" Name="event_playerDeath" ObjectPath="\Events\PrototypeEvents\event_playerDeath"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="696804393" Language="SFX">
+					<ShortName>Sinematic - Complex Tech Hits - 04.wav</ShortName>
+					<Path>SFX\Sinematic - Complex Tech Hits - 04_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="4080826804" Language="SFX">
+			<ObjectPath>\SoundBanks\PrototypeSoundBanks\sb_logoScreen</ObjectPath>
+			<ShortName>sb_logoScreen</ShortName>
+			<Path>sb_logoScreen.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3720641635" Name="event_logo" ObjectPath="\Events\PrototypeEvents\event_logo"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="831799380" Language="SFX">
+					<ShortName>SOS 090.wav</ShortName>
+					<Path>SFX\SOS 090_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

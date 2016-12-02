@@ -2,5 +2,5 @@ Event	ID	Name			Wwise Object Path	Notes
 	3656834517	event_riftGet			\PrototypeEvents\event_riftGet	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	79971464	Pickup_Rift	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Pickup_Rift_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Pickup_Rift		143068
+	79971464	Pickup_Rift	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Pickup_Rift_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Pickup_Rift		143068
 

@@ -3,17 +3,22 @@
 	<Platform GUID="{C8904290-FA66-4A88-94CA-4742A00B8FD9}">
 		<Banks>
 			<Language ID="0">
-				<File Name="Init" Hash="2652713990" Timestamp="131227749296508407"/>
-				<File Name="sb_background_audio" Hash="3137197050" Timestamp="131227749295550872"/>
-				<File Name="sb_directionChange" Hash="298139800" Timestamp="131227749296373162"/>
-				<File Name="sb_riftGet" Hash="3742344622" Timestamp="131227749296147402"/>
-				<File Name="sb_timeResume" Hash="496361020" Timestamp="131227749295756760"/>
-				<File Name="sb_timeStop" Hash="3462011734" Timestamp="131227749295936821"/>
+				<File Name="Init" Hash="2652713990" Timestamp="131251333906862931"/>
+				<File Name="sb_background_audio" Hash="745269193" Timestamp="131251333905071807"/>
+				<File Name="sb_directionChange" Hash="3027271727" Timestamp="131251333905318170"/>
+				<File Name="sb_logoScreen" Hash="65834713" Timestamp="131251801717425524"/>
+				<File Name="sb_menuHover" Hash="1930759693" Timestamp="131251801717715800"/>
+				<File Name="sb_menuMouseOver" Hash="2566331507" Timestamp="131251333906483851"/>
+				<File Name="sb_menuSelect" Hash="3530430055" Timestamp="131251801717911324"/>
+				<File Name="sb_playerDeath" Hash="2710073518" Timestamp="131251801718126889"/>
+				<File Name="sb_riftGet" Hash="3129187345" Timestamp="131251333905507212"/>
+				<File Name="sb_timeResume" Hash="312916318" Timestamp="131251333905699462"/>
+				<File Name="sb_timeStop" Hash="2219993300" Timestamp="131251333905886813"/>
 			</Language>
 		</Banks>
 		<XMLInfo>
 			<Language ID="-1">
-				<File Name="" Hash="3806451951" Timestamp="131227749296583562"/>
+				<File Name="" Hash="3219946136" Timestamp="131251801718337781"/>
 			</Language>
 		</XMLInfo>
 	</Platform>

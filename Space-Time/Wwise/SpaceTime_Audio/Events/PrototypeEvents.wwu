@@ -72,6 +72,50 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="event_playerDeath" ID="{2EC07EE0-E20B-47E8-B126-24512423C5CB}">
+					<ChildrenList>
+						<Action Name="Play" ID="{771BC520-758D-44D2-9BD3-1E32CEA90976}" ShortID="76591512" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{371D33D7-1041-477B-81D4-149B17782AAD}" Global="false">
+									<ObjectRef Name="Sinematic - Complex Tech Hits - 04" ID="{489F8CEC-4583-4355-9799-49FEB7254677}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_logo" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}">
+					<ChildrenList>
+						<Action Name="Play" ID="{197F3DC1-3664-4F5F-8B6D-3EF8FE188D4C}" ShortID="861563756" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{7E0CAA8F-C65E-44AB-B696-1439007FAE08}" Global="false">
+									<ObjectRef Name="SOS 090" ID="{21FF4D70-D968-45EA-9BF7-332CF9B95FA5}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_menuHover" ID="{0FC04E3F-EF97-46AE-8A27-6624A9D988DF}">
+					<ChildrenList>
+						<Action Name="Play" ID="{5D9B61B1-302B-4AF7-9D1F-85CCABBDA8C9}" ShortID="786692966" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{3822CC0C-94F9-47BD-B77C-DF919C050F82}" Global="false">
+									<ObjectRef Name="TheLibrarybyMTC_UI_Alert_01" ID="{98EFB69E-1A7E-40A5-A260-A4A3DC15F212}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_menuSelect" ID="{B2F51EA0-8D4F-4451-B6B4-CA8472D32067}">
+					<ChildrenList>
+						<Action Name="Play" ID="{99998F45-9827-4100-9D7B-25B57E07D8E9}" ShortID="548637017" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{386C1172-E1A4-45EE-9CEC-9ED7289BA1AD}" Global="false">
+									<ObjectRef Name="StartSelect,UI,set16,frequency shaping,zippy,robotic,evolving,dense,deaction" ID="{37ED49F6-FA88-4375-81CB-0D0D19742B5D}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
