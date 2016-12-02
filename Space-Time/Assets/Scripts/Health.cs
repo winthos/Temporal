@@ -80,6 +80,11 @@ public class Health : MonoBehaviour
       {
         EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetGridPos(), false);
       }
+
+      if(gameObject.tag == "Player")
+      {
+        AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
+      }
       
       
       StartCoroutine(Wait());

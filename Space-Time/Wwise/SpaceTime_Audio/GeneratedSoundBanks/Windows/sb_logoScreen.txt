@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3720641635	event_logo			\PrototypeEvents\event_logo	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	831799380	SOS 090	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\SOS 090_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\SOS 090		2620476
+

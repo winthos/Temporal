@@ -20,12 +20,7 @@ public class PauseController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-      if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
-      {
-        print(Paused);
-        Paused = !Paused;
-        
-      }
+      
 	}
   
   public static void TogglePause()
@@ -36,5 +31,15 @@ public class PauseController : MonoBehaviour
   public static void SetPause(bool pause)
   {
     Paused = pause;
+  }
+
+  void OnApplicationFocus(bool hasFocus)
+  {
+    Paused = !hasFocus;
+  }
+
+  void OnApplicationPause(bool pauseStatus)
+  {
+    Paused = pauseStatus;
   }
 }

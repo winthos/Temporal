@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3849644161	event_playerDeath			\PrototypeEvents\event_playerDeath	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	696804393	Sinematic - Complex Tech Hits - 04	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\Sinematic - Complex Tech Hits - 04_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\Sinematic - Complex Tech Hits - 04		1228860
+

@@ -38,6 +38,34 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="sb_playerDeath" ID="{58EFE86E-0E2A-4C40-A4BF-17E15E0F6724}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_playerDeath" ID="{2EC07EE0-E20B-47E8-B126-24512423C5CB}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_menuSelect" ID="{75F71BFB-492B-435C-A3A1-2039B751C59D}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_menuSelect" ID="{B2F51EA0-8D4F-4451-B6B4-CA8472D32067}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_menuHover" ID="{73DB8065-83DA-45D5-A174-377F5720E90D}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_menuHover" ID="{0FC04E3F-EF97-46AE-8A27-6624A9D988DF}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="sb_splashScreen" ID="{74535DB3-FACD-4C9D-ACC6-4B7E34CFCCF2}">
+					<ObjectInclusionList>
+						<ObjectRef Name="event_splashScreen" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}" WorkUnitID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>
