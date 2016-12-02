@@ -81,6 +81,16 @@
 								</Element>
 							</ElementList>
 						</Action>
+						<Action Name="Stop" ID="{7BB9C07B-19E4-4DF5-810F-B6EA26EB89FC}" ShortID="661540722" Type="Stop" Scope="One" Global="true">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{151C57FC-0BD8-4C45-9402-322BE971ECF5}" Global="true">
+									<ObjectRef Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
 					</ChildrenList>
 				</Event>
 				<Event Name="event_splashScreen" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}">

@@ -32,4 +32,14 @@ public class PauseController : MonoBehaviour
   {
     Paused = pause;
   }
+
+  void OnApplicationFocus(bool hasFocus)
+  {
+    Paused = !hasFocus;
+  }
+
+  void OnApplicationPause(bool pauseStatus)
+  {
+    Paused = pauseStatus;
+  }
 }
