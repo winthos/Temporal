@@ -52,6 +52,7 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject LoseScreen;
   
+  
   [SerializeField]
   GameObject DebugText;
   
@@ -83,6 +84,14 @@ public class HUDController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
+    if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
+    {
+      PauseController.Paused = !PauseController.Paused;
+      if (!PauseController.Paused)
+	  {
+		DefaultPauseOn();
+	  }
+    }
     if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused)
     {
       Cursor.lockState = CursorLockMode.None;
