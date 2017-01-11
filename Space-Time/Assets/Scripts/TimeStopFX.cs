@@ -35,7 +35,7 @@ public class TimeStopFX : MonoBehaviour
   {
       SeriouslyDontDoThisTheFirstTime = true;
     }
-
+    /*
     //normal time
     if (!timeStopped && timeFXplayed == false && SeriouslyDontDoThisTheFirstTime == true)
     {
@@ -52,5 +52,6 @@ public class TimeStopFX : MonoBehaviour
       timeStopID = AkSoundEngine.PostEvent("event_timeStop", this.gameObject);
       timeFXplayed = false;
     }
+    */
 	}
 }
