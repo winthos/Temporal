@@ -4,6 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
+using AudioVisualization;
 using System.Collections;
 
 public class SoundController : MonoBehaviour
