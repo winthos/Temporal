@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scene1.unity
+- path: C:/Users/Kaila/Documents/_repos/AuVisRepo/AuVisSystem/Assets/test.unity
   isLoaded: 1
   isActive: 1
