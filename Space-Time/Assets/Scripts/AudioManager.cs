@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        AkBankManager.Reset();
+        //AkBankManager.Reset();
         //bgAudioID = AkSoundEngine.PostEvent("event_bg_audio", this.gameObject);
     }
 
@@ -29,6 +29,6 @@ public class AudioManager : MonoBehaviour
 
     void OnDestroy()
     {
-        AkSoundEngine.StopAll();
+        //AkSoundEngine.StopAll();
     }
 }
