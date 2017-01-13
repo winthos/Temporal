@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" SchemaVersion="72">
+	<Events>
+		<WorkUnit Name="PrototypeEvents" ID="{479BB46C-F57B-4A81-A4E7-4A4BAE3051FF}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="event_timeStop" ID="{CCC99315-7AD6-4C5C-BDF5-71FB5D22DF2F}">
+					<ChildrenList>
+						<Action Name="Play" ID="{AAFB5D80-A725-4F98-A3BD-71BE896BA493}" ShortID="64377605" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{8E302061-8F61-454B-999F-3C4441A740A8}" Global="false">
+									<ObjectRef Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{3BDBE69E-02E2-42B1-B068-109DC0574D11}" ShortID="866288913" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{6334365D-6AFB-462B-ADA3-47DDA8377165}" Global="false">
+									<ObjectRef Name="TimeSlowsSound" ID="{9C42A90C-7CDD-4D47-BE22-CDA8BEEF4DA4}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_timeResume" ID="{872B84C4-20CE-4F7E-921C-373E8932F40A}">
+					<ChildrenList>
+						<Action Name="Play" ID="{913CE69B-70A4-4593-B06A-ED8DBC40D549}" ShortID="400925692" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{0023E2EF-99B0-4C58-B0C8-DCC82753D2B3}" Global="false">
+									<ObjectRef Name="TimeSpeedsUpSound" ID="{E5A11BAB-01BB-4E4F-8E11-5E37BB563991}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{8492405C-663B-49E6-9C29-1BBBFCEFCC1A}" ShortID="863607218" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{5E467E7E-80D1-49A6-8570-A9D56C945D7F}" Global="false">
+									<ObjectRef Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_bg_audio" ID="{66D68228-114C-4756-A57A-0A6A37D51B43}">
+					<ChildrenList>
+						<Action Name="Play" ID="{E75065D4-C519-444C-A9B0-A2802EA35B23}" ShortID="1005472316" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{CEC14B30-79B8-4FBA-A006-68E64CF7F651}" Global="false">
+									<ObjectRef Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_riftGet" ID="{38A2A33C-B620-4ACC-B1DA-391F95975F28}">
+					<ChildrenList>
+						<Action Name="Play" ID="{DB552574-EC51-44DF-B9A3-DCE61153E8D3}" ShortID="44961692" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{E4272C2B-CBB5-49A8-AC50-58646F575158}" Global="false">
+									<ObjectRef Name="Pickup_Rift" ID="{6FB46954-F2D6-4D6E-BB33-612DEE4D6E47}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_directionChange" ID="{4E539892-9A5F-498A-9700-73787F134B5C}">
+					<ChildrenList>
+						<Action Name="Play" ID="{DB8ED1C3-945A-40E5-8D68-A53A5E8F667C}" ShortID="330145981" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{AB04D78D-BF97-4562-8B2A-FF6DAF30161F}" Global="false">
+									<ObjectRef Name="Direction_Change" ID="{72DF73C0-3DE2-4A7C-B674-10F366BAC177}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_playerDeath" ID="{2EC07EE0-E20B-47E8-B126-24512423C5CB}">
+					<ChildrenList>
+						<Action Name="Play" ID="{771BC520-758D-44D2-9BD3-1E32CEA90976}" ShortID="76591512" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{371D33D7-1041-477B-81D4-149B17782AAD}" Global="false">
+									<ObjectRef Name="Sinematic - Complex Tech Hits - 04" ID="{489F8CEC-4583-4355-9799-49FEB7254677}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Stop" ID="{7BB9C07B-19E4-4DF5-810F-B6EA26EB89FC}" ShortID="661540722" Type="Stop" Scope="One" Global="true">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="2"/>
+							</PropertyList>
+							<ElementList>
+								<Element ID="{151C57FC-0BD8-4C45-9402-322BE971ECF5}" Global="true">
+									<ObjectRef Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_splashScreen" ID="{DB4B9E1A-450E-48F5-A151-781708CD3F15}">
+					<ChildrenList>
+						<Action Name="Play" ID="{6B3047AA-84C4-412D-AED3-637EA5DE0C5E}" ShortID="1041108807" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{35EE8A25-B9F5-4BD2-9139-9E485D9495C4}" Global="false">
+									<ObjectRef Name="Intro_Splashscreen" ID="{09C115F9-C723-4C3D-BC1D-CBEE98981A90}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Stop All Except" ID="{9BB4F273-01DD-4636-9947-E2B12DFAAA2B}" ShortID="537496003" Type="Stop" Scope="AllExcept" Global="true">
+							<ElementList>
+								<Element ID="{89920EBA-6004-4499-9D43-9FF3EDA8BE12}" Global="true">
+									<ObjectRef Name="Intro_Splashscreen" ID="{09C115F9-C723-4C3D-BC1D-CBEE98981A90}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_menuHover" ID="{0FC04E3F-EF97-46AE-8A27-6624A9D988DF}">
+					<ChildrenList>
+						<Action Name="Play" ID="{5D9B61B1-302B-4AF7-9D1F-85CCABBDA8C9}" ShortID="786692966" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{3822CC0C-94F9-47BD-B77C-DF919C050F82}" Global="false">
+									<ObjectRef Name="Menu_Hover" ID="{A1D03428-57C3-4E8E-A00E-64A97F2D4180}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="event_menuSelect" ID="{B2F51EA0-8D4F-4451-B6B4-CA8472D32067}">
+					<ChildrenList>
+						<Action Name="Play" ID="{99998F45-9827-4100-9D7B-25B57E07D8E9}" ShortID="548637017" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{386C1172-E1A4-45EE-9CEC-9ED7289BA1AD}" Global="false">
+									<ObjectRef Name="Menu_Select" ID="{416DD225-D4A7-4ED1-B150-43FF991C4A13}" WorkUnitID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

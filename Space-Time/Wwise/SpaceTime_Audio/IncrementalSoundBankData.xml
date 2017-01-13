@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IncrementalBankBuild Version="6" Flags="601859981">
+	<Platform GUID="{C8904290-FA66-4A88-94CA-4742A00B8FD9}">
+		<Banks>
+			<Language ID="0">
+				<File Name="Init" Hash="2652713990" Timestamp="131251333906862931"/>
+				<File Name="sb_background_audio" Hash="1841072245" Timestamp="131251891086755510"/>
+				<File Name="sb_directionChange" Hash="3027271727" Timestamp="131251333905318170"/>
+				<File Name="sb_logoScreen" Hash="65834713" Timestamp="131251801717425524"/>
+				<File Name="sb_menuHover" Hash="4274577754" Timestamp="131251889479201373"/>
+				<File Name="sb_menuMouseOver" Hash="2566331507" Timestamp="131251333906483851"/>
+				<File Name="sb_menuSelect" Hash="2365702808" Timestamp="131251889479396893"/>
+				<File Name="sb_playerDeath" Hash="991667960" Timestamp="131251891087001504"/>
+				<File Name="sb_riftGet" Hash="3129187345" Timestamp="131251333905507212"/>
+				<File Name="sb_splashScreen" Hash="499072323" Timestamp="131251889479802968"/>
+				<File Name="sb_timeResume" Hash="706022904" Timestamp="131251891087271895"/>
+				<File Name="sb_timeStop" Hash="2302142158" Timestamp="131251891087497770"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="2673591053" Timestamp="131251891087677979"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+</IncrementalBankBuild>
