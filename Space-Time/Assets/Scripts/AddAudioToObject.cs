@@ -6,6 +6,7 @@ using System;
 
 public class AddAudioToObject : MonoBehaviour
 {
+    /*
     //[SerializeField]
     //bool MouseOverEvent = true;
 
@@ -60,5 +61,5 @@ public class AddAudioToObject : MonoBehaviour
     {
         //soundBanks.Clear();
     }
-
+    */
 }

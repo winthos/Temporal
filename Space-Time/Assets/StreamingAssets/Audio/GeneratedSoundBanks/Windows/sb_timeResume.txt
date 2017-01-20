@@ -1,7 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	2679121580	event_timeResume			\PrototypeEvents\event_timeResume	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	573320345	boopsound	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\boopsound_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\boopsound		659264
-	872459602	TimeSpeedsUpSound	C:\Users\Kaila Harris\repos\Temporal\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\TimeSpeedsUpSound_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\TimeSpeedsUpSound		261896
-

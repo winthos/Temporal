@@ -4,6 +4,13 @@
 		<WorkUnit Name="Prototype" ID="{7474719F-5B84-4F37-885B-2AB0F146C5E7}" PersistMode="Standalone">
 			<ChildrenList>
 				<Sound Name="boopsound" ID="{BBB68DAF-1C88-488D-BBE8-B0EF1DA5B7E1}" ShortID="822799727" Type="SoundFX">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
@@ -63,6 +70,11 @@
 				<Sound Name="Space-Time_a_groves_StylePiece" ID="{7E384891-C442-497E-A10D-819CA44C14B0}" ShortID="555591837" Type="SoundFX">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -342,6 +354,13 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="Menu_Hover" ID="{A1D03428-57C3-4E8E-A00E-64A97F2D4180}" ShortID="334474284" Type="SoundFX">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-7</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3AB07DD6-CDD1-4F28-9BE8-D15AC5D03CB4}"/>
