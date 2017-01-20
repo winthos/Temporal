@@ -225,6 +225,17 @@ namespace AudioVisualization
             soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
         }
 
+        public static void PlaySFXRandomizedFromList(List<AudioClip> _sfxClips, GameObject _object = null, float _spacialBlend = 0f, float _volumeMod = 0f)
+        {
+            AudioVisualManager soundMan = GetInstance();
+            AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
+            source.volume = GetSFXVolume(_volumeMod);
+            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity)];
+            source.Play();
+
+            soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
+        }
+
         public static void PlaySFXFixedDuration(AudioClip _sfxClip, float _duration, GameObject _object = null, float _spacialBlend = 0f, float _volumeMod = 0f, float _volumeMultiplier = 1.0f)
         {
             AudioVisualManager soundMan = GetInstance();

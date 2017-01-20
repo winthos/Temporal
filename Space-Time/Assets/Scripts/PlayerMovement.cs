@@ -326,6 +326,7 @@ public class PlayerMovement : MonoBehaviour
                                               //5 = UL, 9 = UR, 6 = DL, 10 = DR
   {
     //AkSoundEngine.PostEvent("event_DirectionChange", this.gameObject);
+    SoundHub.PlayerMoves(this.gameObject);
 
     int oldPos = GridPos;
     if (dir == 1) //up
