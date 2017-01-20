@@ -27,7 +27,11 @@ public class SoundHub : MonoBehaviour
     {
         return _instance;
     }
-    
+
+    AudioClip logoScreen;
+    AudioClip ui_select;
+    AudioClip ai_hover;
+
     AudioClip bgm;
 
     List<AudioClip> moveDirection;
@@ -46,6 +50,10 @@ public class SoundHub : MonoBehaviour
     {
         // programatically load audio clips
         //sound = Resources.Load<AudioClip>(path);
+        logoScreen  = Resources.Load<AudioClip>("Sound/bgm/Intro_Splashscreen");
+        ui_select   = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
+        ai_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
+
         bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
 
         moveDirection = new List<AudioClip>();
