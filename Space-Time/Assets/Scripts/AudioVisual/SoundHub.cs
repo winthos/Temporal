@@ -85,16 +85,18 @@ public class SoundHub : MonoBehaviour
         AudioVisualManager.PlaySFX(GetInstance().gunshot, _obj, 1);
     }
     */
-    public static void PlayTimeStopSFX()
+    public static void PlayTimeStopSFX(GameObject _obj)
     {
-        AudioVisualManager.PlaySFX(GetInstance().timeStop);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble);
+        AudioVisualManager.StopAllObjectSFX(_obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeStop, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
     }
 
-    public static void PlayTimeResumeSFX()
+    public static void PlayTimeResumeSFX(GameObject _obj)
     {
-        AudioVisualManager.PlaySFX(GetInstance().timeResume);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble);
+        AudioVisualManager.StopAllObjectSFX(_obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeResume, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
     }
 
 

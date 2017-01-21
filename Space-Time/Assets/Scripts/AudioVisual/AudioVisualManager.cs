@@ -213,6 +213,20 @@ namespace AudioVisualization
             soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
         }
 
+        public static void PlayMultiSFX(List<AudioClip> _sfxClips, GameObject _object = null, float _spacialBlend = 0f, float _volumeMod = 0f)
+        {
+            AudioVisualManager soundMan = GetInstance();
+            foreach(AudioClip clip in _sfxClips)
+            {
+                AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
+                source.volume = GetSFXVolume(_volumeMod);
+                source.clip = clip;
+                source.Play();
+
+                soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
+            }
+        }
+
         public static void PlaySFXRandomized(AudioClip _sfxClip, GameObject _object = null, float _spacialBlend = 0f, float _volumeMod = 0f, float _pitchMin = 0.85f, float _pitchMax = 1.2f)
         {
             AudioVisualManager soundMan = GetInstance();
@@ -246,6 +260,16 @@ namespace AudioVisualization
             source.Play();
 
             soundMan.StartCoroutine(soundMan.RemoveSFXSourceFixedLength(source, _duration));
+        }
+
+        public static void StopAllObjectSFX(GameObject _object)
+        {
+            AudioVisualManager soundMan = GetInstance();
+            foreach (AudioSource source in _object.GetComponents<AudioSource>())
+            {
+                source.Stop();
+                soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
+            }
         }
 
         // ==================== Volume Control Functions ==========================
