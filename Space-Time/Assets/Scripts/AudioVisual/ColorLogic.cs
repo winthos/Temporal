@@ -5,9 +5,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
 public class ColorLogic : MonoBehaviour
 {
     Renderer rend;
@@ -88,7 +85,7 @@ public class ColorLogic : MonoBehaviour
             case "rift":
             case "planet":
             case "satellite":
-                SetObjectColor(ColorManager.GetInstance().GetColor(gameObject.tag), true, 1);
+                //SetObjectColor(ColorManager.GetInstance().GetColor(gameObject.tag), true, 1);
                 break;
             default:
                 break;

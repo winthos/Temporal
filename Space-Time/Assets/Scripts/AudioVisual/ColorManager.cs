@@ -41,54 +41,61 @@ public class ColorManager : MonoBehaviour
         print(palettes.Count);
     }
 
-    public void Update()
+    // picks a random number that represents a new palette. calls "ChangeCurrentPaletteTo"
+    public void ChangeCurrentPaletteToRandom(bool _instant = true)
     {
-        //if (Input.GetKeyUp(KeyCode.L))
-        //    ChangeCurrentPaletteToRandom();
+        ColorManager colorMan = GetInstance();
+
+        int random = Random.Range(0, colorMan.palettes.Count);
+        while (random == colorMan.currentPalette)
+            random = Random.Range(0, colorMan.palettes.Count);
+
+        ChangeCurrentPaletteTo(random, _instant);
     }
 
-    public void ChangeCurrentPaletteToRandom(bool _instantly = true)
+    //will change the current palette based on an index number
+    public void ChangeCurrentPaletteTo(int _paletteIndex, bool _instant = true)
     {
-        int random = Random.Range(0, palettes.Count);
-        while (random == currentPalette)
-            random = Random.Range(0, palettes.Count);
+        ColorManager colorMan = GetInstance();
+        colorMan.currentPalette = _paletteIndex;
 
-        ChangeCurrentPaletteTo(random, _instantly);
-    }
-
-    public void ChangeCurrentPaletteTo(int _paletteIndex, bool _instantly = true)
-    {
-        currentPalette = _paletteIndex;
-
-        foreach (ColorLogic colLog in colorLog)
+        foreach (ColorLogic colLog in colorMan.colorLog)
         {
-            colLog.UpdateObjectWithCurrentPalette(_instantly);
+            colLog.UpdateObjectWithCurrentPalette(_instant);
         }
     }
 
     public Color GetColor(string _value)
     {
+        ColorManager colorMan = GetInstance();
+
         string value = "placeholder";
-        if (palettes[currentPalette].TryGetValue(_value, out value))
+        if (colorMan.palettes[currentPalette].TryGetValue(_value, out value))
         {
             value = _value;
         }
         return convertHex.StringToRGB(palettes[currentPalette][value]);
     }
 
-
-    public IEnumerator ChangePalleteAtEndOfTrack(float _trackLength, bool _instantly = true)
+    /*
+    public IEnumerator ChangePalleteAtEndOfTrack(float _trackLength, bool _instant = true)
     {
         ColorManager colorManager = ColorManager.GetInstance();
-        if (_instantly)
+        if (_instant)
         {
             yield return new WaitForSeconds(_trackLength);
-            colorManager.ChangeCurrentPaletteToRandom(_instantly);
+            colorManager.ChangeCurrentPaletteToRandom(_instant);
         }
         else
         {
             colorManager.ChangeCurrentPaletteToRandom();
         }
+    }
+    */
+
+    public void SetObjectColor(Renderer _renderer, Color _color)
+    {
+        _renderer.material.SetColor("_Color", _color);
     }
 
     void OnDestroy()
