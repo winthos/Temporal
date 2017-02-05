@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	2065432078	event_menuMouseOver			\PrototypeEvents\event_menuMouseOver	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	992362635	StartSelect,UI,set34,mechanical,subtle,percussive,thick,bright,holdrelease	C:\Users\Kaila\Documents\_repos\Temporal\Space-Time\Wwise\SpaceTime_Audio\.cache\Windows\SFX\StartSelect,UI,set34,mechanical,subtle,percussive,thick,bright,holdrelease_9E69E797.wem		\Actor-Mixer Hierarchy\Prototype\StartSelect,UI,set34,mechanical,subtle,percussive,thick,bright,holdrelease		90172
-

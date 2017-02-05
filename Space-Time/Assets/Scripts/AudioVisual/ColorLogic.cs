@@ -5,75 +5,96 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
 public class ColorLogic : MonoBehaviour
 {
-    Renderer rend; //Renderer of our Cube
-    float transitionTime = 5f;
+    Renderer rend;
+    Color previousColor;
+    Color currentColor;
+    Color nextColor;
 
-    ColorManager colorManager;
+    float transitionTime;
+    bool colorFade = false;
+
+    private void Awake()
+    {
+        ColorManager.GetInstance().colorLog.Add(this);
+    }
 
     void Start()
     {
-        colorManager = GameObject.Find("LevelGlobals").GetComponent<ColorManager>();
-        if (colorManager != null)
-        {
-            colorManager.colorLog.Add(this);
-            rend = GetComponent<Renderer>();
-            UpdateObjectWithCurrentPalette(colorManager.palCurrent);
-        }
-
+        rend = GetComponent<Renderer>();
+        UpdateObjectWithCurrentPalette();
+        //ColorManager.GetInstance().GetPaletteName();
     }
-
+    /*
     void Update()
     {
- 
-    }
-
-    // sets all objects to chosen palette
-    public void UpdateObjectWithCurrentPalette(ColorPalette _palette)
-    {
-        if (gameObject.tag == "Planet")
-            SetPlanetColors(_palette.GetPlanetColors());
-        
-    }
-
-    // sets planet and satellite colors randomly
-    void SetPlanetColors(List<Color> _list)
-    {
-        // picks a random color from available list
-        int pIndex = Random.Range(0, (_list.Count - 1));
-
-        // sets planet to said color
-        if (pIndex < _list.Count)
+        if(colorFade)
         {
-            SetObjectColor(_list[pIndex]);
+            currentColor = Color.Lerp(currentColor, nextColor, transitionTime);
+            print(currentColor);
+            rend.material.SetColor("_Color", currentColor);
+            if (currentColor == nextColor)
+                colorFade = false;
+        }
+    }
+    */
 
-            // sets the colors for each satellite
-            foreach (Transform child in transform)
+    void SetObjectColor(Color _color, bool _fade = false, float _transitionTime = 1f)
+    {
+        if (rend != null)
+        {
+            if (_fade)
             {
-                if (child.gameObject.GetComponent<ColorLogic>() != null)
-                {
-                    int sIndex = Random.Range(0, (_list.Count));
-                    while (sIndex == pIndex)
-                        sIndex = Random.Range(0, (_list.Count));
-
-                    child.gameObject.GetComponent<ColorLogic>().SetObjectColor(_list[sIndex]);
-                }
+                transitionTime = _transitionTime;
+                previousColor = rend.material.color;
+                nextColor = _color;
+                colorFade = true;
+                //StartCoroutine(LerpColor(_transitionTime));
+            }
+            else
+            {
+                colorFade = false;
+                rend.material.SetColor("_Color", _color);
             }
         }
     }
 
-    void SetObjectColor(Color _color)
+    /*
+    IEnumerator LerpColor(float _time)
     {
-        if(rend != null)
-            rend.material.SetColor("_Color", _color);
+        currentColor = previousColor;
+        while(currentColor != nextColor)
+        {
+            currentColor = Color.Lerp(currentColor, nextColor, _time);
+            print(currentColor);
+            rend.material.SetColor("_Color", currentColor);
+        }
+        yield return 0;
     }
-    
+    */
+
+    // sets all objects to chosen palette
+    public void UpdateObjectWithCurrentPalette(bool _instantly = true)
+    {
+        switch (gameObject.tag)
+        {
+            case "Player":
+            case "enemy1":
+            case "enemy2":
+            case "rift":
+            case "planet":
+            case "satellite":
+                //SetObjectColor(ColorManager.GetInstance().GetColor(gameObject.tag), true, 1);
+                break;
+            default:
+                break;
+        }
+
+    }
+
     void OnDestroy()
     {
-        colorManager.colorLog.Remove(this);
+        //ColorManager.GetInstance().colorLog.Remove(this);
     }
 }
