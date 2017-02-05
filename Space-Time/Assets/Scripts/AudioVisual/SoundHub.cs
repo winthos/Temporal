@@ -45,6 +45,7 @@ public class SoundHub : MonoBehaviour
     AudioClip playerDeath;
     AudioClip pickupRift;
 
+    static public AudioSource source_bgm;
 
     void Initialize()
     {
@@ -54,7 +55,8 @@ public class SoundHub : MonoBehaviour
         ui_select   = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
         ai_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
 
-        bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
+        //bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
+        //bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
 
         moveDirection = new List<AudioClip>();
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_01"));
@@ -77,7 +79,15 @@ public class SoundHub : MonoBehaviour
     void Start()
     {
         AudioVisualManager.PlayBGM(bgm, false, 0);
+        source_bgm = AudioVisualManager.GetInstance().bgmSource;
+
     }
+
+    public static AudioSource GetGBMSource()
+    {
+        return source_bgm;
+    }
+
 
     /*
     public static void FireWeapon(GameObject _obj)

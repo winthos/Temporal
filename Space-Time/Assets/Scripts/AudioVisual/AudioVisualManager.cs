@@ -33,7 +33,7 @@ namespace AudioVisualization
         static bool isMuted = false;
 
         List<AudioSource> sfxSources;
-        AudioSource bgmSource;
+        public AudioSource bgmSource;
 
         //List<Visuals> visuals;
 
