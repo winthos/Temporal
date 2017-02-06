@@ -56,7 +56,7 @@ public class SoundHub : MonoBehaviour
         ai_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
 
         //bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
-        //bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
+        bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
 
         moveDirection = new List<AudioClip>();
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_01"));
@@ -80,14 +80,7 @@ public class SoundHub : MonoBehaviour
     {
         AudioVisualManager.PlayBGM(bgm, false, 0);
         source_bgm = AudioVisualManager.GetInstance().bgmSource;
-
     }
-
-    public static AudioSource GetGBMSource()
-    {
-        return source_bgm;
-    }
-
 
     /*
     public static void FireWeapon(GameObject _obj)

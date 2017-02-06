@@ -12,12 +12,6 @@ public class BarVisulization : MonoBehaviour
 
     AudioSource source;
 
-    void Awake()
-    {
-        source = GetComponent<AudioSource>();
-        //source = SoundHub.GetGBMSource();
-    }
-
     void Start()
     {
         for (int i = 0; i < numberOfObjects; i++)
@@ -28,6 +22,8 @@ public class BarVisulization : MonoBehaviour
         }
 
         bars = GameObject.FindGameObjectsWithTag("cube");
+
+        source = SoundHub.source_bgm;
     }
 
     void Update ()
