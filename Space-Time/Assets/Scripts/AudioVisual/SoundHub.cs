@@ -74,7 +74,7 @@ public class SoundHub : MonoBehaviour
         playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/Pickup_Rift");
 
-        source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0);
+        source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0, -0.3f);
     }
 
     // Use this for initialization
@@ -92,14 +92,14 @@ public class SoundHub : MonoBehaviour
     {
         AudioVisualManager.StopAllObjectSFX(_obj);
         AudioVisualManager.PlaySFX(GetInstance().timeStop, _obj);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj, 0, -0.3f);
     }
 
     public static void PlayTimeResumeSFX(GameObject _obj)
     {
         AudioVisualManager.StopAllObjectSFX(_obj);
         AudioVisualManager.PlaySFX(GetInstance().timeResume, _obj);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj, 0, -0.3f);
     }
 
 
@@ -110,7 +110,8 @@ public class SoundHub : MonoBehaviour
 
     public static void PlayerMoves(GameObject _obj)
     {
-        AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
+        AudioVisualManager.PlaySFXRandomized(GetInstance().moveDirection[0], null, 0, +0.3f,0.8f,1.3f);
+        //AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
     }
 
 

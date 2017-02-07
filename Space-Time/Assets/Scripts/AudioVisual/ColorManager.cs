@@ -38,7 +38,7 @@ public class ColorManager : MonoBehaviour
     {
         palettes = CSVReader.Read("Palettes");
         ChangeCurrentPaletteToRandom();
-        print(palettes.Count);
+        //print(palettes.Count);
     }
 
     // picks a random number that represents a new palette. calls "ChangeCurrentPaletteTo"
@@ -93,10 +93,12 @@ public class ColorManager : MonoBehaviour
     }
     */
 
+        /*
     public void SetObjectColor(Renderer _renderer, Color _color)
     {
         _renderer.material.SetColor("_Color", _color);
     }
+    */
 
     void OnDestroy()
     {

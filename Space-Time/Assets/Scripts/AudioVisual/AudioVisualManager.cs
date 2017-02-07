@@ -245,7 +245,7 @@ namespace AudioVisualization
             AudioVisualManager soundMan = GetInstance();
             AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
             source.volume = GetSFXVolume(_volumeMod);
-            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity)];
+            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity-1)];
             source.Play();
 
             soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
