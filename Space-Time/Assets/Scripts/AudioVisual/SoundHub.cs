@@ -73,13 +73,13 @@ public class SoundHub : MonoBehaviour
         //playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/Pickup_Rift");
+
+        source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0);
     }
 
     // Use this for initialization
     void Start()
     {
-        AudioVisualManager.PlayBGM(bgm, false, 0);
-        source_bgm = AudioVisualManager.GetInstance().bgmSource;
     }
 
     /*

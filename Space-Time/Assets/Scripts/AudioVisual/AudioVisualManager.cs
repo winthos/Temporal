@@ -110,7 +110,7 @@ namespace AudioVisualization
 
         // ====================== BGM Functions ======================
 
-        public static void PlayBGM(AudioClip _bgmClip, bool _fade, float _fadeDuration, float _volumeMod = 0f)
+        public static AudioSource PlayBGM(AudioClip _bgmClip, bool _fade, float _fadeDuration, float _volumeMod = 0f)
         {
             AudioVisualManager soundMan = GetInstance();
 
@@ -137,6 +137,7 @@ namespace AudioVisualization
                 soundMan.bgmSource.clip = _bgmClip;
                 soundMan.bgmSource.Play();
             }
+            return soundMan.bgmSource;
         }
 
         public static void StopBGM(bool _fade, float _fadeDuration)

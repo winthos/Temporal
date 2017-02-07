@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class SpectrumVisualizer : MonoBehaviour
+public class SphereVisualization : MonoBehaviour
 {
     public GameObject prefab;
     public int numberOfObjects = 20;
     public float radius = 5f;
+    public float scaleMultiplier;
+    Vector3 scaleMinimum = new Vector3(1,1,1);
     public GameObject[] cubes;
 
     AudioSource source;
@@ -20,6 +22,11 @@ public class SpectrumVisualizer : MonoBehaviour
         }
 
         cubes = GameObject.FindGameObjectsWithTag("cube");
+        foreach (GameObject cube in cubes)
+        {
+            cube.transform.localScale = scaleMinimum;
+        }
+        
         source = SoundHub.source_bgm;
     }
 
@@ -33,12 +40,14 @@ public class SpectrumVisualizer : MonoBehaviour
         float[] samples = new float[_sampleNumber];
 
         _source.GetSpectrumData(samples, 0, FFTWindow.Hamming);
-
+        
         for (int i = 0; i < numberOfObjects; i++)
         {
             Vector3 previousScale = cubes[i].transform.localScale;
-            previousScale.y = Mathf.Lerp(previousScale.y, samples[i] * 40, Time.deltaTime * 30);
-            cubes[i].transform.localScale = previousScale;
+            Vector3 newScale = scaleMinimum + new Vector3(samples[i], samples[i], samples[i]) * 10;
+            cubes[i].transform.localScale = Vector3.Lerp(previousScale, newScale, Time.deltaTime * 30);
+            //previousScale.y = Mathf.Lerp(previousScale.y, samples[i] * 40, Time.deltaTime * 30);
+            cubes[i].transform.localScale = newScale;
         }
     }
 }
