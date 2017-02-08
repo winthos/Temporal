@@ -122,7 +122,7 @@ public class HUDController : MonoBehaviour
   
   public void HealthBarUpdate()
   {
-    HealthBarPlayer.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 
+    HealthBarPlayer.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 
                                     Player.GetComponent<Health>().health * 100.0f);
   }
   
