@@ -33,7 +33,7 @@ namespace AudioVisualization
         static bool isMuted = false;
 
         List<AudioSource> sfxSources;
-        AudioSource bgmSource;
+        public AudioSource bgmSource;
 
         //List<Visuals> visuals;
 
@@ -110,7 +110,7 @@ namespace AudioVisualization
 
         // ====================== BGM Functions ======================
 
-        public static void PlayBGM(AudioClip _bgmClip, bool _fade, float _fadeDuration, float _volumeMod = 0f)
+        public static AudioSource PlayBGM(AudioClip _bgmClip, bool _fade, float _fadeDuration, float _volumeMod = 0f)
         {
             AudioVisualManager soundMan = GetInstance();
 
@@ -137,6 +137,7 @@ namespace AudioVisualization
                 soundMan.bgmSource.clip = _bgmClip;
                 soundMan.bgmSource.Play();
             }
+            return soundMan.bgmSource;
         }
 
         public static void StopBGM(bool _fade, float _fadeDuration)
@@ -244,7 +245,7 @@ namespace AudioVisualization
             AudioVisualManager soundMan = GetInstance();
             AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
             source.volume = GetSFXVolume(_volumeMod);
-            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity)];
+            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity-1)];
             source.Play();
 
             soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
