@@ -17,6 +17,7 @@ public class PlanetDistance : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         //add some variance to size
         transform.localScale *= Random.Range(0.9f, 1.3f);
 

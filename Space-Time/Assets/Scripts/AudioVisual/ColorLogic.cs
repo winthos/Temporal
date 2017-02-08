@@ -26,7 +26,7 @@ public class ColorLogic : MonoBehaviour
         UpdateObjectWithCurrentPalette();
         //ColorManager.GetInstance().GetPaletteName();
     }
-    /*
+    
     void Update()
     {
         if(colorFade)
@@ -38,7 +38,7 @@ public class ColorLogic : MonoBehaviour
                 colorFade = false;
         }
     }
-    */
+    
 
     void SetObjectColor(Color _color, bool _fade = false, float _transitionTime = 1f)
     {
@@ -85,7 +85,7 @@ public class ColorLogic : MonoBehaviour
             case "rift":
             case "planet":
             case "satellite":
-                //SetObjectColor(ColorManager.GetInstance().GetColor(gameObject.tag), true, 1);
+                SetObjectColor(ColorManager.GetInstance().GetColor(gameObject.tag), true, 1);
                 break;
             default:
                 break;

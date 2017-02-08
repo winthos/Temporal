@@ -45,6 +45,7 @@ public class SoundHub : MonoBehaviour
     AudioClip playerDeath;
     AudioClip pickupRift;
 
+    static public AudioSource source_bgm;
 
     void Initialize()
     {
@@ -54,7 +55,8 @@ public class SoundHub : MonoBehaviour
         ui_select   = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
         ai_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
 
-        bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
+        //bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
+        bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
 
         moveDirection = new List<AudioClip>();
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_01"));
@@ -71,12 +73,13 @@ public class SoundHub : MonoBehaviour
         //playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/Pickup_Rift");
+
+        source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0, -0.3f);
     }
 
     // Use this for initialization
     void Start()
     {
-        AudioVisualManager.PlayBGM(bgm, false, 0);
     }
 
     /*
@@ -89,14 +92,14 @@ public class SoundHub : MonoBehaviour
     {
         AudioVisualManager.StopAllObjectSFX(_obj);
         AudioVisualManager.PlaySFX(GetInstance().timeStop, _obj);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj, 0, -0.3f);
     }
 
     public static void PlayTimeResumeSFX(GameObject _obj)
     {
         AudioVisualManager.StopAllObjectSFX(_obj);
         AudioVisualManager.PlaySFX(GetInstance().timeResume, _obj);
-        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj);
+        AudioVisualManager.PlaySFX(GetInstance().timeWobble, _obj, 0, -0.3f);
     }
 
 
@@ -107,7 +110,8 @@ public class SoundHub : MonoBehaviour
 
     public static void PlayerMoves(GameObject _obj)
     {
-        AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
+        AudioVisualManager.PlaySFXRandomized(GetInstance().moveDirection[0], null, 0, +0.3f,0.8f,1.3f);
+        //AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
     }
 
 
