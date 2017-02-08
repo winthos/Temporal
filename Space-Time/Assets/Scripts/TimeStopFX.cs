@@ -35,12 +35,11 @@ public class TimeStopFX : MonoBehaviour
   {
       SeriouslyDontDoThisTheFirstTime = true;
     }
-    /*
+    
     //normal time
     if (!timeStopped && timeFXplayed == false && SeriouslyDontDoThisTheFirstTime == true)
     {
-      AkSoundEngine.StopPlayingID(timeStopID);
-      timeResumeID = AkSoundEngine.PostEvent("event_timeResume", this.gameObject);
+      SoundHub.PlayTimeResumeSFX(gameObject);
       timeFXplayed = true;
     }
 
@@ -48,10 +47,9 @@ public class TimeStopFX : MonoBehaviour
     //stopped time
     if (timeStopped && timeFXplayed)
     {
-      AkSoundEngine.StopPlayingID(timeResumeID);
-      timeStopID = AkSoundEngine.PostEvent("event_timeStop", this.gameObject);
+      SoundHub.PlayTimeStopSFX(gameObject);
       timeFXplayed = false;
     }
-    */
+    
 	}
 }
