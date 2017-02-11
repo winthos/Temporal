@@ -114,7 +114,8 @@ public class CameraController : MonoBehaviour
       if (Vector3.Distance(Player.transform.position, CentrePoint.transform.position) > 0.01)
       {
        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Player.transform.position + CentrePoint.transform.position)/2), CamSnapSpeed * 5);
-        transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+        //transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+        transform.LookAt(CentrePoint.transform.position);
       }
       else
       {
