@@ -21,7 +21,7 @@ public class PlanetVisualizer : MonoBehaviour
     void Start()
     {
         objects = GameObject.FindGameObjectsWithTag("Planet");
-        projections = GameObject.FindGameObjectsWithTag("projection");
+        //projections = GameObject.FindGameObjectsWithTag("projection");
         player = GameObject.FindGameObjectWithTag("Player");
 
         scaleMinObjs = new Vector3[objects.Length];
@@ -30,11 +30,13 @@ public class PlanetVisualizer : MonoBehaviour
             scaleMinObjs[i] = objects[i].transform.localScale;
         }
 
+        /*
         scaleMinProj = new Vector3[projections.Length];
         for (int i = 0; i < projections.Length; i++)
         {
             scaleMinProj[i] = projections[i].transform.localScale;
         }
+        */
 
         playerMin = player.transform.localScale;
     }
