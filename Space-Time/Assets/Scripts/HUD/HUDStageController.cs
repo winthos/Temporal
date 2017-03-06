@@ -9,13 +9,16 @@ public class HUDStageController : MonoBehaviour
     [SerializeField]
     List<Canvas> stages = new List<Canvas>(5);
     public int prevStage = 0;
-    public int currStage = 0;
+    public static int currStage = 0;
     public int nextStage = 0;
 
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start ()
+    {
+        prevStage = 0;
+        currStage = 0;
+        nextStage = 0;
+    }
 	
 	// Update is called once per frame
 	void Update ()
