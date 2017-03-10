@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class HUDStageController : MonoBehaviour
 {
@@ -18,10 +19,12 @@ public class HUDStageController : MonoBehaviour
         prevStage = 0;
         currStage = 0;
         nextStage = 0;
+        
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    // Update is called once per frame
+    void Update ()
     {
         if (TestModeOn)
             Testing();

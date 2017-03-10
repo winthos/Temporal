@@ -43,7 +43,7 @@ public class PlanetVisualizer : MonoBehaviour
 
     void Update()
     {
-        Visualization(SoundHub.source_bgm, 1024, 40, 30);
+        //Visualization(SoundHub.source_bgm, 1024, 40, 30);
     }
 
     void Visualization(AudioSource _source, int _sampleNumber, float _sampleMultiplier, float _timeMultiplier)
