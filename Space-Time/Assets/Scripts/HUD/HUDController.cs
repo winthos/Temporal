@@ -10,11 +10,17 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour 
 {
+  
+  public static HUDController HUDControl;
 
   [SerializeField]
   GameObject TimeBarPlayer;
+  
   [SerializeField]
-  GameObject HealthBarPlayer;
+  GameObject[] TimeBar2;
+  
+  [SerializeField]
+  GameObject[] HealthBarPlayer;
   [SerializeField]
   GameObject SpeedStacksPlayer;
   
@@ -59,6 +65,9 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject DistTraveled;
   
+  //[SerializeField]
+  //GameObject Score;
+  
   [SerializeField]
   GameObject TimePassed;
   
@@ -77,6 +86,7 @@ public class HUDController : MonoBehaviour
   
 	void Start () 
   {
+    HUDControl = GetComponent<HUDController>();
     independentTime = Time.time;
     PauseController.Paused = false;
 	}
@@ -122,14 +132,31 @@ public class HUDController : MonoBehaviour
   
   public void HealthBarUpdate()
   {
-    HealthBarPlayer.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 
-                                    Player.GetComponent<Health>().health * 100.0f);
+    //HealthBarPlayer.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 
+                                    //Player.GetComponent<Health>().health * 100.0f);
+
+    
+    for (int i = 0; i < 5; i++)
+    {
+      HealthBarPlayer[i].transform.GetChild(0).gameObject.SetActive( Player.GetComponent<Health>().health > i);
+      
+      //i = 0, hp = 1, > 0
+      
+      //i = 4, hp = 5 > 4
+    }
+
   }
   
   public void TimeBarUpdate()
   {
     
     TimeBarPlayer.GetComponent<Image>().fillAmount = Timer.GetComponent<CameraController>().GetTimeRatio();
+    
+    for (int i = 0; i < 5; i++)
+    {
+      TimeBar2[i].transform.GetChild(0).gameObject.SetActive( Timer.GetComponent<CameraController>().GetTimeRatio() > i * 0.2f );
+
+    }
   }
   
   public void SpeedUpdate()
@@ -171,12 +198,22 @@ public class HUDController : MonoBehaviour
     else
       DebugText.SetActive(false);
     
-    DistTraveled.GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
-    DistTraveled.transform.GetChild(0).GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
-    TimePassed.GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
-                                                    + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
-    TimePassed.transform.GetChild(0).GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
-                                                    + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
+    //DistTraveled.GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
+    //DistTraveled.transform.GetChild(0).GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
+    
+    //TimePassed.GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
+                                                    //+ Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
+    //TimePassed.transform.GetChild(0).GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
+                                                    //+ Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
+                                                    
+                                                    
+    //TimePassed.GetComponent<Text>().text = Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":" + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00"); 
+    
+    TimePassed.GetComponent<Text>().text = "" + (int)(LevelGlobals.distanceTraveled * LevelGlobals.runningTime);
+    
+ 
+    
+    //Score.GetComponent<Text>().text = 
   }
   
   public void HowToPlayOn()

@@ -87,6 +87,7 @@ public class AsteroidSpawner : MonoBehaviour
   public void LaunchAsteroid(int spawntype) // 0 = normal, 1 = small, 2 = medium, 3 = large
   {
     Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
+    print("Asteroid at " + SpawnPos);
     
     /*
     float offsetx = pMiove[Random.Range(0, pMove.Points.Size)];
