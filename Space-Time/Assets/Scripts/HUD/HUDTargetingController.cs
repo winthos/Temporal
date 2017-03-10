@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class HUDTargetingController : MonoBehaviour
 {
+    public float detectionDistance = 10;
+
+
+    //holds the distance values per space on the grid
+    public List<float> hazardDists;
+    public List<float> pickupDists;
+
     // targeting icons
     public List<Image> hazardIcons = new List<Image>(9);
     public List<Image> pickupIcons = new List<Image>(9);
@@ -27,8 +34,10 @@ public class HUDTargetingController : MonoBehaviour
 
 
     // Use this \for initialization
-    void Start () {
-
+    void Start ()
+    {
+        hazardDists = new List<float>(9);
+        pickupDists = new List<float>(9);
         HideAllTargetingElements();
     }
 
@@ -56,31 +65,74 @@ public class HUDTargetingController : MonoBehaviour
     {
         foreach (Image img in _imgList)
         {
-            img.color -= new Color(0, 0, 0, 1);
+            var tempColor = img.color;
+            tempColor.a = 0f;
+            img.color = tempColor;
         }
     }
     void ShowImageInList(List<Image> _imgList)
     {
         foreach (Image img in _imgList)
         {
-            img.color += new Color(0, 0, 0, 1);
+            var tempColor = img.color;
+            tempColor.a = 1f;
+            img.color = tempColor;
         }
     }
+    
 
     // Update is called once per frame
-    void Update () {
-	
-	}
-}
+    void Update ()
+    {
+        for(int i = 0; i < 0; i++)
+        {
+            if (hazardDists[i] != 0)
+                UpdateHazardTargeting(i, hazardDists[i]);
+            if(pickupDists[i] != 0)
+                UpdatePickupTargeting(i, pickupDists[i]);
+        }
 
+        if (Input.GetKeyUp(KeyCode.G))
+            ShowHazard1A(1);
+        if (Input.GetKeyUp(KeyCode.H))
+            HideHazard1A(0);
+    }
 
-public class Target
-{
-    public TargetType type;
-    public GameObject obj;
-}
+    private void UpdateHazardTargeting(int _index, float _hazardDist)
+    {
+        print("update hazard targeting");
+    }
 
-public enum TargetType
-{
-    hazard, pickup
+    private void UpdatePickupTargeting(int _index, float _pickupDist)
+    {
+
+    }
+
+    void ShowHazard1A(float _distance = 0)
+    {
+        var tempColor = hazardIcons[0].color;
+        tempColor.a = NormalizeValue(_distance);
+        hazardIcons[0].color = tempColor;
+
+        ShowImageInList(hazardR1);
+        ShowImageInList(hazardCA);
+    }
+
+    void HideHazard1A(float _distance = 0)
+    {
+        var tempColor = hazardIcons[0].color;
+        tempColor.a = 0;
+        hazardIcons[0].color = tempColor;
+
+        HideImageInList(hazardR1);
+        HideImageInList(hazardCA);
+    }
+
+    float NormalizeValue(float _value)
+    {
+        float temp = (detectionDistance - _value) / (detectionDistance + _value);
+        //return Mathf.Max(0, temp);
+
+        return 1f;
+    }
 }

@@ -19,7 +19,6 @@ public class HUDStageController : MonoBehaviour
         prevStage = 0;
         currStage = 0;
         nextStage = 0;
-        
     }
 
 
