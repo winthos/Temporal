@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HUDTargetingController : MonoBehaviour
 {
     int indexx = 0;
-    public float detectionDistance = 10;
+    public float detectionDistance = 10f;
 
 
     //holds the distance values per space on the grid
@@ -62,7 +62,7 @@ public class HUDTargetingController : MonoBehaviour
         HideImageInList(pickupCC);
     }
 
-    void HideImageInList(List<Image> _imgList)
+    void HideImageInList(List<Image> _imgList, float _distance = 0)
     {
         foreach (Image img in _imgList)
         {
@@ -71,12 +71,12 @@ public class HUDTargetingController : MonoBehaviour
             img.color = tempColor;
         }
     }
-    void ShowImageInList(List<Image> _imgList)
+    void ShowImageInList(List<Image> _imgList, float _distance = 1f)
     {
         foreach (Image img in _imgList)
         {
             var tempColor = img.color;
-            tempColor.a = 1f;
+            tempColor.a = 0.5f;
             img.color = tempColor;
         }
     }
@@ -352,8 +352,8 @@ public class HUDTargetingController : MonoBehaviour
     float NormalizeValue(float _value)
     {
         float temp = (detectionDistance - _value) / (detectionDistance + _value);
-        //return Mathf.Max(0, temp);
 
-        return 1f;
+        //return Mathf.Max(0, temp);
+        return 0.5f;
     }
 }
