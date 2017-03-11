@@ -60,6 +60,12 @@ public class CameraController : MonoBehaviour
     
   int TimeMove = 0;
   
+  [SerializeField]
+  bool CameraMouseMovement = true;
+  
+  [SerializeField]
+  float MouseSensitivity = 1.0f;
+  
   
   Quaternion CharacterTargetRot;
   Quaternion CameraTargetRot;
@@ -104,7 +110,7 @@ public class CameraController : MonoBehaviour
         TimeMove = 0;
     }
     
-    if (Input.GetMouseButtonDown(1)) // if right mouse is clicked
+    if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) // if right mouse is clicked
     {
       ToggleTimeStop();
     }
@@ -157,10 +163,36 @@ public class CameraController : MonoBehaviour
       }
       */
         //Get mouse movement to determine the new angle
-      if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
-      x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
-      if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
-      y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+        
+      if (CameraMouseMovement)
+      {
+        if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
+        x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
+        print (Input.GetAxis("Mouse X"));
+        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
+        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+      }
+      else
+      {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+          y += Distance * ySpeed * 0.02f * MouseSensitivity;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+          y -= Distance * ySpeed * 0.02f * MouseSensitivity;
+        }
+        
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+          x -= Distance * xSpeed * 0.02f * MouseSensitivity;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+          x += Distance * xSpeed * 0.02f * MouseSensitivity;
+        }
+      }
+    
       
         //Clamp the y-rotation so we don't have weird circle camera shenanigans 
       y = ClampAngle(y, -yClamp, yClamp); 
@@ -257,12 +289,13 @@ public class CameraController : MonoBehaviour
   
   public void ToggleTimeStop()
   {
-    GameObject hudctrl = GameObject.FindWithTag("HUD");
+    //GameObject hudctrl = GameObject.FindWithTag("HUD");
     lerpTime = defaultTimer;
     if (!PTimeStop)
     {
         // if not in time stop, filter on
-      hudctrl.GetComponent<HUDController>().TimeSet(1);
+      //hudctrl.GetComponent<HUDController>().TimeSet(1);
+      HUDController.HUDControl.TimeSet(1); 
       //TimeZone.SetTimeScale(0.25f);
       TimeMove = -1;
       CentrePoint.transform.position = Player.transform.position;
@@ -276,7 +309,7 @@ public class CameraController : MonoBehaviour
      
     if (PTimeStop)
     {
-      hudctrl.GetComponent<HUDController>().TimeSet(-1);
+      HUDController.HUDControl.TimeSet(-1);
       TimeMove = 1;
       //TimeZone.SetTimeScale(1.0f);
       CentrePoint.transform.LookAt(CentrePoint.transform.position + transform.forward); 
@@ -287,7 +320,7 @@ public class CameraController : MonoBehaviour
     }
     else if (PTimeStopTimer <= 0.0)
     {
-      hudctrl.GetComponent<HUDController>().TimeSet(-1);
+      HUDController.HUDControl.TimeSet(-1);
       TimeZone.SetTimeScale(1.0f);
       PTimeStop = false;
       
