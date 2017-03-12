@@ -189,9 +189,11 @@ namespace AudioVisualization
 
         IEnumerator RemoveSFXSource(AudioSource _sfxSource)
         {
+            
             yield return new WaitForSeconds(_sfxSource.clip.length);
             sfxSources.Remove(_sfxSource);
             Destroy(_sfxSource);
+         
         }
 
         IEnumerator RemoveSFXSourceFixedLength(AudioSource _sfxSource, float _length)

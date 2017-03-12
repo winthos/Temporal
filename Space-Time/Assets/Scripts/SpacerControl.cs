@@ -136,11 +136,11 @@ public class SpacerControl : MonoBehaviour
 
     if (RelativeToPlayer.x != 0)
     {
-      AdditionalPos += Player.transform.right * RelativeToPlayer.x * DistanceFromPlayer;
+      AdditionalPos += Player.transform.right * (RelativeToPlayer.x * 0.65f) * DistanceFromPlayer;
     }
     if (RelativeToPlayer.y != 0)
     {
-      AdditionalPos += Player.transform.up * RelativeToPlayer.y * DistanceFromPlayer;
+      AdditionalPos += Player.transform.up * (RelativeToPlayer.y * 0.65f)* DistanceFromPlayer;
     }
     
     

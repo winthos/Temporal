@@ -42,13 +42,13 @@ public class CentrePointMovement : MonoBehaviour
       return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {
-      if (Input.GetMouseButton(0) && !SpeedUp)
+      if ((Input.GetMouseButtonUp(0) || Input.GetKey("left shift")) && !SpeedUp)
       {
         SpeedUp = true;
         SpeedTime = Time.time;
         
       }
-      else if (Input.GetMouseButtonUp(0) && SpeedUp)
+      else if ((Input.GetMouseButtonUp(0) || Input.GetKeyUp("left shift"))&& SpeedUp)
       {
         SpeedUp = false;
         SpeedTime = Time.time;
@@ -74,7 +74,7 @@ public class CentrePointMovement : MonoBehaviour
   
   public float GetTrueSpeed()
   {
-    return Mathf.Clamp(GetMovementSpeed() * Player.GetComponent<PlayerMovement>().SpeedStacks * StackGainMultiplier,GetMovementSpeed(),100);
+    return Mathf.Clamp(GetMovementSpeed() + ( Player.GetComponent<PlayerMovement>().SpeedStacks * StackGainMultiplier),GetMovementSpeed(),100);
   }
   
   void UpdateFieldOfView()

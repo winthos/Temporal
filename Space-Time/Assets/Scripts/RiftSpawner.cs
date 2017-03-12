@@ -53,6 +53,11 @@ public class RiftSpawner : MonoBehaviour
       LaunchRift();
       SpawnTimeCalc();
     }
+    
+    if (Input.GetKeyDown("u"))
+    {
+      LaunchRift();
+    }
   
   }
   
