@@ -99,7 +99,7 @@ public class Scoring : MonoBehaviour
     public float SpeedScore()
     {
         speedScore += (LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) * speedScoreRate;
-        totalScore += speedScore;
+        //totalScore += speedScore;
         return speedScore;
     }
 
