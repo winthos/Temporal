@@ -8,6 +8,7 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour 
 {
+  public static EnemySpawner enemySpawner;
   
   [SerializeField]
   GameObject[] Spacer;
@@ -40,7 +41,9 @@ public class EnemySpawner : MonoBehaviour
     {
       
       StartCoroutine(SpawnEnemyWait());
+      OccupancyText();
     }
+    
 	}
   
   public static bool CheckOccupancy(int pos)
@@ -52,7 +55,17 @@ public class EnemySpawner : MonoBehaviour
     else
       return false;
     */
+    //print("still occupied at " + (pos - 1) + " " + OccupiedSpaces[pos - 1]);
     return OccupiedSpaces[pos - 1];
+  }
+  
+  public void OccupancyText()
+  {
+    for (int i = 0; i < 8; i++)
+    {
+      if (!CheckOccupancy(i + 1))
+        PlayerMovement.pMove.Points[i].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+    }
   }
   
   public static void SetOccupancy(int pos, bool set)
@@ -60,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
     if (pos < 1 || pos > 8)
       return;
     OccupiedSpaces[pos - 1] = set;
+    print("setting pos " + (pos -1) + " to " + set);
   }
   
   public static int NumOccupancies()
@@ -73,6 +87,14 @@ public class EnemySpawner : MonoBehaviour
     return count;
   }
   
+  public static void ResetOccupancies()
+  {
+    for (int i = 0; i < 8; i++)
+    {
+      OccupiedSpaces[i] = false;
+    }
+  }
+  
   
   void SpawnEnemy()
   {
@@ -81,10 +103,12 @@ public class EnemySpawner : MonoBehaviour
       spawnpoint = 7;
     if (!CheckOccupancy(spawnpoint))
     {
-      GameObject en = (GameObject)Instantiate(Spacer[spawnpoint], transform.position + new Vector3(0, 0, -10), Quaternion.identity);
-      SetOccupancy(spawnpoint, true);
+      GameObject en = (GameObject)Instantiate(Spacer[spawnpoint], transform.position, Quaternion.identity);
+
+      SetOccupancy(en.GetComponent<SpacerControl>().GetID(), true);
+      //print("Occupied at " + en.GetComponent<SpacerControl>().GetID());
     }
-    print("Spawn");
+    
     
   }
   

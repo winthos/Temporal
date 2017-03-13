@@ -10,6 +10,7 @@ using System.Collections;
   // Controls player's individual movement
 public class PlayerMovement : MonoBehaviour 
 {
+  public static PlayerMovement pMove;
 
   float MovementSpeed = 11.0f;
   public int SpeedStacks = 0;
@@ -37,12 +38,14 @@ public class PlayerMovement : MonoBehaviour
   public int GridPos = 5;
   
   public Material defaultMaterial;
+  
   [SerializeField]
   public Material KOMaterial;
 
   // Use this for initialization
   void Start () 
   {
+    pMove =  GetComponent<PlayerMovement>();
     defaultMaterial = GetComponent<Renderer>().material;
     LevelGlobals = GameObject.FindWithTag("Globals");
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
@@ -260,15 +263,17 @@ public class PlayerMovement : MonoBehaviour
       SpeedStacks++;
       Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
+      Scoring.pickupsCollected += 1;
     }
     else if (other.gameObject.tag == "Hazard")
     {
       print("OW");
       GetComponent<Health>().DecrementHealth();
     }
-    else if (other.gameObject.tag == "Spacer")
+    else if (other.gameObject.tag == "Spacer" && CameraController.GetPTime())
     {
       other.gameObject.GetComponent<Health>().DecrementHealth();
+      Scoring.enemiesDestroyed += 1;
     }
   }
   
@@ -331,11 +336,18 @@ public class PlayerMovement : MonoBehaviour
     int oldPos = GridPos;
     if (dir == 1) //up
     {
+      //above is occupied and not in time stop
+      if (EnemySpawner.CheckOccupancy(oldPos - 3) && !CameraController.GetPTime())
+        return Points[oldPos - 1];
+      
       if (GridPos > 3)
         GridPos -= 3;
+      
+      
       //if (GridPos < 1)
         //GridPos = 1;
       
+      //return oldPos - 4;
       if (oldPos == 4)
         return Points[0];
       else if (oldPos == 5)
@@ -351,10 +363,15 @@ public class PlayerMovement : MonoBehaviour
     }
     else if (dir == 2) // down
     {
+      if (EnemySpawner.CheckOccupancy(oldPos + 3) && !CameraController.GetPTime())
+        return Points[oldPos - 1] ;
+      
       if (GridPos < 7)
         GridPos += 3;
       //if (GridPos > 9)
         //GridPos = 9;
+      
+      
       
       if (oldPos == 1)
         return Points[3];
@@ -372,6 +389,9 @@ public class PlayerMovement : MonoBehaviour
     else if (dir == 4) // left
     {
       //print ("old pos" + GridPos);
+      if (EnemySpawner.CheckOccupancy(oldPos - 1) && !CameraController.GetPTime())
+        return Points[oldPos - 1];
+      
       if (GridPos %3 != 1)
         GridPos -= 1;
       
@@ -393,8 +413,13 @@ public class PlayerMovement : MonoBehaviour
     }
     else if (dir == 8) // right
     {
+      if (EnemySpawner.CheckOccupancy(oldPos + 1) && !CameraController.GetPTime())
+        return Points[oldPos - 1];
+      
       if (GridPos %3 != 0)
         GridPos += 1;
+      
+      
       
       if (oldPos == 1)
         return Points[1];
