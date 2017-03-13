@@ -337,7 +337,7 @@ public class PlayerMovement : MonoBehaviour
     if (dir == 1) //up
     {
       //above is occupied and not in time stop
-      if (EnemySpawner.CheckOccupancy(oldPos - 3) && !CameraController.GetPTime())
+      if (oldPos - 3 >= 0 && EnemySpawner.CheckOccupancy(oldPos - 3) && !CameraController.GetPTime())
         return Points[oldPos - 1];
       
       if (GridPos > 3)
@@ -363,7 +363,7 @@ public class PlayerMovement : MonoBehaviour
     }
     else if (dir == 2) // down
     {
-      if (EnemySpawner.CheckOccupancy(oldPos + 3) && !CameraController.GetPTime())
+      if (oldPos + 3 < 9 && EnemySpawner.CheckOccupancy(oldPos + 3) && !CameraController.GetPTime())
         return Points[oldPos - 1] ;
       
       if (GridPos < 7)
@@ -389,7 +389,7 @@ public class PlayerMovement : MonoBehaviour
     else if (dir == 4) // left
     {
       //print ("old pos" + GridPos);
-      if (EnemySpawner.CheckOccupancy(oldPos - 1) && !CameraController.GetPTime())
+      if (oldPos - 1 >= 0 && EnemySpawner.CheckOccupancy(oldPos - 1) && !CameraController.GetPTime())
         return Points[oldPos - 1];
       
       if (GridPos %3 != 1)
@@ -413,7 +413,7 @@ public class PlayerMovement : MonoBehaviour
     }
     else if (dir == 8) // right
     {
-      if (EnemySpawner.CheckOccupancy(oldPos + 1) && !CameraController.GetPTime())
+      if (oldPos + 1 < 9 && EnemySpawner.CheckOccupancy(oldPos + 1) && !CameraController.GetPTime())
         return Points[oldPos - 1];
       
       if (GridPos %3 != 0)
