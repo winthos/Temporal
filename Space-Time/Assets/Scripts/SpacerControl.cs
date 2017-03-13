@@ -37,6 +37,15 @@ public class SpacerControl : MonoBehaviour
   GameObject LaserSight;
   
   [SerializeField]
+  int FollowID;
+  
+  [SerializeField]
+  GameObject ExplosionParticle;
+  
+  
+  GameObject FollowPos;
+  
+  [SerializeField]
   Material LaserDefaultMaterial;
   [SerializeField]
   Material LaserAimMaterial;
@@ -47,6 +56,8 @@ public class SpacerControl : MonoBehaviour
   
   bool LaserChange = false;
   bool Ready = false;
+  
+  bool Active = true;
   
   float AttackTimer = 0.0f;
 
@@ -63,11 +74,15 @@ public class SpacerControl : MonoBehaviour
     transform.parent = Player.transform;
     CalcRelativePosition();
     ReStartMovement();
+    FollowPos = PlayerMovement.pMove.Points[Mathf.Clamp(FollowID - 1,0,8)];
+    LaserSight.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () 
   {
+    if (!Active)
+      return;
     if (CameraController.GetPTime() /*|| !Ready*/ || PauseController.Paused)
     {
       
@@ -89,38 +104,38 @@ public class SpacerControl : MonoBehaviour
     //print(perc);
     if (perc < 1.0f)
     {
-      transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
-                                                                        TimeZone.DeltaTime() * 15.0f);
-      
-      
+     // transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
+                                                                        //TimeZone.DeltaTime() * 15.0f);
+      transform.position = FollowPos.transform.position;
     }
     //maintain position
     else
     {
-      transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
-                                                                        TimeZone.DeltaTime() * 150.0f);
+      //transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
+                                                                        //TimeZone.DeltaTime() * 150.0f);
+      transform.position = FollowPos.transform.position;
     }
     CalcRelativePosition();
     
     float playDist = Vector3.Distance(transform.position, Player.transform.position + AdditionalPos);
     
-    if (AttackTimer < AttackInterval && !CameraController.GetPTime() && !LaserChange && playDist <= DistanceFromPlayer + 1.0f)
+    if (AttackTimer < AttackInterval && !CameraController.GetPTime())
     {
       AttackTimer += TimeZone.DeltaTime();
+      
       if (AttackTimer >= AttackInterval)
       {
+        PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
         Fire();
-        AttackTimer = 0.0f;
+        
+        AttackTimer += 50.0f;
       }
-      else if (AttackTimer / AttackInterval >= 0.75f)
-      {
-        print("Change colours");
-        LaserSight.GetComponent<LineRenderer>().material = LaserAimMaterial;
-      }
-      else
-      {
-        LaserSight.GetComponent<LineRenderer>().material = LaserDefaultMaterial;
-      }
+      else 
+        PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "" + (int)Mathf.Ceil((5.0f - AttackTimer));
+    }
+    else if (CameraController.GetPTime())
+    {
+      PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
     }
     if (perc >= 1.0f && playDist > DistanceFromPlayer)
     {
@@ -143,6 +158,7 @@ public class SpacerControl : MonoBehaviour
       AdditionalPos += Player.transform.up * (RelativeToPlayer.y * 0.65f)* DistanceFromPlayer;
     }
     
+    AdditionalPos = Vector3.zero;
     
   }
   
@@ -154,19 +170,30 @@ public class SpacerControl : MonoBehaviour
   
   void Fire()
   {
-    StartCoroutine(LaserFlash());
+    //StartCoroutine(LaserFlash());
     GameObject en = (GameObject)Instantiate(Projectile, Player.transform.position, Quaternion.identity);
     en.transform.parent = Player.transform;
     Player.GetComponent<Health>().DecrementHealth();
+    GameObject en2 = (GameObject)Instantiate(ExplosionParticle, transform.position, Quaternion.identity);
+    en2.transform.parent = PlayerMovement.pMove.Points[FollowID - 1].transform;
+    EnemySpawner.SetOccupancy(FollowID, false);
+    PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+    SoundHub.EnemyTimeBomb();
+    StartCoroutine(Destroy());
     
+  }
+  
+  public int GetID()
+  {
+    return FollowID;
   }
   
   IEnumerator LaserFlash()
   {
     LaserChange = true;
-    LaserSight.GetComponent<LineRenderer>().material = LaserHitMaterial;
+    //LaserSight.GetComponent<LineRenderer>().material = LaserHitMaterial;
     yield return new WaitForSeconds(0.125f);
-    LaserSight.GetComponent<LineRenderer>().material = LaserDefaultMaterial; 
+    //LaserSight.GetComponent<LineRenderer>().material = LaserDefaultMaterial; 
     LaserChange = false;
   }
   
@@ -285,6 +312,15 @@ public class SpacerControl : MonoBehaviour
     return true;
   }
  
+  IEnumerator Destroy()
+  {
+    Active = false;
+    GetComponent<MeshRenderer>().enabled = false;
+    yield return new WaitForSeconds(0.125f);
+    EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
+    PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+    Destroy(gameObject);
+  }
 
   
 }

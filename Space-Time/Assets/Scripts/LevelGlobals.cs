@@ -17,6 +17,7 @@ public class LevelGlobals : MonoBehaviour
   public static float highestDistance;
   
   public static float runningTime;
+  public static float TimePassed;
   
   [SerializeField]
   public static bool Debugging = false;
@@ -41,6 +42,7 @@ public class LevelGlobals : MonoBehaviour
     if (!CameraController.GetPTime())
       distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed() / 2.0f;
     runningTime += TimeZone.DeltaTime(true);
+    TimePassed = Time.time;
     if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
     //if (Input.GetKey("escape"))

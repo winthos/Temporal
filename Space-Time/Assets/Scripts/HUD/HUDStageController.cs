@@ -25,25 +25,31 @@ public class HUDStageController : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (TestModeOn)
-            Testing();
 
-        if (currStage != nextStage)
-            StartCoroutine(UpdateStages());
+        if (!PauseController.Paused)
+        {
+            if (TestModeOn)
+                Testing();
+
+            //RiftStages(Scoring.pickupsCollected);
+
+            if (currStage != nextStage)
+                StartCoroutine(UpdateStages());
+        }
     }
 
-    void Testing()
+    void RiftStages(int _rifts)
     {
-        if (Input.GetKeyUp(KeyCode.Alpha0))
-            nextStage = 0;
-        else if (Input.GetKeyUp(KeyCode.Alpha1))
-            nextStage = 1;
-        else if (Input.GetKeyUp(KeyCode.Alpha2))
-            nextStage = 2;
-        else if (Input.GetKeyUp(KeyCode.Alpha3))
-            nextStage = 3;
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-            nextStage = 4;
+        if (_rifts == 1)
+            currStage = 1;
+        else if (_rifts == 3)
+            currStage = 2;
+        else if (_rifts == 5)
+            currStage = 3;
+        else if (_rifts >= 6)
+            currStage = 4;
+        else
+            currStage = 0;
     }
 
     IEnumerator UpdateStages()
@@ -175,4 +181,19 @@ public class HUDStageController : MonoBehaviour
             stages[4].GetComponent<CanvasGroup>().alpha = 0;
         }
     }
+
+    void Testing()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+            nextStage = 0;
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+            nextStage = 1;
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+            nextStage = 2;
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+            nextStage = 3;
+        else if (Input.GetKeyUp(KeyCode.Alpha4))
+            nextStage = 4;
+    }
+
 }
