@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -8,7 +12,7 @@ public class HUDTargetingController : MonoBehaviour
     public static HUDTargetingController HUDTarget;
   
     int indexx = 0;
-    public float detectionDistance = 10f;
+    public float detectionDistance = 200f;
 
 
     //holds the distance values per space on the grid
@@ -79,7 +83,8 @@ public class HUDTargetingController : MonoBehaviour
         foreach (Image img in _imgList)
         {
             var tempColor = img.color;
-            tempColor.a = 0.5f;
+            tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
+            tempColor.a = 1f;
             img.color = tempColor;
         }
     }
@@ -88,18 +93,27 @@ public class HUDTargetingController : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        for(int i = 0; i < 0; i++)
-        {
-            if (hazardDists[i] != 0)
-                UpdateHazardTargeting(i, hazardDists[i]);
-            if(pickupDists[i] != 0)
-                UpdatePickupTargeting(i, pickupDists[i]);
-        }
 
-        if (Input.GetKeyUp(KeyCode.G))
-            ShowHazard3C(1);
-        if (Input.GetKeyUp(KeyCode.H))
-            ShowPickup3C(1);
+        if (!PauseController.Paused)
+        {
+
+            for (int i = 0; i < 0; i++)
+            {
+                if (hazardDists[i] != 0)
+                    UpdateHazardTargeting(i, hazardDists[i]);
+                if (pickupDists[i] != 0)
+                    UpdatePickupTargeting(i, pickupDists[i]);
+            }
+
+            /*
+            if (Input.GetKeyUp(KeyCode.G))
+                ShowHazard3C(1);
+            if (Input.GetKeyUp(KeyCode.H))
+                ShowPickup3C(1);
+                */
+
+            ClearGrid();
+        }
     }
 
     private void UpdateHazardTargeting(int _index, float _hazardDist)
@@ -112,6 +126,11 @@ public class HUDTargetingController : MonoBehaviour
 
     }
 
+    IEnumerator ClearGrid()
+    {
+        yield return new WaitForSeconds(10);
+        HideAllTargetingElements();
+    }
 
     // --------------------------------------------------------------------
     // --------------------------HAZARDs-----------------------------------
@@ -214,12 +233,12 @@ public class HUDTargetingController : MonoBehaviour
     void ShowHazard(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
     {
         var tempColor = hazardIcons[_index].color;
-        tempColor.a = NormalizeValue(_distance);
+        tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
         //tempColor.a = 1f;
         hazardIcons[_index].color = tempColor;
 
-        ShowImageInList(_hRow);
-        ShowImageInList(_hCol);
+        ShowImageInList(_hRow, _distance);
+        ShowImageInList(_hCol, _distance);
     }
     void HideHazard(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
     {
@@ -237,50 +256,50 @@ public class HUDTargetingController : MonoBehaviour
     // --------------------------PICKUPS-----------------------------------
     // --------------------------------------------------------------------
 
-    // show hazards -----------------------------------------------------//
+    // show pickups -----------------------------------------------------//
     public void ShowPickup1A(float _distance = 0)
     {
-        //show 1A Hazard
+        //show 1A Pickup
         ShowPickup(_distance, 0, pickupR1, pickupCA);
     }
     public void ShowPickup1B(float _distance = 0)
     {
-        //show 1B Hazard
+        //show 1B Pickup
         ShowPickup(_distance, 1, pickupR1, pickupCB);
     }
     public void ShowPickup1C(float _distance = 0)
     {
-        //show 1C Hazard
+        //show 1C Pickup
         ShowPickup(_distance, 2, pickupR1, pickupCC);
     }
     public void ShowPickup2A(float _distance = 0)
     {
-        //show 2A Hazard
+        //show 2A Pickup
         ShowPickup(_distance, 3, pickupR2, pickupCA);
     }
     public void ShowPickup2B(float _distance = 0)
     {
-        //show 2B Hazard
+        //show 2B Pickup
         ShowPickup(_distance, 4, pickupR2, pickupCB);
     }
     public void ShowPickup2C(float _distance = 0)
     {
-        //show 2C Hazard
+        //show 2C Pickup
         ShowPickup(_distance, 5, pickupR2, pickupCC);
     }
     public void ShowPickup3A(float _distance = 0)
     {
-        //show 3A Hazard
+        //show 3A Pickup
         ShowPickup(_distance, 6, pickupR3, pickupCA);
     }
     public void ShowPickup3B(float _distance = 0)
     {
-        //show 3B Hazard
+        //show 3B Pickup
         ShowPickup(_distance, 7, pickupR3, pickupCB);
     }
     public void ShowPickup3C(float _distance = 0)
     {
-        //show 3C Hazard
+        //show 3C Pickup
         ShowPickup(_distance, 8, pickupR3, pickupCC);
     }
 
@@ -288,57 +307,57 @@ public class HUDTargetingController : MonoBehaviour
     public void HidePickup1A(float _distance = 0)
     {
         //Hide 1A Hazard
-        HidePickup(_distance, 0, hazardR1, hazardCA);
+        HidePickup(_distance, 0, pickupR1, pickupCA);
     }
     public void HidePickup1B(float _distance = 0)
     {
         //Hide 1B Hazard
-        HidePickup(_distance, 1, hazardR1, hazardCB);
+        HidePickup(_distance, 1, pickupR1, pickupCB);
     }
     public void HidePickup1C(float _distance = 0)
     {
         //Hide 1C Hazard
-        HidePickup(_distance, 2, hazardR1, hazardCC);
+        HidePickup(_distance, 2, pickupR1, pickupCC);
     }
     public void HidePickup2A(float _distance = 0)
     {
         //Hide 2A Hazard
-        HidePickup(_distance, 3, hazardR2, hazardCA);
+        HidePickup(_distance, 3, pickupR2, pickupCA);
     }
     public void HidePickup2B(float _distance = 0)
     {
         //Hide 2B Hazard
-        HidePickup(_distance, 4, hazardR2, hazardCB);
+        HidePickup(_distance, 4, pickupR2, pickupCB);
     }
     public void HidePickup2C(float _distance = 0)
     {
         //Hide 2C Hazard
-        HidePickup(_distance, 5, hazardR2, hazardCC);
+        HidePickup(_distance, 5, pickupR2, pickupCC);
     }
     public void HidePickup3A(float _distance = 0)
     {
         //Hide 3A Hazard
-        HidePickup(_distance, 6, hazardR3, hazardCA);
+        HidePickup(_distance, 6, pickupR3, pickupCA);
     }
     public void HidePickup3B(float _distance = 0)
     {
         //Hide 3B Hazard
-        HidePickup(_distance, 7, hazardR3, hazardCB);
+        HidePickup(_distance, 7, pickupR3, pickupCB);
     }
     public void HidePickup3C(float _distance = 0)
     {
         //Hide 3C Hazard
-        HidePickup(_distance, 8, hazardR3, hazardCC);
+        HidePickup(_distance, 8, pickupR3, pickupCC);
     }
 
     void ShowPickup(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
     {
         var tempColor = pickupIcons[_index].color;
-        tempColor.a = NormalizeValue(_distance);
+        tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
         pickupIcons[_index].color = tempColor;
 
-        ShowImageInList(_hRow);
-        ShowImageInList(_hCol);
+        ShowImageInList(_hRow, _distance);
+        ShowImageInList(_hCol, _distance);
     }
     void HidePickup(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
     {
@@ -349,14 +368,11 @@ public class HUDTargetingController : MonoBehaviour
         HideImageInList(_hRow);
         HideImageInList(_hCol);
     }
-
-
-
-
+    
     float NormalizeValue(float _value)
     {
         float temp = (detectionDistance - _value) / (detectionDistance + _value);
-        print("normalize value" + temp);
+        //print("normalize value" + temp);
         return Mathf.Max(0, temp);
         //return 0.5f;
         
