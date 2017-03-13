@@ -110,8 +110,9 @@ public class Scoring : MonoBehaviour
     }
     public void UpdatePickupScore()
     {
-        pickupScore = pickupsCollected * pickupScoreRate;
+        pickupScore = PlayerMovement.pMove.SpeedStacks * pickupScoreRate;
         //totalScore += pickupScore;
+        Debug.Log("pickup");
     }
 
     public static void UpdateEnemyCount(int _value)

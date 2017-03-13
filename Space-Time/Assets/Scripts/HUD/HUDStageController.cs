@@ -31,10 +31,12 @@ public class HUDStageController : MonoBehaviour
             if (TestModeOn)
                 Testing();
 
-            RiftStages(Scoring.pickupsCollected);
+            RiftStages(PlayerMovement.pMove.SpeedStacks);
 
             if (currStage != nextStage)
+            {
                 StartCoroutine(UpdateStages());
+            }
         }
     }
 
@@ -48,8 +50,6 @@ public class HUDStageController : MonoBehaviour
             currStage = 3;
         else if (_rifts >= 6)
             currStage = 4;
-        else
-            currStage = 0;
     }
 
     IEnumerator UpdateStages()
@@ -118,7 +118,7 @@ public class HUDStageController : MonoBehaviour
         if(_visibile)
         {
             stages[0].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage zero on");
+            //print("stage zero on");
         }
         else
         {
@@ -132,7 +132,7 @@ public class HUDStageController : MonoBehaviour
         if (_visibile)
         {
             stages[1].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage one on");
+            //print("stage one on");
         }
         else
         {
@@ -146,7 +146,7 @@ public class HUDStageController : MonoBehaviour
         if (_visibile)
         {
             stages[2].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage two on");
+            //print("stage two on");
         }
         else
         {
@@ -160,7 +160,7 @@ public class HUDStageController : MonoBehaviour
         if (_visibile)
         {
             stages[3].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage three on");
+            //print("stage three on");
         }
         else
         {
@@ -174,7 +174,7 @@ public class HUDStageController : MonoBehaviour
         if (_visibile)
         {
             stages[4].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage four on");
+            //print("stage four on");
         }
         else
         {

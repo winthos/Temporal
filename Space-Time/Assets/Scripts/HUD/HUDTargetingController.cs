@@ -67,6 +67,10 @@ public class HUDTargetingController : MonoBehaviour
             space.HideSpace();
     }
 
+    private void Update()
+    {
+    }
+
     // --------------------------------------------------------------------
     // --------------------------HAZARDS-----------------------------------
     // --------------------------------------------------------------------
@@ -248,14 +252,18 @@ public class GridInfo
     {
         ImgAlpha(icon, _alpha);
 
-        ImgAlpha(rowLt, _alpha);
-        ImgAlpha(rowRt, _alpha);
-        ImgAlpha(colm, _alpha);
+        ImgAlpha(rowLt, 1f);
+        ImgAlpha(rowRt, 1f);
+        ImgAlpha(colm, 1f);
     }
 
     public void HideSpace()
     {
-        ShowSpace(0);
+        ImgAlpha(icon, 0);
+
+        ImgAlpha(rowLt, 0);
+        ImgAlpha(rowRt, 0);
+        ImgAlpha(colm, 0);
     }
 
     void ImgAlpha(Image _img, float _alpha)
@@ -264,10 +272,4 @@ public class GridInfo
         tempColor.a = _alpha;
         _img.color = tempColor;
     }
-    
-}
-
-enum IncomingType
-{
-    hazard, pickup, none
 }
