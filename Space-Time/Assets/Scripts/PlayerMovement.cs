@@ -260,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
       SpeedStacks++;
       Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
-      Scoring.pickupsCollected += 1;
+      Scoring.UpdatePickupCount(1);
     }
     else if (other.gameObject.tag == "Hazard")
     {
@@ -270,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
     else if (other.gameObject.tag == "Spacer")
     {
       other.gameObject.GetComponent<Health>().DecrementHealth();
-      Scoring.enemiesDestroyed += 1;
+      Scoring.UpdateEnemyCount(1);
     }
   }
   

@@ -78,7 +78,9 @@ public class Scoring : MonoBehaviour
         {
             TimeScore();
             SpeedScore();
-            totalScore *= multiplier/5;
+            EnemyScore();
+            PickupScore();
+            totalScore *= multiplier/5 + enemyScore + pickupScore;
 
             scoreField.text = Mathf.RoundToInt(totalScore).ToString();
             multiplierField.text = "x" + multiplier;
@@ -103,17 +105,27 @@ public class Scoring : MonoBehaviour
         return speedScore;
     }
 
-    public void UpdateEnemyScore()
+    
+    void EnemyScore()
     {
-        enemiesDestroyed++;
         enemyScore = enemiesDestroyed * enemyScoreRate;
-        totalScore += enemyScore;
+        //totalScore += enemyScore;
     }
-    public void UpdatePickupScore()
+    void PickupScore()
     {
-        pickupsCollected++;
         pickupScore = pickupsCollected * pickupScoreRate;
-        totalScore += pickupScore;
+        //totalScore += pickupScore;
+    }
+    
+
+    public static void UpdateEnemyCount(int _value)
+    {
+        enemiesDestroyed += _value;
+    }
+    public static void UpdatePickupCount(int _value)
+    {
+        pickupsCollected += _value;
+
     }
 
     public float ChangeMultiplierTo(float _newValue)
