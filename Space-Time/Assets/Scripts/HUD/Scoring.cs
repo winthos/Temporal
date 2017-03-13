@@ -76,13 +76,13 @@ public class Scoring : MonoBehaviour
     {
         if (!PauseController.Paused)
         {
-            TimeScore();
-            SpeedScore();
-            totalScore *= multiplier/5;
+            //TimeScore();
+            //SpeedScore();
+            totalScore += TimeScore();
 
-            scoreField.text = Mathf.RoundToInt(totalScore).ToString();
+            scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "x" + multiplier;
-            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) + " km/s";
+            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) * 10 + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
             
             ScoreMultiplier(HUDStageController.currStage);
@@ -91,8 +91,8 @@ public class Scoring : MonoBehaviour
 
     public float TimeScore()
     {
-        timeScore += timeScoreRate * LevelGlobals.TimePassed;
-        totalScore += timeScore;
+        timeScore = timeScoreRate * LevelGlobals.TimePassed;
+        //totalScore += timeScore;
         return timeScore;
     }
 
@@ -105,17 +105,25 @@ public class Scoring : MonoBehaviour
 
     public void UpdateEnemyScore()
     {
-        enemiesDestroyed++;
         enemyScore = enemiesDestroyed * enemyScoreRate;
-        totalScore += enemyScore;
+        //totalScore += enemyScore;
     }
     public void UpdatePickupScore()
     {
-        pickupsCollected++;
-        pickupScore = pickupsCollected * pickupScoreRate;
-        totalScore += pickupScore;
+        pickupScore = PlayerMovement.pMove.SpeedStacks * pickupScoreRate;
+        //totalScore += pickupScore;
+        Debug.Log("pickup");
     }
 
+    public static void UpdateEnemyCount(int _value)
+    {
+        enemiesDestroyed += _value;
+    }
+    public static void UpdatePickupCount(int _value)
+    {
+        pickupsCollected += _value;
+
+    }
     public float ChangeMultiplierTo(float _newValue)
     {
         multiplier = _newValue;

@@ -259,20 +259,23 @@ public class PlayerMovement : MonoBehaviour
   {
     if (other.gameObject.tag == "Rift")
     {
-      //AkSoundEngine.PostEvent("event_riftGet", this.gameObject);
       SpeedStacks++;
       Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
+      SoundHub.Pickup();
       Scoring.pickupsCollected += 1;
     }
     else if (other.gameObject.tag == "Hazard")
     {
       print("OW");
       GetComponent<Health>().DecrementHealth();
+      SoundHub.AsteroidExplosion();
+      Destroy(other.gameObject);
     }
     else if (other.gameObject.tag == "Spacer" && CameraController.GetPTime())
     {
       other.gameObject.GetComponent<Health>().DecrementHealth();
+      SoundHub.EnemyTimeBomb();
       Scoring.enemiesDestroyed += 1;
     }
   }
