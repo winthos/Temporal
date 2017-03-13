@@ -31,7 +31,7 @@ public class HUDStageController : MonoBehaviour
             if (TestModeOn)
                 Testing();
 
-            RiftStages(Scoring.pickupsCollected);
+            //RiftStages(Scoring.pickupsCollected);
 
             if (currStage != nextStage)
                 StartCoroutine(UpdateStages());
@@ -184,7 +184,7 @@ public class HUDStageController : MonoBehaviour
 
     void Testing()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha0))
+        if (Input.GetKeyUp(KeyCode.Alpha5))
             nextStage = 0;
         else if (Input.GetKeyUp(KeyCode.Alpha1))
             nextStage = 1;
