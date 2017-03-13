@@ -178,6 +178,7 @@ public class SpacerControl : MonoBehaviour
     en2.transform.parent = PlayerMovement.pMove.Points[FollowID - 1].transform;
     EnemySpawner.SetOccupancy(FollowID, false);
     PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+    SoundHub.EnemyTimeBomb();
     StartCoroutine(Destroy());
     
   }

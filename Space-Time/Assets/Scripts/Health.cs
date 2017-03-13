@@ -112,7 +112,7 @@ public class Health : MonoBehaviour
   IEnumerator Flash()
   {
     DamageFlash.SetActive(true);
-    yield return new WaitForSeconds(2.0f);
+    yield return new WaitForSeconds(0.5f);
     DamageFlash.SetActive(false);
   }
 }
