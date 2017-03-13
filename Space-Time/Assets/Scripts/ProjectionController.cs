@@ -73,7 +73,7 @@ public class ProjectionController : MonoBehaviour
 
     public void HighlightTargetHazard(float dist)
     {
-        print("Hazard");
+        //print("Hazard");
         switch (Location)
         {
             case 1: //1A
@@ -109,7 +109,7 @@ public class ProjectionController : MonoBehaviour
 
     public void HighlightTargetPickup(float dist)
     {
-        print("Rift");
+        //print("Rift");
         switch (Location)
         {
             case 1: //1A

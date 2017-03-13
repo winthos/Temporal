@@ -76,9 +76,9 @@ public class Scoring : MonoBehaviour
     {
         if (!PauseController.Paused)
         {
-            TimeScore();
-            SpeedScore();
-            totalScore += (multiplier/5 * ( enemyScore + pickupScore));
+            //TimeScore();
+            //SpeedScore();
+            totalScore += TimeScore();
 
             scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "x" + multiplier;
@@ -91,8 +91,8 @@ public class Scoring : MonoBehaviour
 
     public float TimeScore()
     {
-        timeScore += timeScoreRate * LevelGlobals.TimePassed;
-        totalScore += timeScore;
+        timeScore = timeScoreRate * LevelGlobals.TimePassed;
+        //totalScore += timeScore;
         return timeScore;
     }
 

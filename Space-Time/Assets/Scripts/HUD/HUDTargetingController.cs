@@ -10,84 +10,62 @@ using UnityEngine.UI;
 public class HUDTargetingController : MonoBehaviour
 {
     public static HUDTargetingController HUDTarget;
-  
+
     public float detectionDistance = 200f;
-
-
-    //holds the distance values per space on the grid
-    public List<float> hazardDists;
-    public List<float> pickupDists;
 
     // targeting icons
     public List<Image> hazardIcons = new List<Image>(9);
     public List<Image> pickupIcons = new List<Image>(9);
 
-    // hazard targeting bars
-    public List<Image> hazardR1 = new List<Image>(2);
-    public List<Image> hazardR2 = new List<Image>(2);
-    public List<Image> hazardR3 = new List<Image>(2);
-    public List<Image> hazardCA = new List<Image>(1);
-    public List<Image> hazardCB = new List<Image>(1);
-    public List<Image> hazardCC = new List<Image>(1);
+    public List<Image> hLeftBars = new List<Image>(3);
+    public List<Image> hRghtBars = new List<Image>(3);
+    public List<Image> hColmBars = new List<Image>(3);
 
-    // pickups targeting bars
-    public List<Image> pickupR1 = new List<Image>(2);
-    public List<Image> pickupR2 = new List<Image>(2);
-    public List<Image> pickupR3 = new List<Image>(2);
-    public List<Image> pickupCA = new List<Image>(1);
-    public List<Image> pickupCB = new List<Image>(1);
-    public List<Image> pickupCC = new List<Image>(1);
+    public List<Image> pLeftBars = new List<Image>(3);
+    public List<Image> pRghtBars = new List<Image>(3);
+    public List<Image> pColmBars = new List<Image>(3);
+
+    List<GridInfo> hazardSpaces = new List<GridInfo>(9);
+    List<GridInfo> pickupSpaces = new List<GridInfo>(9);
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         HUDTarget = GetComponent<HUDTargetingController>();
-        hazardDists = new List<float>(9);
-        pickupDists = new List<float>(9);
+
+        //hazard space information
+        hazardSpaces.Add(new GridInfo(hazardIcons[0], hLeftBars[0], hRghtBars[0], hColmBars[0]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[1], hLeftBars[0], hRghtBars[0], hColmBars[1]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[2], hLeftBars[0], hRghtBars[0], hColmBars[2]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[3], hLeftBars[1], hRghtBars[1], hColmBars[0]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[4], hLeftBars[1], hRghtBars[1], hColmBars[1]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[5], hLeftBars[1], hRghtBars[1], hColmBars[2]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[6], hLeftBars[2], hRghtBars[2], hColmBars[0]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[7], hLeftBars[2], hRghtBars[2], hColmBars[1]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[8], hLeftBars[2], hRghtBars[2], hColmBars[2]));
+
+        //pickup space information
+        pickupSpaces.Add(new GridInfo(pickupIcons[0], pLeftBars[0], pRghtBars[0], pColmBars[0]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[1], pLeftBars[0], pRghtBars[0], pColmBars[1]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[2], pLeftBars[0], pRghtBars[0], pColmBars[2]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[3], pLeftBars[1], pRghtBars[1], pColmBars[0]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[4], pLeftBars[1], pRghtBars[1], pColmBars[1]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[5], pLeftBars[1], pRghtBars[1], pColmBars[2]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[6], pLeftBars[2], pRghtBars[2], pColmBars[0]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[7], pLeftBars[2], pRghtBars[2], pColmBars[1]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[8], pLeftBars[2], pRghtBars[2], pColmBars[2]));
+
         HideAllTargetingElements();
     }
 
     void HideAllTargetingElements()
     {
-        HideImageInList(hazardIcons);
-        HideImageInList(pickupIcons);
-
-        HideImageInList(hazardR1);
-        HideImageInList(hazardR2);
-        HideImageInList(hazardR3);
-        HideImageInList(hazardCA);
-        HideImageInList(hazardCB);
-        HideImageInList(hazardCC);
-
-        HideImageInList(pickupR1);
-        HideImageInList(pickupR2);
-        HideImageInList(pickupR3);
-        HideImageInList(pickupCA);
-        HideImageInList(pickupCB);
-        HideImageInList(pickupCC);
+        foreach (GridInfo space in hazardSpaces)
+            space.HideSpace();
+        foreach (GridInfo space in pickupSpaces)
+            space.HideSpace();
     }
-
-    void HideImageInList(List<Image> _imgList, float _distance = 0)
-    {
-        foreach (Image img in _imgList)
-        {
-            var tempColor = img.color;
-            tempColor.a = 0f;
-            img.color = tempColor;
-        }
-    }
-    void ShowImageInList(List<Image> _imgList, float _distance = 1f)
-    {
-        foreach (Image img in _imgList)
-        {
-            var tempColor = img.color;
-            tempColor.a = Mathf.Max(0.5f, NormalizeValue(_distance));
-            //tempColor.a = 1f;
-            img.color = tempColor;
-        }
-    }
-
 
     // --------------------------------------------------------------------
     // --------------------------HAZARDS-----------------------------------
@@ -97,94 +75,65 @@ public class HUDTargetingController : MonoBehaviour
     public void Hazard1A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1A Hazard
-            ShowHazard(_distance, 0, hazardR1, hazardCA);
+            hazardSpaces[0].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 0, hazardR1, hazardCA);
+            hazardSpaces[0].HideSpace();
     }
     public void Hazard1B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1B Hazard
-            ShowHazard(_distance, 1, hazardR1, hazardCB);
+            hazardSpaces[1].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 1, hazardR1, hazardCB);
+            hazardSpaces[1].HideSpace();
     }
     public void Hazard1C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1C Hazard
-            ShowHazard(_distance, 2, hazardR1, hazardCC);
+            hazardSpaces[2].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 2, hazardR1, hazardCC);
+            hazardSpaces[2].HideSpace();
     }
     public void Hazard2A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2A Hazard
-            ShowHazard(_distance, 3, hazardR2, hazardCA);
+            hazardSpaces[3].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 3, hazardR2, hazardCA);
+            hazardSpaces[3].HideSpace();
     }
     public void Hazard2B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2B Hazard
-            ShowHazard(_distance, 4, hazardR2, hazardCB);
+            hazardSpaces[4].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 4, hazardR2, hazardCB);
+            hazardSpaces[4].HideSpace();
     }
     public void Hazard2C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2C Hazard
-            ShowHazard(_distance, 5, hazardR2, hazardCC);
+            hazardSpaces[5].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 5, hazardR2, hazardCC);
+            hazardSpaces[5].HideSpace();
     }
     public void Hazard3A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3A Hazard
-            ShowHazard(_distance, 6, hazardR3, hazardCA);
+            hazardSpaces[6].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 6, hazardR3, hazardCA);
+            hazardSpaces[6].HideSpace();
     }
     public void Hazard3B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3B Hazard
-            ShowHazard(_distance, 7, hazardR3, hazardCB);
+            hazardSpaces[7].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 7, hazardR3, hazardCB);
+            hazardSpaces[7].HideSpace();
     }
     public void Hazard3C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3C Hazard
-            ShowHazard(_distance, 8, hazardR3, hazardCC);
+            hazardSpaces[8].ShowSpace(NormalizeValue(_distance));
         else
-            HideHazard(_distance, 8, hazardR3, hazardCB);
-    }
-
-    void ShowHazard(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
-    {
-        var tempColor = hazardIcons[_index].color;
-        tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
-        //tempColor.a = 1f;
-        hazardIcons[_index].color = tempColor;
-
-        ShowImageInList(_hRow, _distance);
-        ShowImageInList(_hCol, _distance);
-    }
-    void HideHazard(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
-    {
-        var tempColor = hazardIcons[_index].color;
-        tempColor.a = 0;
-        hazardIcons[_index].color = tempColor;
-
-        HideImageInList(_hRow);
-        HideImageInList(_hCol);
+            hazardSpaces[8].HideSpace();
     }
 
 
@@ -197,103 +146,125 @@ public class HUDTargetingController : MonoBehaviour
     public void Pickup1A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1A Pickup
-            ShowPickup(_distance, 0, pickupR1, pickupCA);
+            pickupSpaces[0].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 0, pickupR1, pickupCA);
+            pickupSpaces[0].HideSpace();
     }
     public void Pickup1B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1B Pickup
-            ShowPickup(_distance, 1, pickupR1, pickupCB);
+            pickupSpaces[1].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 1, pickupR1, pickupCB);
+            pickupSpaces[1].HideSpace();
     }
     public void Pickup1C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 1C Pickup
-            ShowPickup(_distance, 2, pickupR1, pickupCC);
+            pickupSpaces[2].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 2, pickupR1, pickupCC);
+            pickupSpaces[2].HideSpace();
     }
     public void Pickup2A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2A Pickup
-            ShowPickup(_distance, 3, pickupR2, pickupCA);
+            pickupSpaces[3].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 3, pickupR2, pickupCA);
+            pickupSpaces[3].HideSpace();
     }
     public void Pickup2B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2B Pickup
-            ShowPickup(_distance, 4, pickupR2, pickupCB);
+            pickupSpaces[4].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 4, pickupR2, pickupCB);
+            pickupSpaces[4].HideSpace();
     }
     public void Pickup2C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 2C Pickup
-            ShowPickup(_distance, 5, pickupR2, pickupCC);
+            pickupSpaces[5].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 5, pickupR2, pickupCC);
+            pickupSpaces[5].HideSpace();
     }
     public void Pickup3A(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3A Pickup
-            ShowPickup(_distance, 6, pickupR3, pickupCA);
+            pickupSpaces[6].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 6, pickupR3, pickupCA);
+            pickupSpaces[6].HideSpace();
     }
     public void Pickup3B(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3B Pickup
-            ShowPickup(_distance, 7, pickupR3, pickupCB);
+            pickupSpaces[7].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 7, pickupR3, pickupCB);
+            pickupSpaces[7].HideSpace();
     }
     public void Pickup3C(float _distance = 0)
     {
         if (_distance > 0)
-            //show 3C Pickup
-            ShowPickup(_distance, 8, pickupR3, pickupCC);
+            pickupSpaces[8].ShowSpace(NormalizeValue(_distance));
         else
-            HidePickup(_distance, 8, pickupR3, pickupCB);
+            pickupSpaces[8].HideSpace();
     }
-
-    void ShowPickup(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
-    {
-        var tempColor = pickupIcons[_index].color;
-        tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
-        //tempColor.a = 1f;
-        pickupIcons[_index].color = tempColor;
-
-        ShowImageInList(_hRow, _distance);
-        ShowImageInList(_hCol, _distance);
-    }
-    void HidePickup(float _distance, int _index, List<Image> _hRow, List<Image> _hCol)
-    {
-        var tempColor = pickupIcons[_index].color;
-        tempColor.a = 0;
-        pickupIcons[_index].color = tempColor;
-
-        HideImageInList(_hRow);
-        HideImageInList(_hCol);
-    }
-
 
     float NormalizeValue(float _value)
     {
         float temp = (detectionDistance - Mathf.Max(0, _value)) / (detectionDistance + Mathf.Max(0, _value));
-        return Mathf.Max(0, temp);
+        return Mathf.Min(Mathf.Max(0, temp), 1f);
         //return 0.5f;
     }
+}
+
+[System.Serializable]
+public class GridInfo
+{
+    public Image icon;
+    public Image rowLt;
+    public Image rowRt;
+    public Image colm;
+
+    public bool visible;
+
+    public GridInfo()
+    {
+        icon = null;
+        rowLt = null;
+        rowRt = null;
+        colm = null;
+
+        visible = false;
+    }
+    public GridInfo(Image _icon, Image _rowLt, Image _rowRt, Image _colm)
+    {
+        icon = _icon;
+        rowLt = _rowLt;
+        rowRt = _rowRt;
+        colm = _colm;
+
+        visible = false;
+    }
+
+    public void ShowSpace(float _alpha)
+    {
+        ImgAlpha(icon, _alpha);
+
+        ImgAlpha(rowLt, _alpha);
+        ImgAlpha(rowRt, _alpha);
+        ImgAlpha(colm, _alpha);
+    }
+
+    public void HideSpace()
+    {
+        ShowSpace(0);
+    }
+
+    void ImgAlpha(Image _img, float _alpha)
+    {
+        var tempColor = _img.color;
+        tempColor.a = _alpha;
+        _img.color = tempColor;
+    }
+    
 }
 
 enum IncomingType
