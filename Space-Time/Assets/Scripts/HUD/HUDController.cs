@@ -254,6 +254,7 @@ public class HUDController : MonoBehaviour
     DefaultPauseScreen.SetActive(false);
     LoseScreen.SetActive(false);
     LevelGlobals.calcHighScores();
+    EnemySpawner.ResetOccupancies();
 
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     //do other retry things

@@ -10,7 +10,6 @@ public class PauseController : MonoBehaviour
 {
 
   public static bool Paused = false;
-    float tempTimePassed;
   
 	// Use this for initialization
 	void Start () 
@@ -21,13 +20,8 @@ public class PauseController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-        /*
-        if (!Paused)
-            tempTimePassed = LevelGlobals.TimePassed;
-        else
-            LevelGlobals.TimePassed = tempTimePassed;
-            */
-    }
+      
+	}
   
   public static void TogglePause()
   {

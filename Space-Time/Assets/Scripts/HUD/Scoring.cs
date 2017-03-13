@@ -78,11 +78,9 @@ public class Scoring : MonoBehaviour
         {
             TimeScore();
             SpeedScore();
-            EnemyScore();
-            PickupScore();
-            totalScore *= multiplier/5 + enemyScore + pickupScore;
+            totalScore += (multiplier/5 * ( enemyScore + pickupScore));
 
-            scoreField.text = Mathf.RoundToInt(totalScore).ToString();
+            scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "x" + multiplier;
             speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
@@ -105,18 +103,16 @@ public class Scoring : MonoBehaviour
         return speedScore;
     }
 
-    
-    void EnemyScore()
+    public void UpdateEnemyScore()
     {
         enemyScore = enemiesDestroyed * enemyScoreRate;
         //totalScore += enemyScore;
     }
-    void PickupScore()
+    public void UpdatePickupScore()
     {
         pickupScore = pickupsCollected * pickupScoreRate;
         //totalScore += pickupScore;
     }
-    
 
     public static void UpdateEnemyCount(int _value)
     {
@@ -127,7 +123,6 @@ public class Scoring : MonoBehaviour
         pickupsCollected += _value;
 
     }
-
     public float ChangeMultiplierTo(float _newValue)
     {
         multiplier = _newValue;

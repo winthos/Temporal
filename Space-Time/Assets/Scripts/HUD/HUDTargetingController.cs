@@ -11,8 +11,8 @@ public class HUDTargetingController : MonoBehaviour
 {
     public static HUDTargetingController HUDTarget;
   
-    int indexx = 0;
-    float detectionDistance = 200f;
+    public float detectionDistance = 200f;
+
 
     //holds the distance values per space on the grid
     public List<float> hazardDists;
@@ -38,17 +38,14 @@ public class HUDTargetingController : MonoBehaviour
     public List<Image> pickupCB = new List<Image>(1);
     public List<Image> pickupCC = new List<Image>(1);
 
-    Coroutine gridClear;
 
-
-    // Use this \for initialization
+    // Use this for initialization
     void Start ()
     {
         HUDTarget = GetComponent<HUDTargetingController>();
         hazardDists = new List<float>(9);
         pickupDists = new List<float>(9);
         HideAllTargetingElements();
-        gridClear = null;
     }
 
     void HideAllTargetingElements()
@@ -85,48 +82,12 @@ public class HUDTargetingController : MonoBehaviour
         foreach (Image img in _imgList)
         {
             var tempColor = img.color;
-            // Mathf.Max(tempColor.a, NormalizeValue(_distance));tempColor.a = Mathf.Max(tempColor.a, NormalizeValue(_distance));
             tempColor.a = Mathf.Max(0.5f, NormalizeValue(_distance));
+            //tempColor.a = 1f;
             img.color = tempColor;
         }
     }
-    
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-        if (!PauseController.Paused)
-        {
-            /*
-
-            for (int i = 0; i < 0; i++)
-            {
-                if (hazardDists[i] != 0)
-                    UpdateHazardTargeting(i, hazardDists[i]);
-                if (pickupDists[i] != 0)
-                    UpdatePickupTargeting(i, pickupDists[i]);
-            }
-
-            
-            if (Input.GetKeyUp(KeyCode.G))
-                ShowHazard3C(1);
-            if (Input.GetKeyUp(KeyCode.H))
-                ShowPickup3C(1);
-                */
-                
-        }
-    }
-
-    private void UpdateHazardTargeting(int _index, float _hazardDist)
-    {
-        print("update hazard targeting");
-    }
-
-    private void UpdatePickupTargeting(int _index, float _pickupDist)
-    {
-
-    }
 
     // --------------------------------------------------------------------
     // --------------------------HAZARDS-----------------------------------
@@ -325,15 +286,13 @@ public class HUDTargetingController : MonoBehaviour
         HideImageInList(_hRow);
         HideImageInList(_hCol);
     }
-    
+
 
     float NormalizeValue(float _value)
     {
-        float temp = (detectionDistance - Mathf.Max(0,_value)) / (detectionDistance + Mathf.Max(0,_value));
-        //print("normalize value" + temp);
+        float temp = (detectionDistance - Mathf.Max(0, _value)) / (detectionDistance + Mathf.Max(0, _value));
         return Mathf.Max(0, temp);
         //return 0.5f;
-        
     }
 }
 
