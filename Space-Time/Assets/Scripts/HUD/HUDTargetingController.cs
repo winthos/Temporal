@@ -17,13 +17,34 @@ public class HUDTargetingController : MonoBehaviour
     public List<Image> hazardIcons = new List<Image>(9);
     public List<Image> pickupIcons = new List<Image>(9);
 
+    public Image hLeftBar1;
+    public Image hLeftBar2;
+    public Image hLeftBar3;
+    public Image hRghtBar1;
+    public Image hRghtBar2;
+    public Image hRghtBar3;
+    public Image hColmBarA;
+    public Image hColmBarB;
+    public Image hColmBarC;
+
+    public Image pLeftBar1;
+    public Image pLeftBar2;
+    public Image pLeftBar3;
+    public Image pRghtBar1;
+    public Image pRghtBar2;
+    public Image pRghtBar3;
+    public Image pColmBarA;
+    public Image pColmBarB;
+    public Image pColmBarC;
+
+    /*
     public List<Image> hLeftBars = new List<Image>(3);
     public List<Image> hRghtBars = new List<Image>(3);
     public List<Image> hColmBars = new List<Image>(3);
 
     public List<Image> pLeftBars = new List<Image>(3);
     public List<Image> pRghtBars = new List<Image>(3);
-    public List<Image> pColmBars = new List<Image>(3);
+    public List<Image> pColmBars = new List<Image>(3);*/
 
     List<GridInfo> hazardSpaces = new List<GridInfo>(9);
     List<GridInfo> pickupSpaces = new List<GridInfo>(9);
@@ -35,26 +56,26 @@ public class HUDTargetingController : MonoBehaviour
         HUDTarget = GetComponent<HUDTargetingController>();
 
         //hazard space information
-        hazardSpaces.Add(new GridInfo(hazardIcons[0], hLeftBars[0], hRghtBars[0], hColmBars[0]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[1], hLeftBars[0], hRghtBars[0], hColmBars[1]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[2], hLeftBars[0], hRghtBars[0], hColmBars[2]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[3], hLeftBars[1], hRghtBars[1], hColmBars[0]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[4], hLeftBars[1], hRghtBars[1], hColmBars[1]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[5], hLeftBars[1], hRghtBars[1], hColmBars[2]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[6], hLeftBars[2], hRghtBars[2], hColmBars[0]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[7], hLeftBars[2], hRghtBars[2], hColmBars[1]));
-        hazardSpaces.Add(new GridInfo(hazardIcons[8], hLeftBars[2], hRghtBars[2], hColmBars[2]));
+        hazardSpaces.Add(new GridInfo(hazardIcons[0], hLeftBar1, hRghtBar1, hColmBarA));
+        hazardSpaces.Add(new GridInfo(hazardIcons[1], hLeftBar1, hRghtBar1, hColmBarB));
+        hazardSpaces.Add(new GridInfo(hazardIcons[2], hLeftBar1, hRghtBar1, hColmBarC));
+        hazardSpaces.Add(new GridInfo(hazardIcons[3], hLeftBar2, hRghtBar2, hColmBarA));
+        hazardSpaces.Add(new GridInfo(hazardIcons[4], hLeftBar2, hRghtBar2, hColmBarB));
+        hazardSpaces.Add(new GridInfo(hazardIcons[5], hLeftBar2, hRghtBar2, hColmBarC));
+        hazardSpaces.Add(new GridInfo(hazardIcons[6], hLeftBar3, hRghtBar3, hColmBarA));
+        hazardSpaces.Add(new GridInfo(hazardIcons[7], hLeftBar3, hRghtBar3, hColmBarB));
+        hazardSpaces.Add(new GridInfo(hazardIcons[8], hLeftBar3, hRghtBar3, hColmBarC));
 
         //pickup space information
-        pickupSpaces.Add(new GridInfo(pickupIcons[0], pLeftBars[0], pRghtBars[0], pColmBars[0]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[1], pLeftBars[0], pRghtBars[0], pColmBars[1]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[2], pLeftBars[0], pRghtBars[0], pColmBars[2]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[3], pLeftBars[1], pRghtBars[1], pColmBars[0]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[4], pLeftBars[1], pRghtBars[1], pColmBars[1]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[5], pLeftBars[1], pRghtBars[1], pColmBars[2]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[6], pLeftBars[2], pRghtBars[2], pColmBars[0]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[7], pLeftBars[2], pRghtBars[2], pColmBars[1]));
-        pickupSpaces.Add(new GridInfo(pickupIcons[8], pLeftBars[2], pRghtBars[2], pColmBars[2]));
+        pickupSpaces.Add(new GridInfo(pickupIcons[0], pLeftBar1, pRghtBar1, pColmBarA));
+        pickupSpaces.Add(new GridInfo(pickupIcons[1], pLeftBar1, pRghtBar1, pColmBarB));
+        pickupSpaces.Add(new GridInfo(pickupIcons[2], pLeftBar1, pRghtBar1, pColmBarC));
+        pickupSpaces.Add(new GridInfo(pickupIcons[3], pLeftBar2, pRghtBar2, pColmBarA));
+        pickupSpaces.Add(new GridInfo(pickupIcons[4], pLeftBar2, pRghtBar2, pColmBarB));
+        pickupSpaces.Add(new GridInfo(pickupIcons[5], pLeftBar2, pRghtBar2, pColmBarC));
+        pickupSpaces.Add(new GridInfo(pickupIcons[6], pLeftBar3, pRghtBar3, pColmBarA));
+        pickupSpaces.Add(new GridInfo(pickupIcons[7], pLeftBar3, pRghtBar3, pColmBarB));
+        pickupSpaces.Add(new GridInfo(pickupIcons[8], pLeftBar3, pRghtBar3, pColmBarC));
 
         HideAllTargetingElements();
     }
@@ -69,6 +90,7 @@ public class HUDTargetingController : MonoBehaviour
 
     private void Update()
     {
+        //hazardSpaces[1].ShowSpace(1);
     }
 
     // --------------------------------------------------------------------
@@ -252,24 +274,28 @@ public class GridInfo
     {
         ImgAlpha(icon, _alpha);
 
-        ImgAlpha(rowLt, 1f);
-        ImgAlpha(rowRt, 1f);
-        ImgAlpha(colm, 1f);
+        ImgAlpha(rowLt, _alpha);
+        ImgAlpha(rowRt, _alpha);
+        ImgAlpha(colm, _alpha);
     }
 
     public void HideSpace()
     {
-        ImgAlpha(icon, 0);
+        ImgAlpha(icon, 0, true);
 
-        ImgAlpha(rowLt, 0);
-        ImgAlpha(rowRt, 0);
-        ImgAlpha(colm, 0);
+        ImgAlpha(rowLt, 0, true);
+        ImgAlpha(rowRt, 0, true);
+        ImgAlpha(colm, 0, true);
     }
 
-    void ImgAlpha(Image _img, float _alpha)
+    void ImgAlpha(Image _img, float _alpha, bool _hide = false)
     {
         var tempColor = _img.color;
-        tempColor.a = _alpha;
+
+        if (_hide)
+            tempColor.a = 0;
+        else
+            tempColor.a = Mathf.Max(tempColor.a, _alpha);
         _img.color = tempColor;
     }
 }
