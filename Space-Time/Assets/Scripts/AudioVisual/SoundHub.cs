@@ -78,7 +78,7 @@ public class SoundHub : MonoBehaviour
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/PickupSound");
 
         timeBomb = Resources.Load<AudioClip>("Sound/sfx/BombSound");
-        asteroidExplosion = Resources.Load<AudioClip>("Sound/sfx/AsteroidExplosion");
+        asteroidExplosion = Resources.Load<AudioClip>("Sound/sfx/SmashSound");
 
         source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0, -0.3f);
     }
