@@ -92,6 +92,7 @@ public class Health : MonoBehaviour
       {
         //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
         SoundHub.PlayerDeath();
+        DamageFlash.SetActive(false);
       }
       
       

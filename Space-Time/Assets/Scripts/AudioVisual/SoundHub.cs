@@ -74,7 +74,7 @@ public class SoundHub : MonoBehaviour
         tickingClock    = Resources.Load<AudioClip>("Sound/sfx/persistantClockTick");
 
         //playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
-        playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
+        playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits - 04");
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/PickupSound");
 
         timeBomb = Resources.Load<AudioClip>("Sound/sfx/BombSound");
