@@ -37,10 +37,14 @@ public class EnemySpawner : MonoBehaviour
   {
     if (PauseController.Paused)
       return;
-    if (!Spawning && NumOccupancies() < 8)
+    if (!Spawning && NumOccupancies() < 9)
     {
       
       StartCoroutine(SpawnEnemyWait());
+      
+    }
+    if (NumOccupancies() < 9)
+    {
       OccupancyText();
     }
     
@@ -63,17 +67,20 @@ public class EnemySpawner : MonoBehaviour
   {
     for (int i = 0; i < 8; i++)
     {
-      if (!CheckOccupancy(i + 1))
+      if (!CheckOccupancy(i + 1) && PlayerMovement.pMove.Points[i].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text != "")
+      {
         PlayerMovement.pMove.Points[i].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+        print(i + " no longer occupied");
+      }
     }
   }
   
   public static void SetOccupancy(int pos, bool set)
   {
-    if (pos < 1 || pos > 8)
+    if (pos < 1 || pos > 9)
       return;
     OccupiedSpaces[pos - 1] = set;
-    print("setting pos " + (pos -1) + " to " + set);
+    print("setting pos " + (pos) + " to " + set);
   }
   
   public static int NumOccupancies()

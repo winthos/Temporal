@@ -45,6 +45,9 @@ public class SoundHub : MonoBehaviour
     AudioClip playerDeath;
     AudioClip pickupRift;
 
+    AudioClip timeBomb;
+    AudioClip asteroidExplosion;
+
     static public AudioSource source_bgm;
 
     void Initialize()
@@ -72,7 +75,10 @@ public class SoundHub : MonoBehaviour
 
         //playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
-        pickupRift = Resources.Load<AudioClip>("Sound/sfx/Pickup_Rift");
+        pickupRift = Resources.Load<AudioClip>("Sound/sfx/PickupSound");
+
+        timeBomb = Resources.Load<AudioClip>("Sound/sfx/BombSound");
+        asteroidExplosion = Resources.Load<AudioClip>("Sound/sfx/SmashSound");
 
         source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0, -0.3f);
     }
@@ -114,6 +120,20 @@ public class SoundHub : MonoBehaviour
         //AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
     }
 
+    public static void EnemyTimeBomb()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().timeBomb);
+    }
+
+    public static void AsteroidExplosion()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().asteroidExplosion);
+    }
+
+    public static void Pickup()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().pickupRift);
+    }
 
 
     //load audio clips into AVM

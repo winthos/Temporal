@@ -128,7 +128,7 @@ public class SpacerControl : MonoBehaviour
         PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
         Fire();
         
-        //AttackTimer = 0.0f;
+        AttackTimer += 50.0f;
       }
       else 
         PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "" + (int)Mathf.Ceil((5.0f - AttackTimer));
@@ -178,6 +178,7 @@ public class SpacerControl : MonoBehaviour
     en2.transform.parent = PlayerMovement.pMove.Points[FollowID - 1].transform;
     EnemySpawner.SetOccupancy(FollowID, false);
     PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+    SoundHub.EnemyTimeBomb();
     StartCoroutine(Destroy());
     
   }
@@ -190,9 +191,9 @@ public class SpacerControl : MonoBehaviour
   IEnumerator LaserFlash()
   {
     LaserChange = true;
-    LaserSight.GetComponent<LineRenderer>().material = LaserHitMaterial;
+    //LaserSight.GetComponent<LineRenderer>().material = LaserHitMaterial;
     yield return new WaitForSeconds(0.125f);
-    LaserSight.GetComponent<LineRenderer>().material = LaserDefaultMaterial; 
+    //LaserSight.GetComponent<LineRenderer>().material = LaserDefaultMaterial; 
     LaserChange = false;
   }
   
@@ -316,7 +317,8 @@ public class SpacerControl : MonoBehaviour
     Active = false;
     GetComponent<MeshRenderer>().enabled = false;
     yield return new WaitForSeconds(0.125f);
-    
+    EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
+    PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
     Destroy(gameObject);
   }
 
