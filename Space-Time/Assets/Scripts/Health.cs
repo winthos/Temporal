@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour 
 {
@@ -23,7 +24,10 @@ public class Health : MonoBehaviour
   
   [SerializeField]
   GameObject[] CreateOnDeath;
-  
+
+  [SerializeField]
+  GameObject DamageFlash;
+ 
   public int health
   {
     get { return hp; }
@@ -62,6 +66,8 @@ public class Health : MonoBehaviour
     if (gameObject.tag == "Player" && LevelGlobals.Debugging)
       return;
     hp--;
+    if (gameObject.tag == "Player")
+      StartCoroutine(Flash());
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
     {
       print("hp 0");
@@ -78,7 +84,8 @@ public class Health : MonoBehaviour
       
       if (gameObject.tag == "Spacer")
       {
-        EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetGridPos(), false);
+        EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
+        PlayerMovement.pMove.Points[GetComponent<SpacerControl>().GetID() - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
       }
 
       if(gameObject.tag == "Player")
@@ -100,5 +107,12 @@ public class Health : MonoBehaviour
     yield return new WaitForSeconds(0.0125f);
     Boom = true;
     CoroutineProcessing = false;
+  }
+
+  IEnumerator Flash()
+  {
+    DamageFlash.SetActive(true);
+    yield return new WaitForSeconds(2.0f);
+    DamageFlash.SetActive(false);
   }
 }

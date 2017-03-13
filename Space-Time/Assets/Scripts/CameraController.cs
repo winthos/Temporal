@@ -1,6 +1,6 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Jordan Yong
-//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+//  Authors: Jordan Yong
+//  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
@@ -60,14 +60,26 @@ public class CameraController : MonoBehaviour
     
   int TimeMove = 0;
   
+  [SerializeField]
+  bool CameraMouseMovement = true;
   
+  [SerializeField]
+  float MouseSensitivity = 1.0f;
+
+  [SerializeField]
+  float InvertX = 1;
+
+  [SerializeField]
+  float InvertY = -1;
+
+
   Quaternion CharacterTargetRot;
   Quaternion CameraTargetRot;
   bool smooth = false;
   float smoothTime = 5f;
   
-	// Use this for initialization
-	void Start () 
+  // Use this for initialization
+  void Start () 
   {
     PTimeStopTimer = PTimeStopTime;
     defaultTimer = Time.time;
@@ -75,17 +87,17 @@ public class CameraController : MonoBehaviour
     x = transform.eulerAngles.x;
     y = transform.eulerAngles.y;
     
-	  levelGlobals = GameObject.FindWithTag("Globals");
+    levelGlobals = GameObject.FindWithTag("Globals");
     Player = levelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = levelGlobals.GetComponent<LevelGlobals>().CentrePoint;
       
     CharacterTargetRot = CentrePoint.transform.localRotation;
     CameraTargetRot = transform.localRotation;
     Distance = Vector3.Distance(transform.position, CentrePoint.transform.position);
-	}
-	
-	// Update is called once per frame
-	void Update () 
+  }
+  
+  // Update is called once per frame
+  void Update () 
   {
     if (PauseController.Paused)
       return;
@@ -104,7 +116,7 @@ public class CameraController : MonoBehaviour
         TimeMove = 0;
     }
     
-    if (Input.GetMouseButtonDown(1)) // if right mouse is clicked
+    if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) // if right mouse is clicked
     {
       ToggleTimeStop();
     }
@@ -114,7 +126,8 @@ public class CameraController : MonoBehaviour
       if (Vector3.Distance(Player.transform.position, CentrePoint.transform.position) > 0.01)
       {
        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Player.transform.position + CentrePoint.transform.position)/2), CamSnapSpeed * 5);
-        transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+        //transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+        transform.LookAt(CentrePoint.transform.position);
       }
       else
       {
@@ -123,13 +136,14 @@ public class CameraController : MonoBehaviour
       }
       
       if (IsTimeTransitioning())
+      {
+        transform.position = Vector3.Lerp(transform.position, CamSnapBackDistance, (defaultTimer - lerpTime) * CamSnapSpeed);
+        if (Vector3.Distance(transform.position, CamSnapBackDistance) < 0.01f)
         {
-          transform.position = Vector3.Lerp(transform.position, CamSnapBackDistance, (defaultTimer - lerpTime) * CamSnapSpeed);
-          if (Vector3.Distance(transform.position, CamSnapBackDistance) < 0.01f)
-          {
-            CamSnapBackDistance = Vector3.zero;
-          }
+          CamSnapBackDistance = Vector3.zero;
         }
+      }
+    
     }
     else if (GetPTime())
     {
@@ -156,10 +170,36 @@ public class CameraController : MonoBehaviour
       }
       */
         //Get mouse movement to determine the new angle
-      if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
-      x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
-      if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
-      y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+        
+      if (CameraMouseMovement)
+      {
+        if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
+        x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
+        print (Input.GetAxis("Mouse X"));
+        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
+        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+      }
+      else
+      {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+          y += Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+          y -= Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
+        }
+        
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+          x -= Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+          x += Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
+        }
+      }
+    
       
         //Clamp the y-rotation so we don't have weird circle camera shenanigans 
       y = ClampAngle(y, -yClamp, yClamp); 
@@ -225,7 +265,7 @@ public class CameraController : MonoBehaviour
     
     //if in stopped time do that
     
-	}
+  }
   
   public static bool GetPTime()
   {
@@ -256,17 +296,18 @@ public class CameraController : MonoBehaviour
   
   public void ToggleTimeStop()
   {
-    GameObject hudctrl = GameObject.FindWithTag("HUD");
+    //GameObject hudctrl = GameObject.FindWithTag("HUD");
     lerpTime = defaultTimer;
     if (!PTimeStop)
     {
         // if not in time stop, filter on
-      hudctrl.GetComponent<HUDController>().TimeSet(1);
+      //hudctrl.GetComponent<HUDController>().TimeSet(1);
+      HUDController.HUDControl.TimeSet(1); 
       //TimeZone.SetTimeScale(0.25f);
       TimeMove = -1;
-      CentrePoint.transform.position = Player.transform.position;
-      Player.transform.position = CentrePoint.transform.position;
-      Player.GetComponent<PlayerMovement>().CentreGridPos();
+      //CentrePoint.transform.position = Player.transform.position;
+      //Player.transform.position = CentrePoint.transform.position;
+      //Player.GetComponent<PlayerMovement>().CentreGridPos();
       
     }
       
@@ -275,7 +316,7 @@ public class CameraController : MonoBehaviour
      
     if (PTimeStop)
     {
-      hudctrl.GetComponent<HUDController>().TimeSet(-1);
+      HUDController.HUDControl.TimeSet(-1);
       TimeMove = 1;
       //TimeZone.SetTimeScale(1.0f);
       CentrePoint.transform.LookAt(CentrePoint.transform.position + transform.forward); 
@@ -286,7 +327,7 @@ public class CameraController : MonoBehaviour
     }
     else if (PTimeStopTimer <= 0.0)
     {
-      hudctrl.GetComponent<HUDController>().TimeSet(-1);
+      HUDController.HUDControl.TimeSet(-1);
       TimeZone.SetTimeScale(1.0f);
       PTimeStop = false;
       
