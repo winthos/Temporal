@@ -82,7 +82,7 @@ public class Scoring : MonoBehaviour
 
             scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "x" + multiplier;
-            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) + " km/s";
+            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) * 10 + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
             
             ScoreMultiplier(HUDStageController.currStage);
