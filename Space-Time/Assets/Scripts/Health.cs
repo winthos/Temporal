@@ -92,6 +92,7 @@ public class Health : MonoBehaviour
       {
         //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
         SoundHub.PlayerDeath();
+        DamageFlash.SetActive(false);
       }
       
       
@@ -112,7 +113,7 @@ public class Health : MonoBehaviour
   IEnumerator Flash()
   {
     DamageFlash.SetActive(true);
-    yield return new WaitForSeconds(2.0f);
+    yield return new WaitForSeconds(0.5f);
     DamageFlash.SetActive(false);
   }
 }
