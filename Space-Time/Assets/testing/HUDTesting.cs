@@ -15,7 +15,7 @@ public class HUDTesting : MonoBehaviour
     Coroutine currentCoroutine;
     float waitTime = 0.5f;
 
-    public Text mult;
+    //public Text mult;
     
 
     // Use this for initialization
@@ -43,6 +43,16 @@ public class HUDTesting : MonoBehaviour
     {
         if (HUDTestOn)
         {
+            if(Input.GetKeyUp(KeyCode.Z))
+            {
+                if(currentCoroutine != null)
+                    StopCoroutine(currentCoroutine);
+
+                ResetArrays();
+                UpdateBoth();
+                currentCoroutine = StartCoroutine(CycleThroughHazards());
+            }
+
         }
         else
         {

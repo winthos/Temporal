@@ -22,6 +22,7 @@ public class HUDStageController : MonoBehaviour
     private void Awake()
     {
         HUDstage = GetComponent<HUDStageController>();
+        TestModeOn = true;
     }
 
     // Use this for initialization
@@ -137,6 +138,9 @@ public class HUDStageController : MonoBehaviour
                 break;
 
         }
+
+
+        mult.text = "x" + (currStage + 1);
     }
 
     //show all guidance
