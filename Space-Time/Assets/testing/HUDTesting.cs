@@ -11,7 +11,7 @@ public class HUDTesting : MonoBehaviour
 
     bool fading;
     Coroutine currentCoroutine;
-    float temp;
+    float waitTime = 0.7f;
 
     private void Awake()
     {
@@ -25,10 +25,9 @@ public class HUDTesting : MonoBehaviour
         if (HUDTestOn)
         {
             HUDTargetingController.HUDTarget.detectionDistance = 10;
-            temp = 0;
             ResetArrays();
 
-            currentCoroutine = StartCoroutine(CycleThroughHazards());
+            currentCoroutine = StartCoroutine(CycleThroughBoth());
         }
 
     }
@@ -52,16 +51,16 @@ public class HUDTesting : MonoBehaviour
 
     IEnumerator CycleThroughHazards()
     {
-        ResetHazards();
         for (int i = 0; i < spaceHazards.Count; i++)
         {
             spaceHazards[i] = 0.9f;
             UpdateHazardSpace(i);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(waitTime);
             spaceHazards[i] = 0;
-            yield return new WaitForSeconds(0.3f);
             UpdateHazardSpace(i);
         }
+
+        Debug.Log("hazard cycle done");
 
         currentCoroutine = StartCoroutine(CycleThroughPickups());
     }
@@ -72,20 +71,39 @@ public class HUDTesting : MonoBehaviour
         {
             spacePickups[i] = 0.9f;
             UpdatePickupSpace(i);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(waitTime);
             spacePickups[i] = 0;
-            yield return new WaitForSeconds(0.3f);
             UpdatePickupSpace(i);
         }
+
+        Debug.Log("pickup cycle done");
+
+        currentCoroutine = StartCoroutine(CycleThroughBoth());
     }
-    
+
+    IEnumerator CycleThroughBoth()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            spaceHazards[i] = 0.9f;
+            spacePickups[i] = 0.9f;
+            UpdateSpaces();
+            yield return new WaitForSeconds(waitTime);
+            spaceHazards[i] = 0;
+            spacePickups[i] = 0;
+            UpdateSpaces();
+        }
+
+        Debug.Log("dual cycle done");
+    }
+
 
     IEnumerator CycleThrough(List<float> _spaces)
     {
         yield return 0;
     }
 
-    void UpdateArraysAndSpaces()
+    void UpdateSpaces()
     {
         UpdateHazardSpaces();
         UpdatePickupSpaces();
