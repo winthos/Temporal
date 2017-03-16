@@ -27,6 +27,9 @@ public class HUDTesting : MonoBehaviour
             HUDTargetingController.HUDTarget.detectionDistance = 10;
             ResetArrays();
 
+
+            spaceHazards[0] = 0.9f;
+            UpdateHazardSpace(0);
             currentCoroutine = StartCoroutine(CycleThroughHazards());
         }
     }
@@ -50,6 +53,7 @@ public class HUDTesting : MonoBehaviour
 
     IEnumerator CycleThroughHazards()
     {
+        yield return new WaitForSeconds(waitTime/2);
         for (int i = 0; i < spaceHazards.Count; i++)
         {
             spaceHazards[i] = 0.9f;
@@ -86,12 +90,15 @@ public class HUDTesting : MonoBehaviour
         {
             spaceHazards[i] = 0.9f;
             spacePickups[i] = 0.9f;
-            UpdateSpaces();
+            UpdateBoth();
             yield return new WaitForSeconds(waitTime);
             spaceHazards[i] = 0;
             spacePickups[i] = 0;
-            UpdateSpaces();
+            UpdateBoth();
         }
+
+        ResetArrays();
+        UpdateSpaces();
 
         Debug.Log("dual cycle done");
     }
@@ -132,6 +139,19 @@ public class HUDTesting : MonoBehaviour
         HUDTargetingController.HUDTarget.Pickup3A(spacePickups[6]);
         HUDTargetingController.HUDTarget.Pickup3B(spacePickups[7]);
         HUDTargetingController.HUDTarget.Pickup3C(spacePickups[8]);
+    }
+
+    void UpdateBoth()
+    {
+        HUDTargetingController.HUDTarget.dualSpaces[0].ShowSpaces(spaceHazards[0], spacePickups[0]);
+        HUDTargetingController.HUDTarget.dualSpaces[1].ShowSpaces(spaceHazards[1], spacePickups[1]);
+        HUDTargetingController.HUDTarget.dualSpaces[2].ShowSpaces(spaceHazards[2], spacePickups[2]);
+        HUDTargetingController.HUDTarget.dualSpaces[3].ShowSpaces(spaceHazards[3], spacePickups[3]);
+        HUDTargetingController.HUDTarget.dualSpaces[4].ShowSpaces(spaceHazards[4], spacePickups[4]);
+        HUDTargetingController.HUDTarget.dualSpaces[5].ShowSpaces(spaceHazards[5], spacePickups[5]);
+        HUDTargetingController.HUDTarget.dualSpaces[6].ShowSpaces(spaceHazards[6], spacePickups[6]);
+        HUDTargetingController.HUDTarget.dualSpaces[7].ShowSpaces(spaceHazards[7], spacePickups[7]);
+        HUDTargetingController.HUDTarget.dualSpaces[8].ShowSpaces(spaceHazards[8], spacePickups[8]);
     }
 
     void UpdateHazardSpace(int _index)
