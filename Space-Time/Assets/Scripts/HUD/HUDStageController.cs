@@ -12,7 +12,7 @@ public class HUDStageController : MonoBehaviour
     [SerializeField]
     List<GameObject> pulseItems = new List<GameObject>(3);
     [SerializeField]
-    List<Canvas> stages = new List<Canvas>(5);
+    List<Canvas> stages = new List<Canvas>(6);
     public int prevStage = 0;
     public static int currStage = 0;
     public int nextStage = 0;

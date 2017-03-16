@@ -27,7 +27,7 @@ public class HUDTesting : MonoBehaviour
             ResetArrays();
 
             HUDStageController.HUDstage.StageUp(0);
-            currentCoroutine = StartCoroutine(CycleThroughHazards());
+            currentCoroutine = StartCoroutine(CycleThroughBoth());
 
             /*
             spaceHazards = new List<float> { 0, 1, 0, 0, 1, 0, 0, 0, 0 };
@@ -102,6 +102,7 @@ public class HUDTesting : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime / 2);
         
+        /*
         spaceHazards[2] = 0.9f;
         spacePickups[2] = 0.7f;
         UpdateBoth();
@@ -117,8 +118,8 @@ public class HUDTesting : MonoBehaviour
         spaceHazards[8] = 0;
         spacePickups[8] = 0;
         UpdateBoth();
-
-        /*
+        */
+        
         for (int i = 0; i < 9; i++)
         {
             spaceHazards[i] = 0.9f;
@@ -129,7 +130,7 @@ public class HUDTesting : MonoBehaviour
             spacePickups[i] = 0;
             UpdateBoth();
         }
-        */
+        
         ResetArrays();
         UpdateSpaces();
 
