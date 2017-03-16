@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,6 +14,8 @@ public class HUDTesting : MonoBehaviour
     bool fadeAlpha;
     Coroutine currentCoroutine;
     float waitTime = 0.5f;
+
+    public Text mult;
     
 
     // Use this for initialization
@@ -66,6 +69,7 @@ public class HUDTesting : MonoBehaviour
         currentCoroutine = StartCoroutine(CycleThroughPickups());
     }
     
+
     IEnumerator CycleThroughPickups()
     {
         yield return new WaitForSeconds(waitTime / 2);
@@ -81,11 +85,30 @@ public class HUDTesting : MonoBehaviour
         Debug.Log("pickup cycle done");
 
         currentCoroutine = StartCoroutine(CycleThroughBoth());
+        //currentCoroutine = StartCoroutine(CycleThroughStages());
     }
-
+    
     IEnumerator CycleThroughBoth()
     {
         yield return new WaitForSeconds(waitTime / 2);
+        
+        spaceHazards[2] = 0.9f;
+        spacePickups[2] = 0.7f;
+        UpdateBoth();
+        yield return new WaitForSeconds(waitTime);
+        spaceHazards[2] = 0;
+        spacePickups[2] = 0;
+        UpdateBoth();
+
+        spaceHazards[8] = 0.9f;
+        spacePickups[8] = 0.7f;
+        UpdateBoth();
+        yield return new WaitForSeconds(waitTime);
+        spaceHazards[8] = 0;
+        spacePickups[8] = 0;
+        UpdateBoth();
+
+        /*
         for (int i = 0; i < 9; i++)
         {
             spaceHazards[i] = 0.9f;
@@ -96,59 +119,44 @@ public class HUDTesting : MonoBehaviour
             spacePickups[i] = 0;
             UpdateBoth();
         }
-
+        */
         ResetArrays();
         UpdateSpaces();
 
         Debug.Log("dual cycle done");
 
-        currentCoroutine = StartCoroutine(CycleThroughStagesPt1());
+        currentCoroutine = StartCoroutine(CycleThroughStages());
     }
 
-    IEnumerator CycleThroughStagesPt1()
+    IEnumerator CycleThroughStages()
     {
         yield return new WaitForSeconds(waitTime / 2);
-        HUDStageController.HUDstage.StageUp(1);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(2);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(3);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(4);
-        yield return new WaitForSeconds(waitTime * 2);
-        HUDStageController.HUDstage.StageUp(3);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(2);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(1);
-        yield return new WaitForSeconds(waitTime);
-        HUDStageController.HUDstage.StageUp(0);
-
-        currentCoroutine = StartCoroutine(CycleThroughStagesPt2());
-    }
-
-    IEnumerator CycleThroughStagesPt2()
-    {
         ShowAllIcons();
+        waitTime = 1.3f;
 
-        yield return new WaitForSeconds(waitTime * 2);
         HUDStageController.HUDstage.StageUp(1);
-        yield return new WaitForSeconds(waitTime * 2);
+        yield return new WaitForSeconds(waitTime);
         HUDStageController.HUDstage.StageUp(2);
-        yield return new WaitForSeconds(waitTime * 2);
+        yield return new WaitForSeconds(waitTime);
         HUDStageController.HUDstage.StageUp(3);
-        yield return new WaitForSeconds(waitTime * 2);
+        yield return new WaitForSeconds(waitTime);
         HUDStageController.HUDstage.StageUp(4);
+
+        /*
         yield return new WaitForSeconds(waitTime * 2);
+
+        HUDStageController.HUDstage.StageUp(3);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(2);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(1);*/
+        yield return new WaitForSeconds(waitTime);
         HUDStageController.HUDstage.StageUp(0);
 
+
+        yield return new WaitForSeconds(waitTime);
         ResetArrays();
         UpdateSpaces();
-    }
-
-    IEnumerator CycleThrough(List<float> _spaces)
-    {
-        yield return 0;
     }
 
     void UpdateSpaces()

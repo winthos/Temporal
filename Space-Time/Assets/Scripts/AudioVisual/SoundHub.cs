@@ -136,6 +136,12 @@ public class SoundHub : MonoBehaviour
     }
 
 
+    public static void PlayStageChange()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().pickupRift, null, 0, -0.7f);
+    }
+
+
     //load audio clips into AVM
 
     //player damage

@@ -267,11 +267,11 @@ public class GridInfo
     {
         ImgAlpha(icon, _alpha);
 
-        ImgAlpha(rowLt, _alpha);
-        ImgAlpha(rowRt, _alpha);
-        ImgAlpha(colm, _alpha);
+        ImgAlpha(rowLt, icon.color.a);
+        ImgAlpha(rowRt, icon.color.a);
+        ImgAlpha(colm, icon.color.a);
 
-        if (_alpha > 0)
+        if (icon.color.a > 0)
             visible = true;
     }
 
@@ -347,10 +347,10 @@ public class GridInfo2
         if (_hazardAlpha > 0)
         {
             ImgAlpha(icon, _hazardAlpha);
-            ImgAlpha(rowLt, _hazardAlpha);
-            ImgAlpha(rowRt, _hazardAlpha);
-            ImgAlpha(colm, _hazardAlpha);
-            if (_hazardAlpha > 0)
+            ImgAlpha(rowLt, icon.color.a);
+            ImgAlpha(rowRt, icon.color.a);
+            ImgAlpha(colm, icon.color.a);
+            if (icon.color.a > 0)
                 visible = true;
         }
         else
@@ -365,10 +365,10 @@ public class GridInfo2
         if (_pickupAlpha > 0)
         {
             ImgAlpha(icon2, _pickupAlpha);
-            ImgAlpha(rowLt2, _pickupAlpha);
-            ImgAlpha(rowRt2, _pickupAlpha);
-            ImgAlpha(colm2, _pickupAlpha);
-            if (_pickupAlpha > 0)
+            ImgAlpha(rowLt2, icon2.color.a);
+            ImgAlpha(rowRt2, icon2.color.a);
+            ImgAlpha(colm2, icon2.color.a);
+            if (icon2.color.a > 0)
                 visible2 = true;
         }
         else
