@@ -9,15 +9,11 @@ public class HUDTesting : MonoBehaviour
     public List<float> spaceHazards;
     public List<float> spacePickups;
 
-    bool fading;
+    bool fadingOn;
+    bool fadeAlpha;
     Coroutine currentCoroutine;
     float waitTime = 0.5f;
-
-    private void Awake()
-    {
-        //spaceHazards = new List<float> { 0, 1, 0, 0, 1, 0, 0, 0, 0 };
-        //spacePickups = new List<float> { 0, 0, 0, 0, 1, 1, 0, 0, 0 };
-    }
+    
 
     // Use this for initialization
     void Start()
@@ -27,10 +23,15 @@ public class HUDTesting : MonoBehaviour
             HUDTargetingController.HUDTarget.detectionDistance = 10;
             ResetArrays();
 
-
-            spaceHazards[0] = 0.9f;
-            UpdateHazardSpace(0);
+            HUDStageController.HUDstage.StageUp(0);
             currentCoroutine = StartCoroutine(CycleThroughHazards());
+
+            /*
+            spaceHazards = new List<float> { 0, 1, 0, 0, 1, 0, 0, 0, 0 };
+            spacePickups = new List<float> { 0, 0, 0, 0, 1, 1, 0, 0, 0 };
+            UpdateHazardSpaces();
+            UpdatePickupSpaces();
+            */
         }
     }
 
@@ -39,9 +40,6 @@ public class HUDTesting : MonoBehaviour
     {
         if (HUDTestOn)
         {
-            //UpdateArraysAndSpaces();
-
-            //currentCoroutine = StartCoroutine(CycleThroughHazards());
         }
         else
         {
@@ -70,6 +68,7 @@ public class HUDTesting : MonoBehaviour
     
     IEnumerator CycleThroughPickups()
     {
+        yield return new WaitForSeconds(waitTime / 2);
         for (int i = 0; i < spacePickups.Count; i++)
         {
             spacePickups[i] = 0.9f;
@@ -86,10 +85,11 @@ public class HUDTesting : MonoBehaviour
 
     IEnumerator CycleThroughBoth()
     {
+        yield return new WaitForSeconds(waitTime / 2);
         for (int i = 0; i < 9; i++)
         {
             spaceHazards[i] = 0.9f;
-            spacePickups[i] = 0.9f;
+            spacePickups[i] = 0.7f;
             UpdateBoth();
             yield return new WaitForSeconds(waitTime);
             spaceHazards[i] = 0;
@@ -101,8 +101,50 @@ public class HUDTesting : MonoBehaviour
         UpdateSpaces();
 
         Debug.Log("dual cycle done");
+
+        currentCoroutine = StartCoroutine(CycleThroughStagesPt1());
     }
 
+    IEnumerator CycleThroughStagesPt1()
+    {
+        yield return new WaitForSeconds(waitTime / 2);
+        HUDStageController.HUDstage.StageUp(1);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(2);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(3);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(4);
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(3);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(2);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(1);
+        yield return new WaitForSeconds(waitTime);
+        HUDStageController.HUDstage.StageUp(0);
+
+        currentCoroutine = StartCoroutine(CycleThroughStagesPt2());
+    }
+
+    IEnumerator CycleThroughStagesPt2()
+    {
+        ShowAllIcons();
+
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(1);
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(2);
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(3);
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(4);
+        yield return new WaitForSeconds(waitTime * 2);
+        HUDStageController.HUDstage.StageUp(0);
+
+        ResetArrays();
+        UpdateSpaces();
+    }
 
     IEnumerator CycleThrough(List<float> _spaces)
     {
@@ -113,6 +155,16 @@ public class HUDTesting : MonoBehaviour
     {
         UpdateHazardSpaces();
         UpdatePickupSpaces();
+    }
+
+    void ShowAllIcons()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            spaceHazards[i] = 0.9f;
+            spacePickups[i] = 0.7f;
+        }
+        UpdateBoth();
     }
 
     void UpdateHazardSpaces()

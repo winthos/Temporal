@@ -344,19 +344,41 @@ public class GridInfo2
 
     public void ShowSpaces(float _hazardAlpha, float _pickupAlpha)
     {
-        ImgAlpha(icon, _hazardAlpha);
-        ImgAlpha(rowLt, _hazardAlpha);
-        ImgAlpha(rowRt, _hazardAlpha);
-        ImgAlpha(colm, _hazardAlpha);
         if (_hazardAlpha > 0)
-            visible = true;
+        {
+            ImgAlpha(icon, _hazardAlpha);
+            ImgAlpha(rowLt, _hazardAlpha);
+            ImgAlpha(rowRt, _hazardAlpha);
+            ImgAlpha(colm, _hazardAlpha);
+            if (_hazardAlpha > 0)
+                visible = true;
+        }
+        else
+        {
+            ImgAlpha(icon, 0, true);
+            ImgAlpha(rowLt, 0, true);
+            ImgAlpha(rowRt, 0, true);
+            ImgAlpha(colm, 0, true);
+            visible = false;
+        }
 
-        ImgAlpha(icon2, _pickupAlpha);
-        ImgAlpha(rowLt2, _pickupAlpha);
-        ImgAlpha(rowRt2, _pickupAlpha);
-        ImgAlpha(colm2, _pickupAlpha);
         if (_pickupAlpha > 0)
-            visible2 = true;
+        {
+            ImgAlpha(icon2, _pickupAlpha);
+            ImgAlpha(rowLt2, _pickupAlpha);
+            ImgAlpha(rowRt2, _pickupAlpha);
+            ImgAlpha(colm2, _pickupAlpha);
+            if (_pickupAlpha > 0)
+                visible2 = true;
+        }
+        else
+        {
+            ImgAlpha(icon2, 0, true);
+            ImgAlpha(rowLt2, 0, true);
+            ImgAlpha(rowRt2, 0, true);
+            ImgAlpha(colm2, 0, true);
+            visible2 = false;
+        }
     }
 
     public void HideSpaces()
@@ -382,6 +404,7 @@ public class GridInfo2
             tempColor.a = 0;
         else
             tempColor.a = Mathf.Max(tempColor.a, _alpha);
+
         _img.color = tempColor;
     }
 }

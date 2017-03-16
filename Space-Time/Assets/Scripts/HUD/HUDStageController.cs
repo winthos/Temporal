@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class HUDStageController : MonoBehaviour
 {
+    public static HUDStageController HUDstage;
+
     public bool TestModeOn = false;
 
     [SerializeField]
@@ -12,6 +14,11 @@ public class HUDStageController : MonoBehaviour
     public int prevStage = 0;
     public static int currStage = 0;
     public int nextStage = 0;
+
+    private void Awake()
+    {
+        HUDstage = GetComponent<HUDStageController>();
+    }
 
     // Use this for initialization
     void Start ()
