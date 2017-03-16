@@ -11,7 +11,7 @@ public class HUDTesting : MonoBehaviour
 
     bool fading;
     Coroutine currentCoroutine;
-    float waitTime = 0.7f;
+    float waitTime = 0.5f;
 
     private void Awake()
     {
@@ -27,9 +27,8 @@ public class HUDTesting : MonoBehaviour
             HUDTargetingController.HUDTarget.detectionDistance = 10;
             ResetArrays();
 
-            currentCoroutine = StartCoroutine(CycleThroughBoth());
+            currentCoroutine = StartCoroutine(CycleThroughHazards());
         }
-
     }
 
     // Update is called once per frame
