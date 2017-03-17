@@ -14,7 +14,13 @@ public class HUDTargetingController : MonoBehaviour
     public float detectionDistance = 200f;
 
     // targeting icons
+    [SerializeField]
+    List<GameObject> hazTemp;
+    [SerializeField]
+    List<GameObject> picTemp;
+    [HideInInspector]
     public List<CanvasGroup> hazardSpaces;
+    [HideInInspector]
     public List<CanvasGroup> pickupSpaces;
 
     private void Awake()
@@ -31,18 +37,21 @@ public class HUDTargetingController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        /*
         List<GameObject> hazTemp = GameObject.FindGameObjectsWithTag("TargetHazard").ToList<GameObject>();
         List<GameObject> picTemp = GameObject.FindGameObjectsWithTag("TargetPickup").ToList<GameObject>();
 
+        */
         for (int h = 0; h < hazTemp.Count; h++)
             hazardSpaces.Add(hazTemp[h].GetComponent<CanvasGroup>());
         
         for (int p = 0; p < picTemp.Count; p++)
             pickupSpaces.Add(picTemp[p].GetComponent<CanvasGroup>());
 
+        /*
         hazTemp.Clear();
         picTemp.Clear();
-
+        */
         HideAllTargetingElements();
     }
 
