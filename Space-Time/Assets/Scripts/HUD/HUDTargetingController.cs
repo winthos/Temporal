@@ -25,12 +25,11 @@ public class HUDTargetingController : MonoBehaviour
     public List<Image> pRghtBars = new List<Image>(3);
     public List<Image> pColmBars = new List<Image>(3);
 
-    List<GridInfo> hazardSpaces = new List<GridInfo>(9);
-    List<GridInfo> pickupSpaces = new List<GridInfo>(9);
+    public List<GridInfo> hazardSpaces = new List<GridInfo>(9);
+    public List<GridInfo> pickupSpaces = new List<GridInfo>(9);
+    public List<GridInfo2> dualSpaces  = new List<GridInfo2>(9);
 
-
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
         HUDTarget = GetComponent<HUDTargetingController>();
 
@@ -55,6 +54,21 @@ public class HUDTargetingController : MonoBehaviour
         pickupSpaces.Add(new GridInfo(pickupIcons[6], pLeftBars[2], pRghtBars[2], pColmBars[0]));
         pickupSpaces.Add(new GridInfo(pickupIcons[7], pLeftBars[2], pRghtBars[2], pColmBars[1]));
         pickupSpaces.Add(new GridInfo(pickupIcons[8], pLeftBars[2], pRghtBars[2], pColmBars[2]));
+
+        dualSpaces.Add(new GridInfo2(hazardSpaces[0], pickupSpaces[0]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[1], pickupSpaces[1]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[2], pickupSpaces[2]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[3], pickupSpaces[3]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[4], pickupSpaces[4]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[5], pickupSpaces[5]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[6], pickupSpaces[6]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[7], pickupSpaces[7]));
+        dualSpaces.Add(new GridInfo2(hazardSpaces[8], pickupSpaces[8]));
+    }
+
+    // Use this for initialization
+    void Start()
+    {
 
         HideAllTargetingElements();
     }
@@ -253,9 +267,12 @@ public class GridInfo
     {
         ImgAlpha(icon, _alpha);
 
-        ImgAlpha(rowLt, _alpha);
-        ImgAlpha(rowRt, _alpha);
-        ImgAlpha(colm, _alpha);
+        ImgAlpha(rowLt, icon.color.a);
+        ImgAlpha(rowRt, icon.color.a);
+        ImgAlpha(colm, icon.color.a);
+
+        if (icon.color.a > 0)
+            visible = true;
     }
 
     public void HideSpace()
@@ -265,6 +282,8 @@ public class GridInfo
         ImgAlpha(rowLt, 0, true);
         ImgAlpha(rowRt, 0, true);
         ImgAlpha(colm, 0, true);
+        
+        visible = false;
     }
 
     void ImgAlpha(Image _img, float _alpha, bool _hide = false)
@@ -275,6 +294,117 @@ public class GridInfo
             tempColor.a = 0;
         else
             tempColor.a = Mathf.Max(tempColor.a, _alpha);
+        _img.color = tempColor;
+    }
+}
+
+[System.Serializable]
+public class GridInfo2
+{
+    public Image icon;
+    public Image rowLt;
+    public Image rowRt;
+    public Image colm;
+    public bool visible;
+
+    public Image icon2;
+    public Image rowLt2;
+    public Image rowRt2;
+    public Image colm2;
+    public bool visible2;
+
+    public GridInfo2()
+    {
+        icon = null;
+        rowLt = null;
+        rowRt = null;
+        colm = null;
+        visible = false;
+
+        icon2 = null;
+        rowLt2 = null;
+        rowRt2 = null;
+        colm2 = null;
+        visible2 = false;
+    }
+    public GridInfo2(GridInfo _hazards, GridInfo _pickups)
+    {
+        icon = _hazards.icon;
+        rowLt = _hazards.rowLt;
+        rowRt = _hazards.rowRt;
+        colm = _hazards.colm;
+        visible = false;
+
+        icon2 = _pickups.icon;
+        rowLt2 = _pickups.rowLt;
+        rowRt2 = _pickups.rowRt;
+        colm2 = _pickups.colm;
+        visible2 = false;
+    }
+
+    public void ShowSpaces(float _hazardAlpha, float _pickupAlpha)
+    {
+        if (_hazardAlpha > 0)
+        {
+            ImgAlpha(icon, _hazardAlpha);
+            ImgAlpha(rowLt, icon.color.a);
+            ImgAlpha(rowRt, icon.color.a);
+            ImgAlpha(colm, icon.color.a);
+            if (icon.color.a > 0)
+                visible = true;
+        }
+        else
+        {
+            ImgAlpha(icon, 0, true);
+            ImgAlpha(rowLt, 0, true);
+            ImgAlpha(rowRt, 0, true);
+            ImgAlpha(colm, 0, true);
+            visible = false;
+        }
+
+        if (_pickupAlpha > 0)
+        {
+            ImgAlpha(icon2, _pickupAlpha);
+            ImgAlpha(rowLt2, icon2.color.a);
+            ImgAlpha(rowRt2, icon2.color.a);
+            ImgAlpha(colm2, icon2.color.a);
+            if (icon2.color.a > 0)
+                visible2 = true;
+        }
+        else
+        {
+            ImgAlpha(icon2, 0, true);
+            ImgAlpha(rowLt2, 0, true);
+            ImgAlpha(rowRt2, 0, true);
+            ImgAlpha(colm2, 0, true);
+            visible2 = false;
+        }
+    }
+
+    public void HideSpaces()
+    {
+        ImgAlpha(icon, 0, true);
+        ImgAlpha(rowLt, 0, true);
+        ImgAlpha(rowRt, 0, true);
+        ImgAlpha(colm, 0, true);
+        visible = false;
+
+        ImgAlpha(icon2, 0, true);
+        ImgAlpha(rowLt2, 0, true);
+        ImgAlpha(rowRt2, 0, true);
+        ImgAlpha(colm2, 0, true);
+        visible2 = false;
+    }
+
+    void ImgAlpha(Image _img, float _alpha, bool _hide = false)
+    {
+        var tempColor = _img.color;
+
+        if (_hide)
+            tempColor.a = 0;
+        else
+            tempColor.a = Mathf.Max(tempColor.a, _alpha);
+
         _img.color = tempColor;
     }
 }
