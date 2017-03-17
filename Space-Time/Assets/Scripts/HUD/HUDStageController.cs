@@ -2,38 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class HUDStageController : MonoBehaviour
 {
     public static HUDStageController HUDstage;
 
     public bool TestModeOn = false;
+    
+    List<GameObject> stage0 = new List<GameObject>();
+    List<GameObject> stage1 = new List<GameObject>();
+    List<GameObject> stage2 = new List<GameObject>();
+    List<GameObject> stage3 = new List<GameObject>();
+    List<GameObject> stage4 = new List<GameObject>();
 
-    [SerializeField]
-    List<GameObject> pulseItems = new List<GameObject>(3);
-    [SerializeField]
-    List<Canvas> stages = new List<Canvas>(6);
-    public int prevStage = 0;
-    public static int currStage = 0;
+    List<GameObject> pulseItems = new List<GameObject>();
+
+    public static int currentStage = 0;
     public int nextStage = 0;
-
-    public Text mult;
 
     private void Awake()
     {
         HUDstage = GetComponent<HUDStageController>();
-        TestModeOn = true;
     }
 
     // Use this for initialization
     void Start ()
     {
-        prevStage = 0;
-        currStage = 0;
+        currentStage = 0;
         nextStage = 0;
 
-        if(TestModeOn)
-            mult.text = "x1";
+        stage0 = GameObject.FindGameObjectsWithTag("stage0").ToList<GameObject>();
+        stage1 = GameObject.FindGameObjectsWithTag("stage1").ToList<GameObject>();
+        stage2 = GameObject.FindGameObjectsWithTag("stage2").ToList<GameObject>();
+        stage3 = GameObject.FindGameObjectsWithTag("stage3").ToList<GameObject>();
+        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();  
+
+        pulseItems = GameObject.FindGameObjectsWithTag("pulse").ToList<GameObject>();
     }
 
 
@@ -48,7 +53,7 @@ public class HUDStageController : MonoBehaviour
 
             //RiftStages(Scoring.pickupsCollected);
 
-            if (currStage != nextStage)
+            if (currentStage != nextStage)
                 StartCoroutine(UpdateStages());
         }
     }
@@ -56,24 +61,22 @@ public class HUDStageController : MonoBehaviour
     void RiftStages(int _rifts)
     {
         if (_rifts == 1)
-            currStage = 1;
+            currentStage = 1;
         else if (_rifts == 3)
-            currStage = 2;
+            currentStage = 2;
         else if (_rifts == 5)
-            currStage = 3;
+            currentStage = 3;
         else if (_rifts >= 6)
-            currStage = 4;
+            currentStage = 4;
         else
-            currStage = 0;
+            currentStage = 0;
     }
 
     IEnumerator UpdateStages()
     {
-        prevStage = currStage;
-        currStage = nextStage;
-        StageUp(currStage);
+        currentStage = nextStage;
+        StageUp(currentStage);
        
-
         yield return 0;
     }
 
@@ -87,6 +90,20 @@ public class HUDStageController : MonoBehaviour
                 if (o.GetComponent<ElementPulse>() != null)
                     o.GetComponent<ElementPulse>().CreatePulse();
             }
+        }
+    }
+
+    public void StageElements(List<GameObject> _list, bool _elementsActive)
+    {
+        if (_elementsActive)
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(true);
+        }
+        else
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(false);
         }
     }
 
@@ -138,94 +155,52 @@ public class HUDStageController : MonoBehaviour
                 break;
 
         }
-
-
-        mult.text = "x" + (currStage + 1);
     }
 
     //show all guidance
     void Stage0(bool _visibile = true)
     {
-        if(_visibile)
-        {
-            stages[0].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage zero on");
-        }
+        if (_visibile)
+            StageElements(stage0, true);
         else
-        {
-            stages[0].GetComponent<CanvasGroup>().alpha = 0;
-        }
-
-        if (TestModeOn)
-            mult.text = "x" + (currStage + 1);
+            StageElements(stage0, false);
     }
 
     // drop crosshairs
     void Stage1(bool _visibile = true)
     {
-        if (_visibile)
-        {
-            stages[1].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage one on");
-        }
-        else
-        {
-            stages[1].GetComponent<CanvasGroup>().alpha = 0;
-        }
 
-        if (TestModeOn)
-            mult.text = "x" + (currStage + 1);
+        if (_visibile)
+            StageElements(stage1, true);
+        else
+            StageElements(stage1, false);
     }
 
     // drop tageting icons
     void Stage2(bool _visibile = true)
     {
         if (_visibile)
-        {
-            stages[2].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage two on");
-        }
+            StageElements(stage2, true);
         else
-        {
-            stages[2].GetComponent<CanvasGroup>().alpha = 0;
-        }
-
-        if (TestModeOn)
-            mult.text = "x" + (currStage + 1);
+            StageElements(stage2, false);
     }
 
     // drop sidebars
     void Stage3(bool _visibile = true)
     {
         if (_visibile)
-        {
-            stages[3].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage three on");
-        }
+            StageElements(stage3, true);
         else
-        {
-            stages[3].GetComponent<CanvasGroup>().alpha = 0;
-        }
-
-        if (TestModeOn)
-            mult.text = "x" + (currStage + 1);
+            StageElements(stage3, false);
     }
 
     // drop base bar
     void Stage4(bool _visibile = true)
     {
         if (_visibile)
-        {
-            stages[4].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage four on");
-        }
+            StageElements(stage4, true);
         else
-        {
-            stages[4].GetComponent<CanvasGroup>().alpha = 0;
-        }
-
-        if (TestModeOn)
-            mult.text = "x" + (currStage + 1);
+            StageElements(stage4, false);
     }
 
     void Testing()
