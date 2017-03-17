@@ -77,31 +77,31 @@ public class ProjectionController : MonoBehaviour
         switch (Location)
         {
             case 1: //1A
-                HUDTargetingController.HUDTarget.Hazard1A(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(0, dist);
                 break;
             case 2: //1B
-                HUDTargetingController.HUDTarget.Hazard1B(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(1, dist);
                 break;
             case 3: //1C
-                HUDTargetingController.HUDTarget.Hazard1C(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(2, dist);
                 break;
             case 4: //2A
-                HUDTargetingController.HUDTarget.Hazard2A(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(3, dist);
                 break;
             case 5: //TWO-BEE
-                HUDTargetingController.HUDTarget.Hazard2B(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(4, dist);
                 break;
             case 6: //2C
-                HUDTargetingController.HUDTarget.Hazard2C(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(5, dist);
                 break;
             case 7: //3A
-                HUDTargetingController.HUDTarget.Hazard3A(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(6, dist);
                 break;
             case 8: //3B
-                HUDTargetingController.HUDTarget.Hazard3B(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(7, dist);
                 break;
             case 9: //3C
-                HUDTargetingController.HUDTarget.Hazard3C(dist);
+                HUDTargetingController.HUDTarget.HazardSpace(8, dist);
                 break;
         }
 
@@ -113,31 +113,31 @@ public class ProjectionController : MonoBehaviour
         switch (Location)
         {
             case 1: //1A
-                HUDTargetingController.HUDTarget.Pickup1A(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(0, dist);
                 break;
             case 2: //1B
-                HUDTargetingController.HUDTarget.Pickup1B(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(1, dist);
                 break;
             case 3: //1C
-                HUDTargetingController.HUDTarget.Pickup1C(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(2, dist);
                 break;
             case 4: //2A
-                HUDTargetingController.HUDTarget.Pickup2A(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(3, dist);
                 break;
             case 5: //TWO-BEE
-                HUDTargetingController.HUDTarget.Pickup2B(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(4, dist);
                 break;
             case 6: //2C
-                HUDTargetingController.HUDTarget.Pickup2C(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(5, dist);
                 break;
             case 7: //3A
-                HUDTargetingController.HUDTarget.Pickup3A(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(6, dist);
                 break;
             case 8: //3B
-                HUDTargetingController.HUDTarget.Pickup3B(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(7, dist);
                 break;
             case 9: //3C
-                HUDTargetingController.HUDTarget.Pickup3C(dist);
+                HUDTargetingController.HUDTarget.PickupSpace(8, dist);
                 break;
 
         }
