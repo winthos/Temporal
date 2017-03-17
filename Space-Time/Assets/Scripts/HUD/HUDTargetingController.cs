@@ -11,7 +11,7 @@ public class HUDTargetingController : MonoBehaviour
 {
     public static HUDTargetingController HUDTarget;
 
-    public float detectionDistance = 200f;
+    float detectionDistance = 200f;
 
     // targeting icons
     [SerializeField]

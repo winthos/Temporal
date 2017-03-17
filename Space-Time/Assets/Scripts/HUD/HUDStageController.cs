@@ -160,47 +160,99 @@ public class HUDStageController : MonoBehaviour
     //show all guidance
     void Stage0(bool _visibile = true)
     {
+<<<<<<< HEAD
         if (_visibile)
             StageElements(stage0, true);
         else
             StageElements(stage0, false);
+=======
+        if (stage0.Count > 0)
+        {
+            if (_visibile)
+                StageElements(stage0, true);
+            else
+                StageElements(stage0, false);
+        }
+>>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop crosshairs
     void Stage1(bool _visibile = true)
     {
+<<<<<<< HEAD
 
         if (_visibile)
             StageElements(stage1, true);
         else
             StageElements(stage1, false);
+=======
+        if (stage1.Count > 0)
+        {
+            if (_visibile)
+                StageElements(stage1, true);
+            else
+                StageElements(stage1, false);
+        }
+>>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop tageting icons
     void Stage2(bool _visibile = true)
     {
+<<<<<<< HEAD
         if (_visibile)
             StageElements(stage2, true);
         else
             StageElements(stage2, false);
+=======
+        if (stage2.Count > 0)
+        {
+            if (_visibile)
+                StageElements(stage2, true);
+            else
+                StageElements(stage2, false);
+        }
+>>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop sidebars
     void Stage3(bool _visibile = true)
     {
+<<<<<<< HEAD
         if (_visibile)
             StageElements(stage3, true);
         else
             StageElements(stage3, false);
+=======
+
+        if (stage3.Count > 0)
+        {
+            if (_visibile)
+                StageElements(stage3, true);
+            else
+                StageElements(stage3, false);
+        }
+>>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop base bar
     void Stage4(bool _visibile = true)
     {
+<<<<<<< HEAD
         if (_visibile)
             StageElements(stage4, true);
         else
             StageElements(stage4, false);
+=======
+
+        if (stage4.Count > 0)
+        {
+            if (_visibile)
+                StageElements(stage4, true);
+            else
+                StageElements(stage4, false);
+        }
+>>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     void Testing()
