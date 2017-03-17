@@ -5,13 +5,23 @@ using UnityEngine.UI;
 
 public class HUDStageController : MonoBehaviour
 {
+    public static HUDStageController HUDstage;
+
     public bool TestModeOn = false;
 
     [SerializeField]
-    List<Canvas> stages = new List<Canvas>(5);
+    List<GameObject> pulseItems = new List<GameObject>(5);
+    [SerializeField]
+    List<Canvas> stages = new List<Canvas>(6);
     public int prevStage = 0;
     public static int currStage = 0;
     public int nextStage = 0;
+
+    private void Awake()
+    {
+        HUDstage = GetComponent<HUDStageController>();
+        TestModeOn = true;
+    }
 
     // Use this for initialization
     void Start ()
@@ -19,6 +29,7 @@ public class HUDStageController : MonoBehaviour
         prevStage = 0;
         currStage = 0;
         nextStage = 0;
+        
     }
 
 
@@ -57,17 +68,30 @@ public class HUDStageController : MonoBehaviour
         prevStage = currStage;
         currStage = nextStage;
         StageUp(currStage);
+       
 
         yield return 0;
     }
 
 
+    void CreatePulses()
+    {
+        if (pulseItems.Count != 0)
+        {
+            foreach (GameObject o in pulseItems)
+            {
+                if (o.GetComponent<ElementPulse>() != null)
+                    o.GetComponent<ElementPulse>().CreatePulse();
+            }
+        }
+    }
+
 
     public void StageUp(int _stage)
     {
-        // will need something here to hide canvases that aren't in use
-
-        //stage up; accelleration
+        CreatePulses();
+        SoundHub.PlayStageChange();
+        
         switch (_stage)
         {
             case 4:
@@ -138,6 +162,7 @@ public class HUDStageController : MonoBehaviour
         {
             stages[1].GetComponent<CanvasGroup>().alpha = 0;
         }
+        
     }
 
     // drop tageting icons
@@ -180,6 +205,7 @@ public class HUDStageController : MonoBehaviour
         {
             stages[4].GetComponent<CanvasGroup>().alpha = 0;
         }
+        
     }
 
     void Testing()
