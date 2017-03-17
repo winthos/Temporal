@@ -109,7 +109,7 @@ public class SoundHub : MonoBehaviour
     }
 
 
-    public static void PlayerDeath()
+    public static void PlayPlayerDeath()
     {
         AudioVisualManager.PlaySFX(GetInstance().playerDeath);
     }
@@ -120,17 +120,17 @@ public class SoundHub : MonoBehaviour
         //AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
     }
 
-    public static void EnemyTimeBomb()
+    public static void PlayEnemyTimeBomb()
     {
         AudioVisualManager.PlaySFX(GetInstance().timeBomb);
     }
 
-    public static void AsteroidExplosion()
+    public static void PlayAsteroidExplosion()
     {
         AudioVisualManager.PlaySFX(GetInstance().asteroidExplosion);
     }
 
-    public static void Pickup()
+    public static void PlayPickup()
     {
         AudioVisualManager.PlaySFX(GetInstance().pickupRift);
     }
