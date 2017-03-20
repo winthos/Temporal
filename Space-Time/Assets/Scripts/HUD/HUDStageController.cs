@@ -9,7 +9,7 @@ public class HUDStageController : MonoBehaviour
     public static HUDStageController HUDstage;
 
     public bool TestModeOn = false;
-    
+
     List<GameObject> stage0 = new List<GameObject>();
     List<GameObject> stage1 = new List<GameObject>();
     List<GameObject> stage2 = new List<GameObject>();
@@ -27,7 +27,7 @@ public class HUDStageController : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         currentStage = 0;
         nextStage = 0;
@@ -36,14 +36,14 @@ public class HUDStageController : MonoBehaviour
         stage1 = GameObject.FindGameObjectsWithTag("stage1").ToList<GameObject>();
         stage2 = GameObject.FindGameObjectsWithTag("stage2").ToList<GameObject>();
         stage3 = GameObject.FindGameObjectsWithTag("stage3").ToList<GameObject>();
-        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();  
+        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();
 
         pulseItems = GameObject.FindGameObjectsWithTag("pulse").ToList<GameObject>();
     }
 
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 
         if (!PauseController.Paused)
@@ -76,7 +76,7 @@ public class HUDStageController : MonoBehaviour
     {
         currentStage = nextStage;
         StageUp(currentStage);
-       
+
         yield return 0;
     }
 
@@ -112,7 +112,7 @@ public class HUDStageController : MonoBehaviour
     {
         CreatePulses();
         SoundHub.PlayStageChange();
-        
+
         switch (_stage)
         {
             case 4:
@@ -160,12 +160,6 @@ public class HUDStageController : MonoBehaviour
     //show all guidance
     void Stage0(bool _visibile = true)
     {
-<<<<<<< HEAD
-        if (_visibile)
-            StageElements(stage0, true);
-        else
-            StageElements(stage0, false);
-=======
         if (stage0.Count > 0)
         {
             if (_visibile)
@@ -173,19 +167,11 @@ public class HUDStageController : MonoBehaviour
             else
                 StageElements(stage0, false);
         }
->>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop crosshairs
     void Stage1(bool _visibile = true)
     {
-<<<<<<< HEAD
-
-        if (_visibile)
-            StageElements(stage1, true);
-        else
-            StageElements(stage1, false);
-=======
         if (stage1.Count > 0)
         {
             if (_visibile)
@@ -193,18 +179,11 @@ public class HUDStageController : MonoBehaviour
             else
                 StageElements(stage1, false);
         }
->>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop tageting icons
     void Stage2(bool _visibile = true)
     {
-<<<<<<< HEAD
-        if (_visibile)
-            StageElements(stage2, true);
-        else
-            StageElements(stage2, false);
-=======
         if (stage2.Count > 0)
         {
             if (_visibile)
@@ -212,18 +191,11 @@ public class HUDStageController : MonoBehaviour
             else
                 StageElements(stage2, false);
         }
->>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop sidebars
     void Stage3(bool _visibile = true)
     {
-<<<<<<< HEAD
-        if (_visibile)
-            StageElements(stage3, true);
-        else
-            StageElements(stage3, false);
-=======
 
         if (stage3.Count > 0)
         {
@@ -232,18 +204,11 @@ public class HUDStageController : MonoBehaviour
             else
                 StageElements(stage3, false);
         }
->>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     // drop base bar
     void Stage4(bool _visibile = true)
     {
-<<<<<<< HEAD
-        if (_visibile)
-            StageElements(stage4, true);
-        else
-            StageElements(stage4, false);
-=======
 
         if (stage4.Count > 0)
         {
@@ -252,7 +217,6 @@ public class HUDStageController : MonoBehaviour
             else
                 StageElements(stage4, false);
         }
->>>>>>> refs/remotes/origin/Kaila-2.0
     }
 
     void Testing()

@@ -23,7 +23,7 @@ public class HUDTesting : MonoBehaviour
     {
         if (HUDTestOn)
         {
-            HUDTargetingController.HUDTarget.detectionDistance = 10;
+            //HUDTargetingController.HUDTarget.detectionDistance = 10;
             ResetArrays();
 
             HUDStageController.HUDstage.StageUp(0);
