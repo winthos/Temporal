@@ -110,7 +110,7 @@ public class HUDController : MonoBehaviour
     }
     else if (PauseController.Paused)
     {
-      print("Currently paused");
+      //print("Currently paused");
       PauseBlock.SetActive(true);
       Cursor.lockState = CursorLockMode.None;
       return;
