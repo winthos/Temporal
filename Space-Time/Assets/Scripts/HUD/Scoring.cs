@@ -85,7 +85,7 @@ public class Scoring : MonoBehaviour
             speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) * 10 + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
             
-            ScoreMultiplier(HUDStageController.currStage);
+            ScoreMultiplier(HUDStageController.currentStage);
         }
     }
 

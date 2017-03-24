@@ -2,23 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class HUDStageController : MonoBehaviour
 {
-    public bool TestModeOn = false;
+    public static HUDStageController HUDstage;
 
-    [SerializeField]
-    List<Canvas> stages = new List<Canvas>(5);
-    public int prevStage = 0;
-    public static int currStage = 0;
+    public bool TestModeOn = false;
+    
+    List<GameObject> stage0 = new List<GameObject>();
+    List<GameObject> stage1 = new List<GameObject>();
+    List<GameObject> stage2 = new List<GameObject>();
+    List<GameObject> stage3 = new List<GameObject>();
+    List<GameObject> stage4 = new List<GameObject>();
+
+    List<GameObject> pulseItems = new List<GameObject>();
+
+    public static int currentStage = 0;
     public int nextStage = 0;
+
+    private void Awake()
+    {
+        HUDstage = GetComponent<HUDStageController>();
+    }
 
     // Use this for initialization
     void Start ()
     {
-        prevStage = 0;
-        currStage = 0;
+        currentStage = 0;
         nextStage = 0;
+
+        stage0 = GameObject.FindGameObjectsWithTag("stage0").ToList<GameObject>();
+        stage1 = GameObject.FindGameObjectsWithTag("stage1").ToList<GameObject>();
+        stage2 = GameObject.FindGameObjectsWithTag("stage2").ToList<GameObject>();
+        stage3 = GameObject.FindGameObjectsWithTag("stage3").ToList<GameObject>();
+        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();  
+
+        pulseItems = GameObject.FindGameObjectsWithTag("pulse").ToList<GameObject>();
     }
 
 
@@ -33,7 +53,7 @@ public class HUDStageController : MonoBehaviour
 
             //RiftStages(Scoring.pickupsCollected);
 
-            if (currStage != nextStage)
+            if (currentStage != nextStage)
                 StartCoroutine(UpdateStages());
         }
     }
@@ -41,33 +61,58 @@ public class HUDStageController : MonoBehaviour
     void RiftStages(int _rifts)
     {
         if (_rifts == 1)
-            currStage = 1;
+            currentStage = 1;
         else if (_rifts == 3)
-            currStage = 2;
+            currentStage = 2;
         else if (_rifts == 5)
-            currStage = 3;
+            currentStage = 3;
         else if (_rifts >= 6)
-            currStage = 4;
+            currentStage = 4;
         else
-            currStage = 0;
+            currentStage = 0;
     }
 
     IEnumerator UpdateStages()
     {
-        prevStage = currStage;
-        currStage = nextStage;
-        StageUp(currStage);
-
+        currentStage = nextStage;
+        StageUp(currentStage);
+       
         yield return 0;
     }
 
 
+    void CreatePulses()
+    {
+        if (pulseItems.Count != 0)
+        {
+            foreach (GameObject o in pulseItems)
+            {
+                if (o.GetComponent<ElementPulse>() != null)
+                    o.GetComponent<ElementPulse>().CreatePulse();
+            }
+        }
+    }
+
+    public void StageElements(List<GameObject> _list, bool _elementsActive)
+    {
+        if (_elementsActive)
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(true);
+        }
+        else
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(false);
+        }
+    }
+
 
     public void StageUp(int _stage)
     {
-        // will need something here to hide canvases that aren't in use
-
-        //stage up; accelleration
+        CreatePulses();
+        SoundHub.PlayStageChange();
+        
         switch (_stage)
         {
             case 4:
@@ -115,70 +160,62 @@ public class HUDStageController : MonoBehaviour
     //show all guidance
     void Stage0(bool _visibile = true)
     {
-        if(_visibile)
+        if (stage0.Count > 0)
         {
-            stages[0].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage zero on");
-        }
-        else
-        {
-            stages[0].GetComponent<CanvasGroup>().alpha = 0;
+            if (_visibile)
+                StageElements(stage0, true);
+            else
+                StageElements(stage0, false);
         }
     }
 
     // drop crosshairs
     void Stage1(bool _visibile = true)
     {
-        if (_visibile)
+        if (stage1.Count > 0)
         {
-            stages[1].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage one on");
-        }
-        else
-        {
-            stages[1].GetComponent<CanvasGroup>().alpha = 0;
+            if (_visibile)
+                StageElements(stage1, true);
+            else
+                StageElements(stage1, false);
         }
     }
 
     // drop tageting icons
     void Stage2(bool _visibile = true)
     {
-        if (_visibile)
+        if (stage2.Count > 0)
         {
-            stages[2].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage two on");
-        }
-        else
-        {
-            stages[2].GetComponent<CanvasGroup>().alpha = 0;
+            if (_visibile)
+                StageElements(stage2, true);
+            else
+                StageElements(stage2, false);
         }
     }
 
     // drop sidebars
     void Stage3(bool _visibile = true)
     {
-        if (_visibile)
+
+        if (stage3.Count > 0)
         {
-            stages[3].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage three on");
-        }
-        else
-        {
-            stages[3].GetComponent<CanvasGroup>().alpha = 0;
+            if (_visibile)
+                StageElements(stage3, true);
+            else
+                StageElements(stage3, false);
         }
     }
 
     // drop base bar
     void Stage4(bool _visibile = true)
     {
-        if (_visibile)
+
+        if (stage4.Count > 0)
         {
-            stages[4].GetComponent<CanvasGroup>().alpha = 1;
-            print("stage four on");
-        }
-        else
-        {
-            stages[4].GetComponent<CanvasGroup>().alpha = 0;
+            if (_visibile)
+                StageElements(stage4, true);
+            else
+                StageElements(stage4, false);
         }
     }
 
