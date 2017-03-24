@@ -67,7 +67,9 @@ public class Health : MonoBehaviour
       return;
     hp--;
     if (gameObject.tag == "Player")
+    {
       StartCoroutine(Flash());
+    }
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
     {
       print("hp 0");
@@ -90,9 +92,9 @@ public class Health : MonoBehaviour
 
       if(gameObject.tag == "Player")
       {
-        //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
         SoundHub.PlayPlayerDeath();
         DamageFlash.SetActive(false);
+        HUDPulseController.pulseControl.PulseHealthUI();
       }
       
       
@@ -114,6 +116,7 @@ public class Health : MonoBehaviour
   {
     DamageFlash.SetActive(true);
     yield return new WaitForSeconds(0.5f);
+    HUDPulseController.pulseControl.PulseHealthUI();
     DamageFlash.SetActive(false);
   }
 }

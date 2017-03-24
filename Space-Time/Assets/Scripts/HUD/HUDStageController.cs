@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -88,7 +92,7 @@ public class HUDStageController : MonoBehaviour
             foreach (GameObject o in pulseItems)
             {
                 if (o.GetComponent<ElementPulse>() != null)
-                    o.GetComponent<ElementPulse>().CreatePulse();
+                    StartCoroutine(o.GetComponent<ElementPulse>().CreatePulse(2,0));
             }
         }
     }
