@@ -13,7 +13,7 @@ public class HUDTesting : MonoBehaviour
     bool fadingOn;
     bool fadeAlpha;
     Coroutine currentCoroutine;
-    float waitTime = 0.5f;
+    float waitTime = 0.3f;
 
     //public Text mult;
     
@@ -27,7 +27,7 @@ public class HUDTesting : MonoBehaviour
             ResetArrays();
 
             HUDStageController.HUDstage.StageUp(0);
-            currentCoroutine = StartCoroutine(CycleThroughBoth());
+            currentCoroutine = StartCoroutine(CycleThroughHazards());
         }
     }
 
@@ -60,7 +60,7 @@ public class HUDTesting : MonoBehaviour
         yield return new WaitForSeconds(waitTime/2);
         for (int i = 0; i < spaceHazards.Count; i++)
         {
-            spaceHazards[i] = 0.9f;
+            spaceHazards[i] = 1f;
             UpdateHazardSpace(i);
             yield return new WaitForSeconds(waitTime);
             spaceHazards[i] = 0;
@@ -78,7 +78,7 @@ public class HUDTesting : MonoBehaviour
         yield return new WaitForSeconds(waitTime / 2);
         for (int i = 0; i < spacePickups.Count; i++)
         {
-            spacePickups[i] = 0.9f;
+            spacePickups[i] = 1f;
             UpdatePickupSpace(i);
             yield return new WaitForSeconds(waitTime);
             spacePickups[i] = 0;
@@ -97,8 +97,8 @@ public class HUDTesting : MonoBehaviour
         
         for (int i = 0; i < 9; i++)
         {
-            spaceHazards[i] = 0.9f;
-            spacePickups[i] = 0.7f;
+            spaceHazards[i] = 1f;
+            spacePickups[i] = 1f;
             UpdateBoth();
             yield return new WaitForSeconds(waitTime);
             spaceHazards[i] = 0;
@@ -144,8 +144,8 @@ public class HUDTesting : MonoBehaviour
     {
         for (int i = 0; i < 9; i++)
         {
-            spaceHazards[i] = 0.9f;
-            spacePickups[i] = 0.7f;
+            spaceHazards[i] = 1f;
+            spacePickups[i] = 1f;
         }
         UpdateBoth();
     }
@@ -178,7 +178,7 @@ public class HUDTesting : MonoBehaviour
 
     void UpdatePickupSpace(int _index)
     {
-        HUDTargetingController.HUDTarget.PickupSpace(_index, spaceHazards[_index]);
+        HUDTargetingController.HUDTarget.PickupSpace(_index, spacePickups[_index]);
     }
 
     void ResetArrays()

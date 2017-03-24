@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+//  Attatch to Canvas with a opaque black Panel. Requires canvas group.
+////////////////////////////////////////////////////////////////////////////////
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+[RequireComponent (typeof(CanvasGroup))]
 public class FadeTransition : MonoBehaviour
 {
     public bool fadeIn = true;
@@ -50,11 +56,13 @@ public class FadeTransition : MonoBehaviour
     IEnumerator FadeIn()
     {
         group.alpha = 1;
-
-        for (float t = 0; t < 1; t += Time.deltaTime / fadeInTime)
+        if (fadeIn)
         {
-            group.alpha = Mathf.Lerp(group.alpha, 0, t);
-            yield return null;
+            for (float t = 0; t < 1; t += Time.deltaTime / fadeInTime)
+            {
+                group.alpha = Mathf.Lerp(group.alpha, 0, t);
+                yield return null;
+            }
         }
 
         StartCoroutine(ShowScreen());
@@ -75,12 +83,14 @@ public class FadeTransition : MonoBehaviour
     IEnumerator FadeOut()
     {
         group.alpha = 0;
-
-
-        for (float t = 0; t < 1; t += Time.deltaTime / fadeOutTime)
+        
+        if (fadeOut)
         {
-            group.alpha = Mathf.Lerp(group.alpha, 1, t);
-            yield return null;
+            for (float t = 0; t < 1; t += Time.deltaTime / fadeOutTime)
+            {
+                group.alpha = Mathf.Lerp(group.alpha, 1, t);
+                yield return null;
+            }
         }
 
         LoadTheScene();
