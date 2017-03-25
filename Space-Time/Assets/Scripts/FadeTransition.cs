@@ -115,8 +115,23 @@ public class FadeTransition : MonoBehaviour
 
     public void LoadAScene(string _sceneName)
     {
-        print("button clicked");
         StartCoroutine(FadeOut());
         SceneManager.LoadScene(_sceneName);
     }
+
+    /*
+    public void ForceFadeOut(string _sceneToLoad)
+    {
+        group.alpha = 0;
+
+        for (float t = 0; t < 1; t += Time.deltaTime / fadeOutTime)
+        {
+            group.alpha = Mathf.Lerp(group.alpha, 1, t);
+        }
+
+        group.alpha = 1;
+
+        SceneManager.LoadScene(_sceneToLoad);
+    }
+    */
 }

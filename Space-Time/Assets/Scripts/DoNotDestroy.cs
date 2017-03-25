@@ -1,0 +1,13 @@
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+using UnityEngine;
+
+public class DoNotDestroy : MonoBehaviour
+{
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+}
