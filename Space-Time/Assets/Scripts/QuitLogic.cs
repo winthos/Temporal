@@ -2,11 +2,17 @@
 
 public class QuitLogic : MonoBehaviour
 {
-    public bool confirmQuitOn = true;
+    public Canvas mainMenuCanvas;
     public Canvas confirmationCanvas;
+    public bool confirmQuitOn = true;
 
     [SerializeField]
     KeyCode quit = KeyCode.Escape;
+
+    void Awake()
+    {
+        HideConfirm();
+    }
 
     void Update()
     {
@@ -24,21 +30,23 @@ public class QuitLogic : MonoBehaviour
 
     void ShowConfirmQuit()
     {
-        CanvasGroup mainGroup = gameObject.GetComponent<CanvasGroup>();
+        /*
+        CanvasGroup mainGroup = mainMenuCanvas.GetComponent<CanvasGroup>();
         mainGroup.alpha = 0.5f;
         mainGroup.interactable = false;
+        */
 
+        // disable main menu
+        mainMenuCanvas.enabled = false;
         // enable confirm screen
         confirmationCanvas.enabled = true;
     }
 
     void HideConfirm()
     {
-        CanvasGroup mainGroup = gameObject.GetComponent<CanvasGroup>();
-        mainGroup.alpha = 1f;
-        mainGroup.interactable = true;
-
-        // disable confirm screen
+        // disable main menu
+        mainMenuCanvas.enabled = true;
+        // enable confirm screen
         confirmationCanvas.enabled = false;
     }
 
