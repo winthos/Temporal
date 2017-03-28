@@ -45,7 +45,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
   void Update ()
   {
-    if (Boom && !PauseController.Paused)
+    if (Boom && !PauseController.Paused && !Tutorial.TutorialOccuring)
     {
       if (gameObject.tag == "Player")
       {
@@ -63,26 +63,29 @@ public class Health : MonoBehaviour
   
   public void DecrementHealth()
   {
-    if (gameObject.tag == "Player" && LevelGlobals.Debugging)
+    if ((gameObject.tag == "Player" && LevelGlobals.Debugging) || hp <= 0)
       return;
     hp--;
     if (gameObject.tag == "Player")
-    {
       StartCoroutine(Flash());
-    }
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
     {
       print("hp 0");
       
       if (CreateOnDeath != null && CreateOnDeath.Length > 0)
       {
+        Instantiate(CreateOnDeath[0], transform.position, Quaternion.identity);
+        
+        /*
         GameObject create;
         for (int i = 0; i < CreateOnDeath.Length; i++)
         {
           create = (GameObject)Instantiate(CreateOnDeath[i], transform.position, Quaternion.identity);
 
         }
+        */
       }
+      
       
       if (gameObject.tag == "Spacer")
       {
@@ -92,9 +95,9 @@ public class Health : MonoBehaviour
 
       if(gameObject.tag == "Player")
       {
+        //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
         SoundHub.PlayPlayerDeath();
         DamageFlash.SetActive(false);
-        HUDPulseController.pulseControl.PulseHealthUI();
       }
       
       
@@ -107,7 +110,7 @@ public class Health : MonoBehaviour
   IEnumerator Wait()
   {
     CoroutineProcessing = true;
-    yield return new WaitForSeconds(0.0125f);
+    yield return new WaitForSeconds(0.00625f);
     Boom = true;
     CoroutineProcessing = false;
   }
@@ -116,7 +119,6 @@ public class Health : MonoBehaviour
   {
     DamageFlash.SetActive(true);
     yield return new WaitForSeconds(0.5f);
-    HUDPulseController.pulseControl.PulseHealthUI();
     DamageFlash.SetActive(false);
   }
 }

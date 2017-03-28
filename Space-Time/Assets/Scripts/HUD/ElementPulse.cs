@@ -1,8 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Kaila Harris
-//	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
-////////////////////////////////////////////////////////////////////////////////
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class ElementPulse : MonoBehaviour
@@ -19,14 +15,10 @@ public class ElementPulse : MonoBehaviour
             */
 	}
 
-    public IEnumerator CreatePulse(int _pulseNumber = 0, float _delay = 0)
+    public void CreatePulse()
     {
-        if (_pulseNumber != 0)
-            NumberOfPulses = _pulseNumber;
-
-        yield return new WaitForSeconds(_delay);
-        for (int i = 0; i < NumberOfPulses; i++)
-            Instantiate(pulsePrefab, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("pulseObjects").transform);
+            for (int i = 0; i < NumberOfPulses; i++)
+                Instantiate(pulsePrefab, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("pulseObjects").transform);
             
     }
 }

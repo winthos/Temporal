@@ -13,7 +13,7 @@ public class HUDStageController : MonoBehaviour
     public static HUDStageController HUDstage;
 
     public bool TestModeOn = false;
-
+    
     List<GameObject> stage0 = new List<GameObject>();
     List<GameObject> stage1 = new List<GameObject>();
     List<GameObject> stage2 = new List<GameObject>();
@@ -31,7 +31,7 @@ public class HUDStageController : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
         currentStage = 0;
         nextStage = 0;
@@ -40,14 +40,14 @@ public class HUDStageController : MonoBehaviour
         stage1 = GameObject.FindGameObjectsWithTag("stage1").ToList<GameObject>();
         stage2 = GameObject.FindGameObjectsWithTag("stage2").ToList<GameObject>();
         stage3 = GameObject.FindGameObjectsWithTag("stage3").ToList<GameObject>();
-        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();
+        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();  
 
         pulseItems = GameObject.FindGameObjectsWithTag("pulse").ToList<GameObject>();
     }
 
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
 
         if (!PauseController.Paused)
@@ -80,7 +80,7 @@ public class HUDStageController : MonoBehaviour
     {
         currentStage = nextStage;
         StageUp(currentStage);
-
+       
         yield return 0;
     }
 
@@ -92,7 +92,7 @@ public class HUDStageController : MonoBehaviour
             foreach (GameObject o in pulseItems)
             {
                 if (o.GetComponent<ElementPulse>() != null)
-                    StartCoroutine(o.GetComponent<ElementPulse>().CreatePulse(2,0));
+                    o.GetComponent<ElementPulse>().CreatePulse();
             }
         }
     }
@@ -116,7 +116,7 @@ public class HUDStageController : MonoBehaviour
     {
         CreatePulses();
         SoundHub.PlayStageChange();
-
+        
         switch (_stage)
         {
             case 4:

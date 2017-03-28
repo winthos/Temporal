@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/2_HowToPlay.unity
+- path: Assets/Scenes/0_DPLogo.unity
   isLoaded: 1
   isActive: 1
