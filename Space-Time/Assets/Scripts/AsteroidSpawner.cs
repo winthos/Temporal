@@ -61,7 +61,8 @@ public class AsteroidSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused)
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused || Tutorial.TutorialOccuring || 
+        !Tutorial.tutorial.IsActivatedMechanic(1))
       return;
     
     SpawnTimer -= Time.deltaTime;
@@ -116,19 +117,35 @@ public class AsteroidSpawner : MonoBehaviour
     
     /*
       GameObject Asteroid = Instantiate([prefab], [position], Quaternion.identity);
+      
+      
     */
+    
+    
+    Quaternion RandomRotation; 
+    
+    if (Player.GetComponent<PlayerMovement>().SpeedStacks < 5)
+      RandomRotation = Player.transform.rotation;
+    else
+      RandomRotation = Random.rotation;
+    
     if (CreationChance < 75)
     {
-      GameObject Asteroid = (GameObject)Instantiate(SmallAsteroid, SpawnPos, Quaternion.identity);
+      GameObject Asteroid = (GameObject)Instantiate(SmallAsteroid, SpawnPos, RandomRotation);
+      //Asteroid.transform.LookAt(Player.transform, Player.transform.up);
+      //Asteroid.transform.rotation.SetLookRotation(Player.transform.position, Player.transform.up);
     }
     else if (CreationChance >= 75 && CreationChance < 150)
     {
-      GameObject Asteroid = (GameObject)Instantiate(MediumAsteroid, SpawnPos, Quaternion.identity);
+      GameObject Asteroid = (GameObject)Instantiate(MediumAsteroid, SpawnPos, RandomRotation);
     }
     else
     {
-      SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*500;
-      GameObject Asteroid = (GameObject)Instantiate(LargeAsteroid, SpawnPos, Quaternion.identity);
+      if (Tutorial.tutorial.IsActivatedMechanic(4))
+      {
+        SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*500;
+        GameObject Asteroid = (GameObject)Instantiate(LargeAsteroid, SpawnPos, RandomRotation);
+      }
     }
     
   }

@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//  Authors: Winson Han
+//  Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+
+
+using UnityEngine;
 using System.Collections;
 
 public class SpeedlinesController : MonoBehaviour {
