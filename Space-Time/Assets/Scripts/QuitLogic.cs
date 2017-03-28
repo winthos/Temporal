@@ -5,6 +5,7 @@ public class QuitLogic : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas confirmationCanvas;
     public bool confirmQuitOn = true;
+    bool showConfirm;
 
     [SerializeField]
     KeyCode quit = KeyCode.Escape;
@@ -20,34 +21,42 @@ public class QuitLogic : MonoBehaviour
             QuitWithConfirmation();
     }
 
+    public void ToggleConfirmation()
+    {
+        showConfirm = !showConfirm;
+
+        if (showConfirm)
+            ShowConfirmQuit();
+        else
+            HideConfirm();
+    }
+
     public void QuitWithConfirmation()
     {
         if (confirmQuitOn && confirmationCanvas != null)
-            ShowConfirmQuit();
+            ToggleConfirmation();
         else
             QuitGame();
     }
 
-    void ShowConfirmQuit()
+    public void ShowConfirmQuit()
     {
-        /*
-        CanvasGroup mainGroup = mainMenuCanvas.GetComponent<CanvasGroup>();
-        mainGroup.alpha = 0.5f;
-        mainGroup.interactable = false;
-        */
-
         // disable main menu
         mainMenuCanvas.enabled = false;
         // enable confirm screen
         confirmationCanvas.enabled = true;
+
+        showConfirm = true;
     }
 
-    void HideConfirm()
+    public void HideConfirm()
     {
         // disable main menu
         mainMenuCanvas.enabled = true;
         // enable confirm screen
         confirmationCanvas.enabled = false;
+
+        showConfirm = false;
     }
 
     public void QuitGame()
