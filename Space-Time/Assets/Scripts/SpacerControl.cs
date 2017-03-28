@@ -72,8 +72,8 @@ public class SpacerControl : MonoBehaviour
     //RandomCalcPosition();
     CalcGridPos();
     transform.parent = Player.transform;
-    CalcRelativePosition();
-    ReStartMovement();
+    //CalcRelativePosition();
+    //ReStartMovement();
     FollowPos = PlayerMovement.pMove.Points[Mathf.Clamp(FollowID - 1,0,8)];
     LaserSight.SetActive(false);
 	}
@@ -81,9 +81,15 @@ public class SpacerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (!Active)
+    if (!Active || PauseController.Paused || Tutorial.TutorialOccuring)
       return;
-    if (CameraController.GetPTime() /*|| !Ready*/ || PauseController.Paused)
+    
+    if (PlayerOnPos())
+    {
+      GetComponent<Health>().DecrementHealth();
+    }
+    /*
+    if (CameraController.GetPTime() || PauseController.Paused)
     {
       
       if (PauseController.Paused)
@@ -95,14 +101,15 @@ public class SpacerControl : MonoBehaviour
       return;
     }
     
+    
     transform.parent = Player.transform;
     float dist = (Time.time - StartTime);
     float perc = (dist / PercentDone)*15000;
     
-    
+    */
     //lerp smoothly to designated position
     //print(perc);
-    if (perc < 1.0f)
+    /*if (perc < 1.0f)
     {
      // transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
                                                                         //TimeZone.DeltaTime() * 15.0f);
@@ -110,14 +117,14 @@ public class SpacerControl : MonoBehaviour
     }
     //maintain position
     else
-    {
+    {*/
       //transform.position = Vector3.Lerp(transform.position, Player.transform.position + AdditionalPos, 
                                                                         //TimeZone.DeltaTime() * 150.0f);
       transform.position = FollowPos.transform.position;
-    }
-    CalcRelativePosition();
+    //}
+    //CalcRelativePosition();
     
-    float playDist = Vector3.Distance(transform.position, Player.transform.position + AdditionalPos);
+    //float playDist = Vector3.Distance(transform.position, Player.transform.position + AdditionalPos);
     
     if (AttackTimer < AttackInterval && !CameraController.GetPTime())
     {
@@ -137,10 +144,12 @@ public class SpacerControl : MonoBehaviour
     {
       PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
     }
+    /*
     if (perc >= 1.0f && playDist > DistanceFromPlayer)
     {
       ReStartMovement();
     }
+    */
     Body.transform.Rotate(RotateDir, 40.0f * Time.deltaTime);
 	}
   
@@ -249,6 +258,11 @@ public class SpacerControl : MonoBehaviour
     return GridPos;
   }
   
+  public bool PlayerOnPos()
+  {
+    return GridPos == Player.GetComponent<PlayerMovement>().GridPos;
+  }
+  
   bool RandomCalcPosition()
   {
     
@@ -316,8 +330,8 @@ public class SpacerControl : MonoBehaviour
   {
     Active = false;
     GetComponent<MeshRenderer>().enabled = false;
-    yield return new WaitForSeconds(0.125f);
-    EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
+    yield return new WaitForSeconds(0.00625f);
+    EnemySpawner.SetOccupancy(GetID(), false);
     PlayerMovement.pMove.Points[FollowID - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
     Destroy(gameObject);
   }

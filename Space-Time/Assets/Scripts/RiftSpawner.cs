@@ -44,7 +44,8 @@ public class RiftSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused)
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused || Tutorial.TutorialOccuring || 
+        !Tutorial.tutorial.IsActivatedMechanic(0))
       return;
     
     SpawnTimer -= Time.deltaTime;
@@ -119,6 +120,6 @@ public class RiftSpawner : MonoBehaviour
       GameObject Rift = (GameObject)Instantiate(LargeRift, SpawnPos, Quaternion.identity);
     }
     */
-    GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Quaternion.identity);
+    GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Player.transform.rotation);
   }
 }

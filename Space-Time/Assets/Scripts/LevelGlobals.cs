@@ -22,6 +22,9 @@ public class LevelGlobals : MonoBehaviour
   [SerializeField]
   public static bool Debugging = false;
   
+  [SerializeField]
+  GameObject SpeedLines;
+  
   
 
 	// Use this for initialization
@@ -39,14 +42,25 @@ public class LevelGlobals : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (!CameraController.GetPTime())
-      distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed() / 2.0f;
-    runningTime += TimeZone.DeltaTime(true);
-    TimePassed = Time.time;
+    
+    if (!PauseController.Paused && !Tutorial.TutorialOccuring)
+    {
+      runningTime += TimeZone.DeltaTime(true);
+      TimePassed = Time.time;
+      
+      if (!CameraController.GetPTime())
+      {
+        distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed() / 2.0f;
+      }
+    }
     if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
     //if (Input.GetKey("escape"))
             //Application.Quit();
+    if (PauseController.Paused || CameraController.GetPTime() || Tutorial.TutorialOccuring)
+      SpeedLines.SetActive(false);
+    else
+      SpeedLines.SetActive(true);
         
 	}
   
