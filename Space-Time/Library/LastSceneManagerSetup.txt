@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/2_Credits.unity
+- path: Assets/2_HowToPlay.unity
   isLoaded: 1
   isActive: 1
