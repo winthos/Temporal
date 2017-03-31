@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 	// Use this for initialization
 	void Start () 
   {
-	
+    enemySpawner = GetComponent<EnemySpawner>();
 	}
 	
 	// Update is called once per frame
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
       return false;
     */
     //print("still occupied at " + (pos - 1) + " " + OccupiedSpaces[pos - 1]);
-    return OccupiedSpaces[pos - 1];
+    return OccupiedSpaces[pos - 1] /*|| (pos == PlayerMovement.pMove.GridPos)*/;
   }
   
   public void OccupancyText()
@@ -103,7 +103,7 @@ public class EnemySpawner : MonoBehaviour
   }
   
   
-  void SpawnEnemy()
+  public void SpawnEnemy()
   {
     int spawnpoint = (int)Random.Range(0,8);
     if (spawnpoint > 7)

@@ -8,6 +8,7 @@ using System.Collections;
 
 public class RiftSpawner : MonoBehaviour 
 {
+  public static RiftSpawner riftSpawner;
   
   [SerializeField]
   GameObject Rift;
@@ -32,6 +33,7 @@ public class RiftSpawner : MonoBehaviour
   // Use this for initialization
   void Start () 
   {
+    riftSpawner = GetComponent<RiftSpawner>();
     LevelGlobals = GameObject.FindWithTag("Globals");
     Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
@@ -68,7 +70,7 @@ public class RiftSpawner : MonoBehaviour
     SpawnTimer = Mathf.Clamp(SpawnTime + Random.Range(-SpawnTimeVariance - stacks/2, SpawnTimeVariance), 0.1f, 10.0f);
   }
   
-  public void LaunchRift()
+  public void LaunchRift(float SpawnDist = 500)
   {
     /*
     Vector3 SpawnPos = CentrePoint.transform.forward*350;
@@ -102,7 +104,7 @@ public class RiftSpawner : MonoBehaviour
     
     SpawnPos += offset;
     */
-    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
+    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*SpawnDist;
     
     /*int CreationChance = (int)Mathf.Clamp(Random.Range(0.0f,100.0f + Player.GetComponent<PlayerMovement>().SpeedStacks),
                                           0, 300); //max craziness limiter to prevent only large Rifts from spawning

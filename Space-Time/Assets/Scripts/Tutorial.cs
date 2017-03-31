@@ -20,6 +20,8 @@ public class Tutorial : MonoBehaviour
   
   int TutorialIndex;
   
+  public static bool TutorialRead = true;
+  
   [SerializeField]
   ActivationIndex[] ActivationIndices;
   /*
@@ -36,7 +38,14 @@ public class Tutorial : MonoBehaviour
 	void Start () 
   {
     tutorial = GetComponent<Tutorial>();
-    OpenTutorial();
+    if (TutorialRead)
+    {
+      TutorialIndex = 99;
+      ToggleTutorialBox(false);
+    }
+    else
+      OpenTutorial();
+    
 	}
 	
 	// Update is called once per frame
@@ -55,7 +64,9 @@ public class Tutorial : MonoBehaviour
   
   public bool IsActivatedMechanic(int index)
   {
+    print(TutorialIndex > ActivationIndices[index].GetIndex());
     return (TutorialIndex > ActivationIndices[index].GetIndex());
+    
   }
   
   public void OpenTutorial()
@@ -65,6 +76,28 @@ public class Tutorial : MonoBehaviour
     ToggleTutorialBox(true);
     TutorialTextBox.text = TutorialText[TutorialIndex];
     TutorialOccuring = true;
+    //depending on the thing, spawn something here
+    if (TutorialIndex == ActivationIndices[0].GetIndex()) //tutorial 1: Rifts
+    {
+      RiftSpawner.riftSpawner.LaunchRift(100);
+    }
+    else if (TutorialIndex == ActivationIndices[1].GetIndex()) //tutorial 2: Small / Medium Hazards
+    {
+      AsteroidSpawner.asteroidSpawner.LaunchAsteroid(0, 100);
+    }
+    else if (TutorialIndex == ActivationIndices[2].GetIndex()) //tutorial 3: Bomb / Spacer
+    {
+      EnemySpawner.enemySpawner.SpawnEnemy();  
+    }
+    else if (TutorialIndex == ActivationIndices[3].GetIndex()) //tutorial 4: TimeStop Activation
+    {
+      AsteroidSpawner.asteroidSpawner.LaunchAsteroid(3, 100);
+    }
+    else if (TutorialIndex == ActivationIndices[4].GetIndex()) //tutorial 5: Big Hazard, Timestop Rotation
+    {
+      AsteroidSpawner.asteroidSpawner.LaunchAsteroid(3, 100);
+    }
+    
   }
   
   public void AdvanceTutorial()
@@ -72,6 +105,7 @@ public class Tutorial : MonoBehaviour
     IncrementTutorialIndex();
     ToggleTutorialBox(false);
     TutorialOccuring = false;
+    print("Tutorial Index is at " + TutorialIndex);
   }
   
   public void IncrementTutorialIndex()
