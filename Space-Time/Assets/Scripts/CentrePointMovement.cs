@@ -9,6 +9,8 @@ using System.Collections;
   //Specifically for the constant move in the forward direction during normal time
 public class CentrePointMovement : MonoBehaviour 
 {
+  public static CentrePointMovement centrePoint;
+  
   [SerializeField]
   float MovementSpeed = 0.1f;
   GameObject LevelGlobals;
@@ -28,6 +30,7 @@ public class CentrePointMovement : MonoBehaviour
     // Use this for initialization
   void Start () 
   {
+    centrePoint = GetComponent<CentrePointMovement>();
     LevelGlobals = GameObject.FindWithTag("Globals");
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
     Camcontrol = Camera.GetComponent<CameraController>();
@@ -38,7 +41,7 @@ public class CentrePointMovement : MonoBehaviour
     // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused)
+    if (PauseController.Paused  || Tutorial.TutorialOccuring)
       return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {

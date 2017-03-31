@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused)
+    if (PauseController.Paused  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3))
       return;
     
     defaultTimer += TimeZone.DeltaTime(false);
@@ -145,7 +145,7 @@ public class CameraController : MonoBehaviour
       }
     
     }
-    else if (GetPTime())
+    else if (GetPTime() && Tutorial.tutorial.IsActivatedMechanic(4))
     {
       /*
       float yRot = Input.GetAxis("Mouse X") * xSpeed * Distance * 0.02f;

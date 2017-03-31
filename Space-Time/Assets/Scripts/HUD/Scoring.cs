@@ -74,7 +74,7 @@ public class Scoring : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (!PauseController.Paused)
+        if (!PauseController.Paused && !Tutorial.TutorialOccuring)
         {
             //TimeScore();
             //SpeedScore();
@@ -82,7 +82,7 @@ public class Scoring : MonoBehaviour
 
             scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "x" + multiplier;
-            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) * 10 + " km/s";
+            speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed * 10 * CentrePointMovement.centrePoint.GetMovementSpeed()) + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
             
             ScoreMultiplier(HUDStageController.currentStage);

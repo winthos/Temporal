@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
       //Vector3 dir = new Vector3();
       //allow WASD input yay
       //dir = transform.position;
-      if (PauseController.Paused)
+      if (PauseController.Paused || Tutorial.TutorialOccuring)
         return;
       if (Input.anyKey && DashTo == null)
       {
@@ -269,14 +269,35 @@ public class PlayerMovement : MonoBehaviour
     {
       print("OW");
       GetComponent<Health>().DecrementHealth();
+      
       SoundHub.PlayAsteroidExplosion();
       Destroy(other.gameObject);
     }
+    /*
     else if (other.gameObject.tag == "Spacer" && CameraController.GetPTime())
     {
+      print("Collided with spacer");
       other.gameObject.GetComponent<Health>().DecrementHealth();
+      
       SoundHub.PlayEnemyTimeBomb();
       Scoring.enemiesDestroyed += 1;
+    }
+    */
+  }
+  
+  void OnTriggerStay(Collider other)
+  {
+    if (other.gameObject.tag == "Spacer" && CameraController.GetPTime())
+    {
+      print("Collided with spacer");
+      if (other.gameObject.GetComponent<Health>().health > 0)
+      {
+        other.gameObject.GetComponent<Health>().DecrementHealth();
+        
+        SoundHub.PlayEnemyTimeBomb();
+        
+        Scoring.enemiesDestroyed += 1;
+      }
     }
   }
   
