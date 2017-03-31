@@ -8,6 +8,7 @@ using System.Collections;
 
 public class AsteroidSpawner : MonoBehaviour 
 {
+  public static AsteroidSpawner asteroidSpawner;
   
   [SerializeField]
   GameObject SmallAsteroid;
@@ -46,6 +47,7 @@ public class AsteroidSpawner : MonoBehaviour
   // Use this for initialization
   void Start () 
   {
+    asteroidSpawner = GetComponent<AsteroidSpawner>();
     LevelGlobals = GameObject.FindWithTag("Globals");
     Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
@@ -85,9 +87,9 @@ public class AsteroidSpawner : MonoBehaviour
     SpawnTimer = Mathf.Clamp(SpawnTime + Random.Range(-SpawnTimeVariance - stacks/2, SpawnTimeVariance), 0.1f, 10.0f);
   }
   
-  public void LaunchAsteroid(int spawntype) // 0 = normal, 1 = small, 2 = medium, 3 = large
+  public void LaunchAsteroid(int spawntype, int SpawnDist = 500) // 0 = normal, 1 = small, 2 = medium, 3 = large
   {
-    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
+    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*SpawnDist;
     print("Asteroid at " + SpawnPos);
     
     /*
@@ -141,9 +143,9 @@ public class AsteroidSpawner : MonoBehaviour
     }
     else
     {
-      if (Tutorial.tutorial.IsActivatedMechanic(4))
+      if (spawntype == 3 || Tutorial.tutorial.IsActivatedMechanic(4))
       {
-        SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*500;
+        SpawnPos = CentrePoint.transform.position + CentrePoint.transform.forward*SpawnDist;
         GameObject Asteroid = (GameObject)Instantiate(LargeAsteroid, SpawnPos, RandomRotation);
       }
     }
