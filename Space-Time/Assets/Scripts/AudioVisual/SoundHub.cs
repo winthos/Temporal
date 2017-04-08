@@ -165,36 +165,48 @@ public class SoundHub : MonoBehaviour
     }
 
 
-
+    // paused volume
     public void EnterPauseState(float _newVolume = 0.4f)
     {
+        GetInstance().globalVolume = _newVolume;
         if (_newVolume == 0)
             AudioVisualManager.DisableSoundImmediate();
         else
-            AudioVisualManager.SetGlobalVolume(_newVolume);
+            AudioVisualManager.SetGlobalVolume(GetInstance().globalVolume);
     }
 
+    // resume volume
     public void ExitPauseState(float _newVolume = 1f)
     {
-         AudioVisualManager.SetGlobalVolume(_newVolume);
+        GetInstance().globalVolume = _newVolume;
+        AudioVisualManager.SetGlobalVolume(GetInstance().globalVolume);
     }
 
+    // mute all sound effects
     public void MuteAllSFX(float _newVolume = 0f)
     {
-        AudioVisualManager.SetSFXVolume(_newVolume);
+        GetInstance().sfxVolume = _newVolume;
+        AudioVisualManager.SetSFXVolume(GetInstance().sfxVolume);
     }
 
+    // unmute all sound effects
     public void UnmuteAllSFX(float _newVolume = 1f)
     {
-        AudioVisualManager.SetSFXVolume(_newVolume);
+        GetInstance().sfxVolume = _newVolume;
+        AudioVisualManager.SetSFXVolume(GetInstance().sfxVolume);
     }
+
+    // mute background audio
     public void MuteBackgroundAudio(float _newVolume = 0f)
     {
-        AudioVisualManager.SetBGMVolume(_newVolume);
+        GetInstance().bgmVolume = _newVolume;
+        AudioVisualManager.SetBGMVolume(GetInstance().bgmVolume);
     }
+    // unmute background audio
     public void UnmteBackgroundAudio(float _newVolume = 1f)
     {
-        AudioVisualManager.SetBGMVolume(_newVolume);
+        GetInstance().bgmVolume = _newVolume;
+        AudioVisualManager.SetBGMVolume(GetInstance().bgmVolume);
     }
 
 

@@ -46,7 +46,7 @@ namespace AudioVisualization
             bgmSource.playOnAwake = false;
             bgmSource.volume = GetBGMVolume();
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
 
 
@@ -347,5 +347,10 @@ namespace AudioVisualization
 
 
         //put visualizer calls here
+
+        void OnDestroy()
+        {
+            Destroy(_instance);
+        }
     }
 }
