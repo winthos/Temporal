@@ -335,9 +335,9 @@ namespace AudioVisualization
                     source.volume = GetSFXVolume();
                 }
             }
-            Debug.Log("BGMme: " + GetBGMVolume());
+            //Debug.Log("BGMme: " + GetBGMVolume());
             soundMan.bgmSource.volume = GetBGMVolume();
-            Debug.Log("BGMme is now: " + GetBGMVolume());
+            //Debug.Log("BGMme is now: " + GetBGMVolume());
         }
 
         // ==================== Visualizer Functions ==========================

@@ -28,9 +28,15 @@ public class SoundHub : MonoBehaviour
         return instance;
     }
 
+    float sfxVolume;
+    float bgmVolume;
+    float globalVolume;
+    float globalPauseVolume;
+
+
     AudioClip logoScreen;
     AudioClip ui_select;
-    AudioClip ai_hover;
+    AudioClip ui_hover;
 
     AudioClip bgm;
 
@@ -56,7 +62,7 @@ public class SoundHub : MonoBehaviour
         //sound = Resources.Load<AudioClip>(path);
         logoScreen  = Resources.Load<AudioClip>("Sound/bgm/Intro_Splashscreen");
         ui_select   = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
-        ai_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
+        ui_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
 
         //bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
         bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
@@ -81,6 +87,8 @@ public class SoundHub : MonoBehaviour
         asteroidExplosion = Resources.Load<AudioClip>("Sound/sfx/SmashSound");
 
         source_bgm = AudioVisualManager.PlayBGM(bgm, false, 0, -0.3f);
+
+        bgmVolume = source_bgm.volume;
     }
 
     // Use this for initialization
@@ -94,6 +102,21 @@ public class SoundHub : MonoBehaviour
         AudioVisualManager.PlaySFX(GetInstance().gunshot, _obj, 1);
     }
     */
+
+    public static void PlaySplashScreenAudio()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().logoScreen);
+    }
+
+    public static void PlayButtonHover()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().ui_hover);
+    }
+    public static void PlayButtonClick()
+    {
+        AudioVisualManager.PlaySFX(GetInstance().ui_hover);
+    }
+
     public static void PlayTimeStopSFX(GameObject _obj)
     {
         AudioVisualManager.StopAllObjectSFX(_obj);
@@ -142,6 +165,39 @@ public class SoundHub : MonoBehaviour
     }
 
 
+
+    public void EnterPauseState(float _newVolume = 0.4f)
+    {
+        if (_newVolume == 0)
+            AudioVisualManager.DisableSoundImmediate();
+        else
+            AudioVisualManager.SetGlobalVolume(_newVolume);
+    }
+
+    public void ExitPauseState(float _newVolume = 1f)
+    {
+         AudioVisualManager.SetGlobalVolume(_newVolume);
+    }
+
+    public void MuteAllSFX(float _newVolume = 0f)
+    {
+        AudioVisualManager.SetSFXVolume(_newVolume);
+    }
+
+    public void UnmuteAllSFX(float _newVolume = 1f)
+    {
+        AudioVisualManager.SetSFXVolume(_newVolume);
+    }
+    public void MuteBackgroundAudio(float _newVolume = 0f)
+    {
+        AudioVisualManager.SetBGMVolume(_newVolume);
+    }
+    public void UnmteBackgroundAudio(float _newVolume = 1f)
+    {
+        AudioVisualManager.SetBGMVolume(_newVolume);
+    }
+
+
     //load audio clips into AVM
 
     //player damage
@@ -156,29 +212,6 @@ public class SoundHub : MonoBehaviour
 
 
 
-
-    /// <summary>
-    /// functions called from the game, much like the AKbanks
-    /// </summary>
-
-    public void EnterPauseState()
-    {
-        // muffle bg audio
-        // pause all sfx
-        // pause all visuals?
-    }
-
-    public void ExitPauseState()
-    {
-        // remove effect on bg audio
-        // resume all sfx
-        // resume all visuals?
-    }
-
-    public void StopAllAudio()
-    {
-
-    }
 
     public void ResetAllAudio()
     {
