@@ -30,21 +30,24 @@ public class OptionsController : MonoBehaviour
     public void UpdateSoundEffects()
     {
         if (muteSFXAudioToggle.isOn)
+        {
             SoundHub.GetInstance().MuteAllSFX();
+            muteAllAudioToggle.isOn = false;
+        }
         else
             SoundHub.GetInstance().UnmuteAllSFX();
-
-        //CheckIfAllAudioMuted();
     }
 
     public void UpdateBackgroundAudio()
     {
-        if(muteBgAudioToggle.isOn)
+
+        if (muteBgAudioToggle.isOn)
+        {
             SoundHub.GetInstance().MuteBackgroundAudio();
+            muteAllAudioToggle.isOn = false;
+        }
         else
             SoundHub.GetInstance().UnmteBackgroundAudio();
-
-        //CheckIfAllAudioMuted();
     }
 
     public void MuteAllAudio()
@@ -72,13 +75,4 @@ public class OptionsController : MonoBehaviour
             Screen.fullScreen = false;
 
     }
-
-    void CheckIfAllAudioMuted()
-    {
-        if (!muteBgAudioToggle.isOn && !muteSFXAudioToggle)
-            muteAllAudioToggle.isOn = false;
-        else if (muteBgAudioToggle.isOn && muteSFXAudioToggle)
-            muteAllAudioToggle.isOn = true;
-    }
-
 }

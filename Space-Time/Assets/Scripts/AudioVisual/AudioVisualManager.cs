@@ -39,6 +39,8 @@ namespace AudioVisualization
 
         void Initialize()
         {
+            _instance = this;
+
             // add our bgm sound source
             bgmSource = gameObject.AddComponent<AudioSource>();
             //gameObject.AddComponent<AudioLowPassFilter>();
@@ -294,7 +296,8 @@ namespace AudioVisualization
 
         public static void EnableSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             if (soundMan.sfxSources != null)
             {
                 foreach (AudioSource source in soundMan.sfxSources)
@@ -327,7 +330,8 @@ namespace AudioVisualization
 
         public static void AdjustSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             if (soundMan.sfxSources != null)
             {
                 foreach (AudioSource source in soundMan.sfxSources)
