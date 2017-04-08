@@ -11,21 +11,21 @@ using System.Collections.Generic;
 public class SoundHub : MonoBehaviour
 {
     // Static instance
-    static SoundHub _instance;
+    public static SoundHub instance;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (instance == null)
         {
-            _instance = this;
-            _instance.Initialize();
+            instance = this;
+            instance.Initialize();
         }
     }
 
 
     public static SoundHub GetInstance()
     {
-        return _instance;
+        return instance;
     }
 
     AudioClip logoScreen;
