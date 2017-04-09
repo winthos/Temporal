@@ -50,7 +50,7 @@ public class HUDStageController : MonoBehaviour
     void Update ()
     {
 
-        if (!PauseController.Paused)
+        if (!PauseController.Paused())
         {
             if (TestModeOn)
                 Testing();

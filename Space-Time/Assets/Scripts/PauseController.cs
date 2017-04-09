@@ -9,7 +9,7 @@ using System.Collections;
 public class PauseController : MonoBehaviour 
 {
 
-  public static bool Paused = false;
+  private static bool paused = false;
   
 	// Use this for initialization
 	void Start () 
@@ -23,23 +23,40 @@ public class PauseController : MonoBehaviour
       
 	}
   
+  public static bool Paused()
+  {
+    //PauseVolume();
+    return paused;
+  }
+
   public static void TogglePause()
   {
-    Paused = !Paused;
+    paused = !paused;
+    PauseVolume();
   }
   
   public static void SetPause(bool pause)
   {
-    Paused = pause;
+    paused = pause;
+    PauseVolume();
   }
 
   void OnApplicationFocus(bool hasFocus)
   {
-    Paused = !hasFocus;
+    paused = !hasFocus;
+    PauseVolume();
   }
 
   void OnApplicationPause(bool pauseStatus)
   {
-    Paused = pauseStatus;
+    paused = pauseStatus;
+  }
+    
+  private static void PauseVolume()
+  {
+    if (paused)
+        SoundHub.GetInstance().EnterPauseState();
+    else
+        SoundHub.GetInstance().ExitPauseState();
   }
 }
