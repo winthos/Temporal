@@ -183,20 +183,20 @@ public class CameraController : MonoBehaviour
       {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-          y += Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
+        //  y += Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-          y -= Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
+          //y -= Distance * ySpeed * 0.02f * MouseSensitivity * InvertY;
         }
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-          x -= Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
+          //x -= Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-          x += Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
+          //x += Distance * xSpeed * 0.02f * MouseSensitivity * InvertX;
         }
       }
     
@@ -237,6 +237,7 @@ public class CameraController : MonoBehaviour
       {
         if (!LevelGlobals.Debugging)
           PTimeStopTimer -= TimeZone.DeltaTime(false);
+                print(PTimeStopTimer);
         if (PTimeStopTimer <= 0.0f && PTimeStop)
         {
           ToggleTimeStop();
@@ -251,7 +252,7 @@ public class CameraController : MonoBehaviour
     }
     if (PTimeStopTimer < 9.0f  && !GetPTime())
       {
-        PTimeStopTimer += TimeZone.DeltaTime(false) / 3.0f;
+        //PTimeStopTimer += TimeZone.DeltaTime(false) / 3.0f;
         if (PTimeStopTimer > 9.0f)
         {
           PTimeStopTime = 9.0f;
