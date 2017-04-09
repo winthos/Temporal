@@ -30,7 +30,11 @@ public class TutorialTrigger : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
+<<<<<<< HEAD
     if (TriggerCondition == TriggerType.Time && !Tutorial.TutorialOccuring && !PauseController.Paused())
+=======
+    if (TriggerCondition == TriggerType.Time && !Tutorial.TutorialOccuring && !PauseController.Paused)
+>>>>>>> refs/remotes/origin/Kaila-2.0
     {
       ActivationTimer += TimeZone.DeltaTime(false);
       if (Tutorial.tutorial.GetTutorialIndex() - 1 < ActivationTime.Length && ActivationTimer >= ActivationTime[Tutorial.tutorial.GetTutorialIndex() - 1])
