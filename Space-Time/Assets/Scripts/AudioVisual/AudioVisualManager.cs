@@ -281,7 +281,8 @@ namespace AudioVisualization
 
         public static void DisableSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             soundMan.StopAllCoroutines();
             if (soundMan.sfxSources != null)
             {
