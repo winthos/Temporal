@@ -45,14 +45,14 @@ public class Health : MonoBehaviour
     // Update is called once per frame
   void Update ()
   {
-    if (Boom && !PauseController.Paused && !Tutorial.TutorialOccuring)
+    if (Boom && !PauseController.Paused() && !Tutorial.TutorialOccuring)
     {
       if (gameObject.tag == "Player")
       {
         gameObject.GetComponent<Renderer>().material.Lerp(GetComponent<PlayerMovement>().defaultMaterial, 
                                                           GetComponent<PlayerMovement>().KOMaterial, TimeZone.DeltaTime(false)* 50.0f);
         TimeZone.SetTimeScale(Mathf.Lerp(TimeZone.DeltaTime(), 0.0000000001f, TimeZone.DeltaTime(false)* 15.0f));
-        PauseController.Paused = true;
+        PauseController.SetPause(true);
       }
       else
         Destroy(gameObject);

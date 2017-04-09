@@ -63,7 +63,7 @@ public class TimerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (PauseController.Paused)
+    if (PauseController.Paused())
       return;
     if (ETime > 0.0f)
     {
