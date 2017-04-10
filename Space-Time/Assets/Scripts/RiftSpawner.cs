@@ -46,7 +46,7 @@ public class RiftSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused || Tutorial.TutorialOccuring || 
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused() || Tutorial.TutorialOccuring || 
         !Tutorial.tutorial.IsActivatedMechanic(0))
       return;
     

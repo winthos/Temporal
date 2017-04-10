@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField]
   public Material KOMaterial;
 
+  public GameObject PlayerTookDamageExplosion;
+
   // Use this for initialization
   void Start () 
   {
@@ -64,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
       //Vector3 dir = new Vector3();
       //allow WASD input yay
       //dir = transform.position;
-      if (PauseController.Paused || Tutorial.TutorialOccuring)
+      if (PauseController.Paused() || Tutorial.TutorialOccuring)
         return;
       if (Input.anyKey && DashTo == null)
       {
@@ -260,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     if (other.gameObject.tag == "Rift")
     {
       SpeedStacks++;
-      Camcontrol.IncreasePStopTime(1.0f);
+      //Camcontrol.IncreasePStopTime(1.0f);
       Destroy(other.gameObject);
       SoundHub.PlayPickup();
       Scoring.pickupsCollected += 1;
@@ -271,6 +273,17 @@ public class PlayerMovement : MonoBehaviour
       GetComponent<Health>().DecrementHealth();
       
       SoundHub.PlayAsteroidExplosion();
+
+      if(PlayerTookDamageExplosion.GetComponent<ParticleSystem>().isPlaying == true)
+      {
+        PlayerTookDamageExplosion.SetActive(false);
+        PlayerTookDamageExplosion.SetActive(true);
+      }
+
+      else
+      {
+        PlayerTookDamageExplosion.SetActive(true);
+      }
       Destroy(other.gameObject);
     }
     /*
