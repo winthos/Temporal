@@ -41,7 +41,7 @@ public class CentrePointMovement : MonoBehaviour
     // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused  || Tutorial.TutorialOccuring)
+    if (PauseController.Paused()  || Tutorial.TutorialOccuring)
       return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {

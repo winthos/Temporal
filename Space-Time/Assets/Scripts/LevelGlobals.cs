@@ -43,7 +43,7 @@ public class LevelGlobals : MonoBehaviour
 	void Update () 
   {
     
-    if (!PauseController.Paused && !Tutorial.TutorialOccuring)
+    if (!PauseController.Paused() && !Tutorial.TutorialOccuring)
     {
       runningTime += TimeZone.DeltaTime(true);
       TimePassed = Time.time;
@@ -57,7 +57,7 @@ public class LevelGlobals : MonoBehaviour
       Debugging = !Debugging;
     //if (Input.GetKey("escape"))
             //Application.Quit();
-    if (PauseController.Paused || CameraController.GetPTime() || Tutorial.TutorialOccuring)
+    if (PauseController.Paused() || CameraController.GetPTime() || Tutorial.TutorialOccuring)
       SpeedLines.SetActive(false);
     else
       SpeedLines.SetActive(true);
