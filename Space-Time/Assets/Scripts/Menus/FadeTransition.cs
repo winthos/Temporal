@@ -45,7 +45,7 @@ public class FadeTransition : MonoBehaviour
     {
         if (UseKeyInput)
         {
-            if (Input.GetKeyUp(userIn) || Input.GetKeyUp(userInAlt))
+            if (Input.GetKeyUp(userIn) || Input.GetKeyUp(userInAlt) || Input.anyKey || Input.GetMouseButtonDown(0))
             {
                 LoadNextScene = true;
                 StartCoroutine(FadeOut());
