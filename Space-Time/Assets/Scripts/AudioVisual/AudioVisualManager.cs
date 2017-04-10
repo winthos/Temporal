@@ -191,11 +191,11 @@ namespace AudioVisualization
 
         IEnumerator RemoveSFXSource(AudioSource _sfxSource)
         {
-            
+
             yield return new WaitForSeconds(_sfxSource.clip.length);
             sfxSources.Remove(_sfxSource);
             Destroy(_sfxSource);
-         
+
         }
 
         IEnumerator RemoveSFXSourceFixedLength(AudioSource _sfxSource, float _length)
@@ -221,7 +221,7 @@ namespace AudioVisualization
         public static void PlayMultiSFX(List<AudioClip> _sfxClips, GameObject _object = null, float _spacialBlend = 0f, float _volumeMod = 0f)
         {
             AudioVisualManager soundMan = GetInstance();
-            foreach(AudioClip clip in _sfxClips)
+            foreach (AudioClip clip in _sfxClips)
             {
                 AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
                 source.volume = GetSFXVolume(_volumeMod);
@@ -249,7 +249,7 @@ namespace AudioVisualization
             AudioVisualManager soundMan = GetInstance();
             AudioSource source = soundMan.GetSFXSource(_object, _spacialBlend, _volumeMod);
             source.volume = GetSFXVolume(_volumeMod);
-            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity-1)];
+            source.clip = _sfxClips[Random.Range(0, _sfxClips.Capacity - 1)];
             source.Play();
 
             soundMan.StartCoroutine(soundMan.RemoveSFXSource(source));
