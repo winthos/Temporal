@@ -88,7 +88,7 @@ public class HUDController : MonoBehaviour
   {
     HUDControl = GetComponent<HUDController>();
     independentTime = Time.time;
-    PauseController.Paused = false;
+    PauseController.SetPause(false);
 	}
 	
 	// Update is called once per frame
@@ -96,19 +96,19 @@ public class HUDController : MonoBehaviour
   {
     if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
     {
-      PauseController.Paused = !PauseController.Paused;
-      if (!PauseController.Paused)
+      PauseController.TogglePause();
+      if (!PauseController.Paused())
 	  {
 		DefaultPauseOn();
 	  }
     }
-    if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused)
+    if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused())
     {
       Cursor.lockState = CursorLockMode.None;
       LoseScreen.SetActive(true);
       return;
     }
-    else if (PauseController.Paused)
+    else if (PauseController.Paused())
     {
       //print("Currently paused");
       PauseBlock.SetActive(true);

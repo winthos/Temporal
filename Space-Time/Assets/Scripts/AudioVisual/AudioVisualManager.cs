@@ -39,6 +39,8 @@ namespace AudioVisualization
 
         void Initialize()
         {
+            _instance = this;
+
             // add our bgm sound source
             bgmSource = gameObject.AddComponent<AudioSource>();
             //gameObject.AddComponent<AudioLowPassFilter>();
@@ -46,7 +48,7 @@ namespace AudioVisualization
             bgmSource.playOnAwake = false;
             bgmSource.volume = GetBGMVolume();
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
 
 
@@ -279,7 +281,8 @@ namespace AudioVisualization
 
         public static void DisableSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             soundMan.StopAllCoroutines();
             if (soundMan.sfxSources != null)
             {
@@ -294,7 +297,8 @@ namespace AudioVisualization
 
         public static void EnableSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             if (soundMan.sfxSources != null)
             {
                 foreach (AudioSource source in soundMan.sfxSources)
@@ -327,7 +331,8 @@ namespace AudioVisualization
 
         public static void AdjustSoundImmediate()
         {
-            AudioVisualManager soundMan = GetInstance();
+            AudioVisualManager soundMan = _instance;
+            //AudioVisualManager soundMan = GetInstance();
             if (soundMan.sfxSources != null)
             {
                 foreach (AudioSource source in soundMan.sfxSources)
@@ -335,9 +340,9 @@ namespace AudioVisualization
                     source.volume = GetSFXVolume();
                 }
             }
-            Debug.Log("BGMme: " + GetBGMVolume());
+            //Debug.Log("BGMme: " + GetBGMVolume());
             soundMan.bgmSource.volume = GetBGMVolume();
-            Debug.Log("BGMme is now: " + GetBGMVolume());
+            //Debug.Log("BGMme is now: " + GetBGMVolume());
         }
 
         // ==================== Visualizer Functions ==========================
@@ -347,5 +352,10 @@ namespace AudioVisualization
 
 
         //put visualizer calls here
+
+        void OnDestroy()
+        {
+            Destroy(_instance);
+        }
     }
 }
