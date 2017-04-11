@@ -36,7 +36,7 @@ public class LevelGlobals : MonoBehaviour
     Camera = GameObject.FindWithTag("MainCamera");
     Player = GameObject.FindWithTag("Player");
     CentrePoint = GameObject.FindWithTag("Centrepoint");
-    Cursor.lockState = CursorLockMode.Locked;
+    //Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame

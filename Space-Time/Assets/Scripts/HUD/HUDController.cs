@@ -45,6 +45,9 @@ public class HUDController : MonoBehaviour
   
   [SerializeField]
   GameObject DestructiveActionScreen;
+  
+  [SerializeField]
+  GameObject RestartActionScreen;
   /*
   [SerializeField]
   GameObject HTPButton;
@@ -116,7 +119,8 @@ public class HUDController : MonoBehaviour
     }
     if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused())
     {
-      Cursor.lockState = CursorLockMode.None;
+      //Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
       LoseScreen.SetActive(true);
       return;
     }
@@ -124,14 +128,16 @@ public class HUDController : MonoBehaviour
     {
       //print("Currently paused");
       PauseBlock.SetActive(true);
-      Cursor.lockState = CursorLockMode.None;
+      //Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
       return;
     }
     else
     {
       DefaultPauseScreen.SetActive(true);
       PauseBlock.SetActive(false);
-      Cursor.lockState = CursorLockMode.Locked;
+      //sCursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
     }
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
@@ -240,6 +246,7 @@ public class HUDController : MonoBehaviour
     DestructiveActionScreen.SetActive(false);
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
@@ -252,6 +259,7 @@ public class HUDController : MonoBehaviour
     print("BUTTON CLICKED");
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
@@ -262,6 +270,7 @@ public class HUDController : MonoBehaviour
     DestructiveActionScreen.SetActive(false);
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
@@ -272,6 +281,18 @@ public class HUDController : MonoBehaviour
     DestructiveActionScreen.SetActive(true);
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
+  }
+  
+  public void RestartActionOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(true);
     MenuSounds[1].Play();
   }
   
@@ -284,6 +305,7 @@ public class HUDController : MonoBehaviour
     LoseScreen.SetActive(false);
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     LevelGlobals.calcHighScores();
     EnemySpawner.ResetOccupancies();
     MenuSounds[1].Play();
@@ -298,6 +320,7 @@ public class HUDController : MonoBehaviour
     DestructiveActionScreen.SetActive(false);
     OptionsScreen.SetActive(true);
     CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
@@ -308,6 +331,7 @@ public class HUDController : MonoBehaviour
     DestructiveActionScreen.SetActive(false);
     OptionsScreen.SetActive(false);
     CreditsScreen.SetActive(true);
+    RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
