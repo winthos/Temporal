@@ -360,7 +360,7 @@ public class HUDController : MonoBehaviour
   
   public void ReturnToTitle()
   {
-    Application.LoadLevel("2_MainMenu");
+    SceneManager.LoadScene("2_MainMenu");
   }
   
   public void MouseHover()

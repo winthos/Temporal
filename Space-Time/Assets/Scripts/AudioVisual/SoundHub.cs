@@ -6,7 +6,7 @@
 using UnityEngine;
 using AudioVisualization;
 using System.Collections.Generic;
-
+using System.Collections;
 
 public class SoundHub : MonoBehaviour
 {
@@ -79,8 +79,8 @@ public class SoundHub : MonoBehaviour
         timeWobble      = Resources.Load<AudioClip>("Sound/sfx/boopsound");
         tickingClock    = Resources.Load<AudioClip>("Sound/sfx/persistantClockTick");
 
-        //playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
-        playerDeath = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits - 04");
+        playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
+        playerDeath = Resources.Load<AudioClip>("Sound/sfx/EndSoundEffect");
         pickupRift = Resources.Load<AudioClip>("Sound/sfx/PickupSound");
 
         timeBomb = Resources.Load<AudioClip>("Sound/sfx/BombSound");
@@ -132,9 +132,16 @@ public class SoundHub : MonoBehaviour
     }
 
 
-    public static void PlayPlayerDeath()
+    public static void PlayPlayerDamaged()
     {
+        AudioVisualManager.PlaySFX(GetInstance().playerDamage);
+    }
+    public static IEnumerator PlayPlayerDeath()
+    {
+        AudioVisualManager.SetBGMVolume(0.25f);
         AudioVisualManager.PlaySFX(GetInstance().playerDeath);
+        yield return new WaitForSeconds(2.5f);
+        yield return null;
     }
 
     public static void PlayerMoves(GameObject _obj)
@@ -222,9 +229,7 @@ public class SoundHub : MonoBehaviour
     //enemy charging
     //enemy fires
     // collide with asteroids
-
-
-
+    
 
     public void ResetAllAudio()
     {

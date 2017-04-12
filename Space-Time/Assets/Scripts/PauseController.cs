@@ -14,8 +14,9 @@ public class PauseController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
   {
-	
-	}
+        PauseVolume();
+
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -61,7 +62,7 @@ public class PauseController : MonoBehaviour
   private static void PauseVolume()
   {
     if (paused)
-        SoundHub.GetInstance().EnterPauseState();
+        SoundHub.GetInstance().EnterPauseState(0.25f);
     else
         SoundHub.GetInstance().ExitPauseState();
   }
