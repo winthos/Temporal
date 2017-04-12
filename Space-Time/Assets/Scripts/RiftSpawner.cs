@@ -20,7 +20,7 @@ public class RiftSpawner : MonoBehaviour
   [SerializeField]
   float SpawnTimeVariance = 2.0f;
   
-  GameObject LevelGlobals;
+  GameObject tLevelGlobals;
   GameObject CentrePoint;
   GameObject Player;
   GameObject Camera;
@@ -32,10 +32,10 @@ public class RiftSpawner : MonoBehaviour
   // Use this for initialization
   void Start () 
   {
-    LevelGlobals = GameObject.FindWithTag("Globals");
-    Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
-    CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
-    Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
+    tLevelGlobals = GameObject.FindWithTag("Globals");
+    Player = tLevelGlobals.GetComponent<LevelGlobals>().Player;
+    CentrePoint = tLevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
+    Camera = tLevelGlobals.GetComponent<LevelGlobals>().Camera;
     CameraController = Camera.GetComponent<CameraController>();
     SpawnTimer = SpawnTime;
     pMove = Player.GetComponent<PlayerMovement>();
@@ -45,7 +45,7 @@ public class RiftSpawner : MonoBehaviour
   void Update () 
   {
     if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused() || Tutorial.TutorialOccuring || 
-        !Tutorial.tutorial.IsActivatedMechanic(0))
+        !Tutorial.tutorial.IsActivatedMechanic(0) || LevelGlobals.PlayerDown)
       return;
     
     SpawnTimer -= Time.deltaTime;
