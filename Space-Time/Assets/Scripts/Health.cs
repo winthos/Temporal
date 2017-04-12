@@ -27,6 +27,8 @@ public class Health : MonoBehaviour
 
   [SerializeField]
   GameObject DamageFlash;
+
+    private bool playDeathSoundOnce = true;
  
   public int health
   {
@@ -50,6 +52,11 @@ public class Health : MonoBehaviour
       if (gameObject.tag == "Player")
       {
         StartCoroutine(HUDController.HUDControl.PlayerDestroyed());
+          if(playDeathSoundOnce)
+          { 
+            StartCoroutine(SoundHub.PlayPlayerDeath());
+            playDeathSoundOnce = false;
+          }
 		//do a coroutine here to wait before triggering the lose screen
       }
       else
@@ -94,7 +101,6 @@ public class Health : MonoBehaviour
       if(gameObject.tag == "Player")
       {
         //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
-        SoundHub.PlayPlayerDeath();
         DamageFlash.SetActive(false);
       }
       
@@ -115,6 +121,7 @@ public class Health : MonoBehaviour
 
   IEnumerator Flash()
   {
+    SoundHub.PlayPlayerDamaged();
     DamageFlash.SetActive(true);
     yield return new WaitForSeconds(0.5f);
     DamageFlash.SetActive(false);
