@@ -18,6 +18,15 @@ public class Scoring : MonoBehaviour
     [SerializeField]
     Text speedField;
     
+    [SerializeField]
+    Text RetryscoreField;
+
+    [SerializeField]
+    Text RetrymultiplierField;
+    
+    [SerializeField]
+    Text RetryTrueField;
+
     // main score info
     float multiplier; //have multiplier depend on speed and enemy collisions
     float tempMultiplier;
@@ -67,25 +76,31 @@ public class Scoring : MonoBehaviour
         pickups = new List<float> { 20,     10,     7,      3,      1,      0f  };
 
         scoreField.text = totalScore.ToString();
-        multiplierField.text = "x" + multiplier;
-        speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) + " km/s";
+        multiplierField.text = "" + pickupsCollected;
+        speedField.text = "0 km/s"; /*Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed) + " km/s";*/
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (!PauseController.Paused() && !Tutorial.TutorialOccuring)
+        if (!PauseController.Paused() && !Tutorial.TutorialOccuring && !LevelGlobals.PlayerDown)
         {
             //TimeScore();
             //SpeedScore();
             totalScore += TimeScore();
 
             scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
-            multiplierField.text = "x" + multiplier;
+            multiplierField.text = "" + pickupsCollected;
             speedField.text = Mathf.RoundToInt(LevelGlobals.distanceTraveled / LevelGlobals.TimePassed * 10 * CentrePointMovement.centrePoint.GetMovementSpeed()) + " km/s";
             //print("time " + TimeScore() + ", speed " + SpeedScore() + ", Enemy " + enemyScore + ", pickups " + pickupScore );
             
-            ScoreMultiplier(HUDStageController.currentStage);
+            //ScoreMultiplier(HUDStageController.currentStage);
+        }
+        else if (LevelGlobals.PlayerDown)
+        {
+          RetryscoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
+          RetrymultiplierField.text = "" + pickupsCollected;
+          RetryTrueField.text = "" + (Mathf.Max(0, Mathf.RoundToInt(totalScore*pickupsCollected))).ToString();
         }
     }
 

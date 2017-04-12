@@ -16,6 +16,11 @@ public class TimeZone
        Time.timeScale = ts;
        timeScale = ts;
     }
+    
+    public static float GetTimeScale()
+    {
+      return timeScale;
+    }
  
       //Custom deltaTime, those unaffected by time slow still move at the same speed.
     public static float DeltaTime( bool affectBySlowTime ) 
