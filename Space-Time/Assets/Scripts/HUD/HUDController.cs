@@ -257,7 +257,6 @@ public class HUDController : MonoBehaviour
     Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 179, 0.1f);
     yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
         LevelGlobals.PlayerDown = true;
-        print("PDown");
   }
   
   public void HowToPlayOn()
@@ -330,7 +329,10 @@ public class HUDController : MonoBehaviour
     LevelGlobals.calcHighScores();
     EnemySpawner.ResetOccupancies();
     MenuSounds[1].Play();
+    LevelGlobals.PlayerDown = false;
+    print(LevelGlobals.PlayerDown);
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    
     //do other retry things
   }
   

@@ -40,6 +40,7 @@ public class LevelGlobals : MonoBehaviour
     Player = GameObject.FindWithTag("Player");
     CentrePoint = GameObject.FindWithTag("Centrepoint");
     //Cursor.lockState = CursorLockMode.Locked;
+    PlayerDown = false;
 	}
 	
 	// Update is called once per frame

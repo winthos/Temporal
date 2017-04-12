@@ -31,12 +31,18 @@ public class PauseController : MonoBehaviour
 
   public static void TogglePause()
   {
+    if (LevelGlobals.PlayerDown)
+      return;
+    
     paused = !paused;
     PauseVolume();
   }
   
   public static void SetPause(bool pause)
   {
+    if (LevelGlobals.PlayerDown)
+      return;
+    
     paused = pause;
     PauseVolume();
   }
