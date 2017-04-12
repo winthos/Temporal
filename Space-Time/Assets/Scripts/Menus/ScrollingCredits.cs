@@ -15,7 +15,7 @@ public class ScrollingCredits : MonoBehaviour
     [SerializeField]
     float creditsEndY = 3500f;
     List<Vector3> startingPosition;
-    float scrollSpeed = 2f;
+    public float scrollSpeed = 2f;
 
     Coroutine current;
     bool isRunning;
