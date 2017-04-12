@@ -1,6 +1,6 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Jordan Yong
-//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+//  Authors: Jordan Yong
+//  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
@@ -96,28 +96,28 @@ public class HUDController : MonoBehaviour
   float independentTime;
   float startTime = 0.0f;
   
-	// Use this for initialization
+  // Use this for initialization
   
   
-	void Start () 
+  void Start () 
   {
     HUDControl = GetComponent<HUDController>();
     independentTime = Time.time;
     PauseController.SetPause(false);
-	}
-	
-	// Update is called once per frame
-	void Update () 
+  }
+  
+  // Update is called once per frame
+  void Update () 
   {
     if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
     {
       PauseController.TogglePause();
       if (!PauseController.Paused())
-	  {
-		DefaultPauseOn();
-	  }
+    {
+    DefaultPauseOn();
     }
-    if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused())
+    }
+    if (Player.GetComponent<Health>().health <= 0 && LevelGlobals.PlayerDown)
     {
       //Cursor.lockState = CursorLockMode.None;
       Cursor.visible = true;
@@ -146,7 +146,7 @@ public class HUDController : MonoBehaviour
     TimeAlter();
     OtherUpdate();
     RiftUpdate();
-	}
+  }
   
   public void HealthBarUpdate()
   {
@@ -184,7 +184,7 @@ public class HUDController : MonoBehaviour
   
   public void RiftUpdate()
   {
-    RiftCount.GetComponent<Text>().text = "x" + PlayerMovement.pMove.SpeedStacks;
+    //RiftCount.GetComponent<Text>().text = "x" + PlayerMovement.pMove.SpeedStacks;
   }
   
   public void TimeAlter()
@@ -237,6 +237,27 @@ public class HUDController : MonoBehaviour
  
     
     //Score.GetComponent<Text>().text = 
+  }
+  
+  public IEnumerator PlayerDestroyed()
+  {
+    while (TimeZone.GetTimeScale() > 0.0500f )
+    {
+      Player.GetComponent<MeshRenderer>().material.Lerp(Player.GetComponent<PlayerMovement>().defaultMaterial, 
+                                                          Player.GetComponent<PlayerMovement>().KOMaterial, TimeZone.DeltaTime(false)* 35.0f);
+      TimeZone.SetTimeScale(Mathf.Lerp(TimeZone.DeltaTime(), 0.00001f, TimeZone.DeltaTime(false)* 0.125f));
+      print(TimeZone.GetTimeScale());
+      
+      
+      
+      yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.25f));
+      
+    }
+    yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
+    Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 179, 0.1f);
+    yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
+        LevelGlobals.PlayerDown = true;
+        print("PDown");
   }
   
   public void HowToPlayOn()
@@ -337,7 +358,7 @@ public class HUDController : MonoBehaviour
   
   public void ReturnToTitle()
   {
-    //Application.LoadLevel("Title");
+    Application.LoadLevel("2_MainMenu");
   }
   
   public void MouseHover()

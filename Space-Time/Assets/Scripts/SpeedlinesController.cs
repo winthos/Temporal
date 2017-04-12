@@ -19,7 +19,7 @@ public class SpeedlinesController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (CameraController.GetPTime() == true)
+        if (CameraController.GetPTime() == true )
         {
             Speedlines.SetActive(false);
         }

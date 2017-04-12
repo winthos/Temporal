@@ -13,7 +13,7 @@ public class CentrePointMovement : MonoBehaviour
   
   [SerializeField]
   float MovementSpeed = 0.1f;
-  GameObject LevelGlobals;
+  GameObject tLevelGlobals;
   GameObject Camera;
   CameraController Camcontrol;
   GameObject Player;
@@ -31,17 +31,17 @@ public class CentrePointMovement : MonoBehaviour
   void Start () 
   {
     centrePoint = GetComponent<CentrePointMovement>();
-    LevelGlobals = GameObject.FindWithTag("Globals");
-    Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
+    tLevelGlobals = GameObject.FindWithTag("Globals");
+    Camera = tLevelGlobals.GetComponent<LevelGlobals>().Camera;
     Camcontrol = Camera.GetComponent<CameraController>();
-    Player = LevelGlobals.GetComponent<LevelGlobals>().Player;
+    Player = tLevelGlobals.GetComponent<LevelGlobals>().Player;
     DefaultFieldOfView = Camera.GetComponent<Camera>().fieldOfView;
   }
     
     // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused()  || Tutorial.TutorialOccuring)
+    if (PauseController.Paused()  || Tutorial.TutorialOccuring || LevelGlobals.PlayerDown || Player.GetComponent<Health>().health <= 0)
       return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {
@@ -58,7 +58,7 @@ public class CentrePointMovement : MonoBehaviour
         print("SpeedDown");
       }
       transform.position += transform.forward * GetTrueSpeed();
-      LevelGlobals.GetComponent<LevelGlobals>().Camera.transform.position += transform.forward * GetTrueSpeed();
+      tLevelGlobals.GetComponent<LevelGlobals>().Camera.transform.position += transform.forward * GetTrueSpeed();
       UpdateFieldOfView();
     
     }  
