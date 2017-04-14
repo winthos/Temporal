@@ -20,6 +20,7 @@ public class CentrePointMovement : MonoBehaviour
   [SerializeField]
   float StackGainMultiplier = 1.0f;
   
+  [SerializeField]
   float DefaultFieldOfView;
   [SerializeField]
   float SpedUpFieldOfView = 80;
@@ -35,7 +36,7 @@ public class CentrePointMovement : MonoBehaviour
     Camera = tLevelGlobals.GetComponent<LevelGlobals>().Camera;
     Camcontrol = Camera.GetComponent<CameraController>();
     Player = tLevelGlobals.GetComponent<LevelGlobals>().Player;
-    DefaultFieldOfView = Camera.GetComponent<Camera>().fieldOfView;
+    //DefaultFieldOfView = Camera.GetComponent<Camera>().fieldOfView;
   }
     
     // Update is called once per frame
@@ -74,6 +75,11 @@ public class CentrePointMovement : MonoBehaviour
   }
   
   
+  public bool IsSpeeding()
+  {
+    return SpeedUp;
+  }
+  
   
   public float GetTrueSpeed()
   {
@@ -82,6 +88,7 @@ public class CentrePointMovement : MonoBehaviour
   
   void UpdateFieldOfView()
   {
+    
     if (SpeedUp)
       Camera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(Camera.GetComponent<Camera>().fieldOfView, SpedUpFieldOfView, Time.time - SpeedTime);
     else

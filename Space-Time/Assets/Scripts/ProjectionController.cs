@@ -47,12 +47,13 @@ public class ProjectionController : MonoBehaviour
       {
         if (hit.collider.gameObject.tag == "Hazard")
         {
-          //renderer.material.SetColor("_Color", HazardColour);
+          renderer.material.SetColor("_Color", HazardColour);
+          
           HighlightTargetHazard(hit.distance);
         }
         else if (hit.collider.gameObject.tag == "Rift")
         {
-          //renderer.material.SetColor("_Color", RiftColour);
+          renderer.material.SetColor("_Color", RiftColour);
           HighlightTargetPickup(hit.distance);
         }
         

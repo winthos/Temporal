@@ -87,7 +87,10 @@ public class Scoring : MonoBehaviour
         {
             //TimeScore();
             //SpeedScore();
-            totalScore += TimeScore();
+            if (CentrePointMovement.centrePoint.IsSpeeding())
+              totalScore += TimeScore()*1.5f;
+            else
+              totalScore += TimeScore();
 
             scoreField.text = Mathf.Max(0, Mathf.RoundToInt(totalScore)).ToString();
             multiplierField.text = "" + pickupsCollected;
