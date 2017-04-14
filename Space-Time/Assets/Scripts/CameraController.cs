@@ -10,6 +10,7 @@ using System.Collections;
   //This controls stoptime-related things
 public class CameraController : MonoBehaviour 
 {
+  public static CameraController CameraControl;
     // For checking if the player has stopped time or not
   private static bool PTimeStop = false;
   
@@ -78,9 +79,13 @@ public class CameraController : MonoBehaviour
   bool smooth = false;
   float smoothTime = 5f;
   
+  bool Loading = true;
+  
   // Use this for initialization
   void Start () 
   {
+    CameraControl = GetComponent<CameraController>();
+    
     PTimeStopTimer = PTimeStopTime;
     defaultTimer = Time.time;
     DefaultCamRotation = transform.eulerAngles;
@@ -95,11 +100,14 @@ public class CameraController : MonoBehaviour
     CameraTargetRot = transform.localRotation;
     Distance = Vector3.Distance(transform.position, CentrePoint.transform.position);
     Cursor.visible = true;
+    StartCoroutine(ZoomIn());
+    
   }
   
   // Update is called once per frame
   void Update () 
   {
+    
     if (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown)
       return;
     
@@ -171,15 +179,16 @@ public class CameraController : MonoBehaviour
       }
       */
         //Get mouse movement to determine the new angle
-        
+        /*
       if (CameraMouseMovement)
       {
         if (Mathf.Abs(Input.GetAxis("Mouse X")) > minxMove )
-        x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/ * Distance /*camradius*/ * 0.02f;
-        print (Input.GetAxis("Mouse X"));
-        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
-        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
-      }
+        //x += Input.GetAxis("Mouse X") * xSpeed /*turnspeed*/// * Distance /*camradius*/ * 0.02f;
+        //print (Input.GetAxis("Mouse X"));
+        //if (Mathf.Abs(Input.GetAxis("Mouse Y")) > minyMove )
+        //y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+      //}
+      /*
       else
       {
         if (Input.GetKey(KeyCode.UpArrow))
@@ -212,16 +221,16 @@ public class CameraController : MonoBehaviour
       Quaternion Rotation = Quaternion.Euler(y, x, 0);
       
       Vector3 NegativeDistance = new Vector3(0.0f, 0.0f, -Distance);
-      Vector3 Pos = Rotation * NegativeDistance + CentrePoint.transform.position /*+ (CentrePoint.transform.up * 1.15f)*/;
+      Vector3 Pos = Rotation * NegativeDistance + CentrePoint.transform.position /*+ (CentrePoint.transform.up * 1.15f)*///;
       
       //transform.rotation = Rotation;
-      transform.rotation = Quaternion.Slerp(transform.localRotation, Rotation, (defaultTimer - lerpTime) *CamSnapSpeed); //1.5f
+      //transform.rotation = Quaternion.Slerp(transform.localRotation, Rotation, (defaultTimer - lerpTime) *CamSnapSpeed); //1.5f
       
       //transform.position = Pos;
-      transform.position = Vector3.Slerp(transform.position, Pos, (defaultTimer - lerpTime) *CamSnapSpeed);
+      //transform.position = Vector3.Slerp(transform.position, Pos, (defaultTimer - lerpTime) *CamSnapSpeed);
       
       
-      CentrePoint.transform.rotation = Rotation;
+      //CentrePoint.transform.rotation = Rotation;
       //CentrePoint.transform.rotation = Quaternion.Slerp(CentrePoint.transform.rotation, Rotation, TimeZone.DeltaTime(false)/2);
       
      
@@ -298,9 +307,10 @@ public class CameraController : MonoBehaviour
   
   public void ToggleTimeStop()
   {
+    
     //GameObject hudctrl = GameObject.FindWithTag("HUD");
     lerpTime = defaultTimer;
-    if (!PTimeStop)
+    if (!PTimeStop && PTimeStopTimer > 0.0f)
     {
         // if not in time stop, filter on
       //hudctrl.GetComponent<HUDController>().TimeSet(1);
@@ -321,11 +331,11 @@ public class CameraController : MonoBehaviour
       HUDController.HUDControl.TimeSet(-1);
       TimeMove = 1;
       //TimeZone.SetTimeScale(1.0f);
-      CentrePoint.transform.LookAt(CentrePoint.transform.position + transform.forward); 
+      //CentrePoint.transform.LookAt(CentrePoint.transform.position + transform.forward); 
       
       //transform.position += transform.up * 0.55f;
       //CamSnapBackDistance = transform.position + transform.up * 0.55f;
-       CamSnapBackDistance = transform.position + transform.up * 1.16f;
+       //CamSnapBackDistance = transform.position + transform.up * 1.16f;
     }
     else if (PTimeStopTimer <= 0.0)
     {
@@ -391,5 +401,34 @@ public class CameraController : MonoBehaviour
   public bool IsTimeTransitioning()
   {
     return transform.position != CamSnapBackDistance && CamSnapBackDistance != Vector3.zero;
+  }
+  
+  
+  public IEnumerator ZoomIn()
+  {
+    while(Camera.main.fieldOfView > 76 && Loading)
+    {
+      Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 75, 0.05f);
+      print(Camera.main.fieldOfView);
+      yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.0125f));
+      if (Camera.main.fieldOfView < 76)
+      {
+        Camera.main.fieldOfView = 75;
+        Loading = false;
+      }
+    }
+    
+    
+    
+  }
+  
+  public void StartGame()
+  {
+    if(!Loading)
+      return;
+    
+    Camera.main.fieldOfView = 75;
+    Loading = false;
+    print("fieldOfView!");
   }
 }
