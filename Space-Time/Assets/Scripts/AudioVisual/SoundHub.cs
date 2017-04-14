@@ -54,7 +54,7 @@ public class SoundHub : MonoBehaviour
     AudioClip timeBomb;
     AudioClip asteroidExplosion;
 
-    static public AudioSource source_bgm;
+    static public AudioSource source_bgm { get; set; }
 
     void Initialize()
     {
@@ -96,6 +96,12 @@ public class SoundHub : MonoBehaviour
     {
     }
 
+    /*
+    public static AudioSource GetBGMSource()
+    {
+        return source_bgm;
+    }
+    */
     /*
     public static void FireWeapon(GameObject _obj)
     {
