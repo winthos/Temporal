@@ -86,6 +86,16 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   AudioSource[] MenuSounds;
   
+  [SerializeField]
+  Image RiftImage;
+  
+  [SerializeField]
+  Color RiftImageColour;
+  
+  [SerializeField]
+  ParticleSystem RiftGetParticle;
+  
+  
   
   /*
   [SerializeField]
@@ -104,6 +114,7 @@ public class HUDController : MonoBehaviour
     HUDControl = GetComponent<HUDController>();
     independentTime = Time.time;
     PauseController.SetPause(false);
+    RiftImageColour = RiftImage.color;
   }
   
   // Update is called once per frame
@@ -257,6 +268,26 @@ public class HUDController : MonoBehaviour
     Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 179, 0.1f);
     yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
         LevelGlobals.PlayerDown = true;
+  }
+  
+  public IEnumerator RiftGet()
+  {
+    RiftGetParticle.Play();
+    while (RiftImage.color.a < 0.998)
+    {
+      RiftImage.color = Color.Lerp(RiftImage.color, RiftImageColour, 15.0f * Time.deltaTime);
+      yield return new WaitForSeconds(0.0125f);
+    }
+    
+    while (RiftImage.color.a > 0.001)
+    {
+      RiftImage.color = Color.Lerp(RiftImage.color, new Color(), 15.0f * Time.deltaTime);
+      yield return new WaitForSeconds(0.0125f);
+    }
+    
+    
+    
+    yield return new WaitForSeconds(1.0f);
   }
   
   public void HowToPlayOn()

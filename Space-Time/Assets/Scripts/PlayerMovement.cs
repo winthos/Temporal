@@ -266,6 +266,7 @@ public class PlayerMovement : MonoBehaviour
       Destroy(other.gameObject);
       SoundHub.PlayPickup();
       Scoring.pickupsCollected += 1;
+      StartCoroutine(HUDController.HUDControl.RiftGet());
     }
     else if (other.gameObject.tag == "Hazard")
     {
