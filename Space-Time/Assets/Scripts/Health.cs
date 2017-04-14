@@ -27,6 +27,8 @@ public class Health : MonoBehaviour
 
   [SerializeField]
   GameObject DamageFlash;
+
+    private bool playDeathSoundOnce = true;
  
   public int health
   {
@@ -45,14 +47,17 @@ public class Health : MonoBehaviour
     // Update is called once per frame
   void Update ()
   {
-    if (Boom && !PauseController.Paused() && !Tutorial.TutorialOccuring)
+    if (Boom && !LevelGlobals.PlayerDown && !Tutorial.TutorialOccuring)
     {
       if (gameObject.tag == "Player")
       {
-        gameObject.GetComponent<Renderer>().material.Lerp(GetComponent<PlayerMovement>().defaultMaterial, 
-                                                          GetComponent<PlayerMovement>().KOMaterial, TimeZone.DeltaTime(false)* 50.0f);
-        TimeZone.SetTimeScale(Mathf.Lerp(TimeZone.DeltaTime(), 0.0000000001f, TimeZone.DeltaTime(false)* 15.0f));
-        PauseController.SetPause(true);
+        StartCoroutine(HUDController.HUDControl.PlayerDestroyed());
+          if(playDeathSoundOnce)
+          { 
+            StartCoroutine(SoundHub.PlayPlayerDeath());
+            playDeathSoundOnce = false;
+          }
+		//do a coroutine here to wait before triggering the lose screen
       }
       else
         Destroy(gameObject);
@@ -61,11 +66,11 @@ public class Health : MonoBehaviour
     
   }
   
-  public void DecrementHealth()
+  public void DecrementHealth(int dmg = 1)
   {
     if ((gameObject.tag == "Player" && LevelGlobals.Debugging) || hp <= 0)
       return;
-    hp--;
+    hp-= dmg;
     if (gameObject.tag == "Player")
       StartCoroutine(Flash());
     if (hp <= 0 && ! CoroutineProcessing && DestroyAtZero)
@@ -74,8 +79,8 @@ public class Health : MonoBehaviour
       
       if (CreateOnDeath != null && CreateOnDeath.Length > 0)
       {
-        Instantiate(CreateOnDeath[0], transform.position, Quaternion.identity);
-        
+        GameObject create = (GameObject)Instantiate(CreateOnDeath[0], transform.position, Quaternion.identity);
+        create.transform.parent = transform;
         /*
         GameObject create;
         for (int i = 0; i < CreateOnDeath.Length; i++)
@@ -96,7 +101,6 @@ public class Health : MonoBehaviour
       if(gameObject.tag == "Player")
       {
         //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
-        SoundHub.PlayPlayerDeath();
         DamageFlash.SetActive(false);
       }
       
@@ -117,6 +121,7 @@ public class Health : MonoBehaviour
 
   IEnumerator Flash()
   {
+    SoundHub.PlayPlayerDamaged();
     DamageFlash.SetActive(true);
     yield return new WaitForSeconds(0.5f);
     DamageFlash.SetActive(false);

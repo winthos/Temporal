@@ -1,6 +1,6 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Jordan Yong
-//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+//  Authors: Jordan Yong
+//  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 
 using UnityEngine;
@@ -21,8 +21,12 @@ public class HUDController : MonoBehaviour
   
   [SerializeField]
   GameObject[] HealthBarPlayer;
+  
   [SerializeField]
   GameObject SpeedStacksPlayer;
+  
+  [SerializeField]
+  GameObject RiftCount;
   
   [SerializeField]
   GameObject Player;
@@ -41,6 +45,9 @@ public class HUDController : MonoBehaviour
   
   [SerializeField]
   GameObject DestructiveActionScreen;
+  
+  [SerializeField]
+  GameObject RestartActionScreen;
   /*
   [SerializeField]
   GameObject HTPButton;
@@ -58,6 +65,11 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject LoseScreen;
   
+  [SerializeField]
+  GameObject OptionsScreen;
+  
+  [SerializeField]
+  GameObject CreditsScreen;
   
   [SerializeField]
   GameObject DebugText;
@@ -71,6 +83,9 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject TimePassed;
   
+  [SerializeField]
+  AudioSource[] MenuSounds;
+  
   
   /*
   [SerializeField]
@@ -81,30 +96,31 @@ public class HUDController : MonoBehaviour
   float independentTime;
   float startTime = 0.0f;
   
-	// Use this for initialization
+  // Use this for initialization
   
   
-	void Start () 
+  void Start () 
   {
     HUDControl = GetComponent<HUDController>();
     independentTime = Time.time;
     PauseController.SetPause(false);
-	}
-	
-	// Update is called once per frame
-	void Update () 
+  }
+  
+  // Update is called once per frame
+  void Update () 
   {
     if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
     {
       PauseController.TogglePause();
       if (!PauseController.Paused())
-	  {
-		DefaultPauseOn();
-	  }
-    }
-    if (Player.GetComponent<Health>().health <= 0 && PauseController.Paused())
     {
-      Cursor.lockState = CursorLockMode.None;
+    DefaultPauseOn();
+    }
+    }
+    if (Player.GetComponent<Health>().health <= 0 && LevelGlobals.PlayerDown)
+    {
+      //Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
       LoseScreen.SetActive(true);
       return;
     }
@@ -112,14 +128,16 @@ public class HUDController : MonoBehaviour
     {
       //print("Currently paused");
       PauseBlock.SetActive(true);
-      Cursor.lockState = CursorLockMode.None;
+      //Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
       return;
     }
     else
     {
       DefaultPauseScreen.SetActive(true);
       PauseBlock.SetActive(false);
-      Cursor.lockState = CursorLockMode.Locked;
+      //sCursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
     }
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
@@ -127,8 +145,8 @@ public class HUDController : MonoBehaviour
     SpeedUpdate();
     TimeAlter();
     OtherUpdate();
-    
-	}
+    RiftUpdate();
+  }
   
   public void HealthBarUpdate()
   {
@@ -162,6 +180,11 @@ public class HUDController : MonoBehaviour
   public void SpeedUpdate()
   {
     //SpeedStacksPlayer.GetComponent<Text>().text = Player.GetComponent<PlayerMovement>().SpeedStacks.ToString();
+  }
+  
+  public void RiftUpdate()
+  {
+    //RiftCount.GetComponent<Text>().text = "x" + PlayerMovement.pMove.SpeedStacks;
   }
   
   public void TimeAlter()
@@ -216,11 +239,35 @@ public class HUDController : MonoBehaviour
     //Score.GetComponent<Text>().text = 
   }
   
+  public IEnumerator PlayerDestroyed()
+  {
+    while (TimeZone.GetTimeScale() > 0.0500f )
+    {
+      Player.GetComponent<MeshRenderer>().material.Lerp(Player.GetComponent<PlayerMovement>().defaultMaterial, 
+                                                          Player.GetComponent<PlayerMovement>().KOMaterial, TimeZone.DeltaTime(false)* 35.0f);
+      TimeZone.SetTimeScale(Mathf.Lerp(TimeZone.DeltaTime(), 0.00001f, TimeZone.DeltaTime(false)* 0.125f));
+      print(TimeZone.GetTimeScale());
+      
+      
+      
+      yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.25f));
+      
+    }
+    yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
+    Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 179, 0.1f);
+    yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
+        LevelGlobals.PlayerDown = true;
+  }
+  
   public void HowToPlayOn()
   {
     HTPScreen.SetActive(true);
     DefaultPauseScreen.SetActive(false);
     DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
   }
   
   public void Resume()
@@ -228,8 +275,12 @@ public class HUDController : MonoBehaviour
     //DefaultPauseScreen.SetActive(true);
     HTPScreen.SetActive(false);
     PauseController.SetPause(false);
+    DestructiveActionScreen.SetActive(false);
     print("BUTTON CLICKED");
-    
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
   }
   
   public void DefaultPauseOn()
@@ -237,6 +288,10 @@ public class HUDController : MonoBehaviour
     HTPScreen.SetActive(false);
     DefaultPauseScreen.SetActive(true);
     DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
   }
   
   public void DestructiveActionOn()
@@ -244,6 +299,21 @@ public class HUDController : MonoBehaviour
     HTPScreen.SetActive(false);
     DefaultPauseScreen.SetActive(false);
     DestructiveActionScreen.SetActive(true);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
+  }
+  
+  public void RestartActionOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(true);
+    MenuSounds[1].Play();
   }
   
   public void Retry()
@@ -253,16 +323,49 @@ public class HUDController : MonoBehaviour
     HTPScreen.SetActive(false);
     DefaultPauseScreen.SetActive(false);
     LoseScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
     LevelGlobals.calcHighScores();
     EnemySpawner.ResetOccupancies();
-
+    MenuSounds[1].Play();
+    LevelGlobals.PlayerDown = false;
+    print(LevelGlobals.PlayerDown);
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    
     //do other retry things
+  }
+  
+  public void OptionsOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(true);
+    CreditsScreen.SetActive(false);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
+  }
+  
+  public void CreditsOn()
+  {
+    HTPScreen.SetActive(false);
+    DefaultPauseScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
+    OptionsScreen.SetActive(false);
+    CreditsScreen.SetActive(true);
+    RestartActionScreen.SetActive(false);
+    MenuSounds[1].Play();
   }
   
   public void ReturnToTitle()
   {
-    //Application.LoadLevel("Title");
+    SceneManager.LoadScene("2_MainMenu");
+  }
+  
+  public void MouseHover()
+  {
+    MenuSounds[0].Play();
   }
   
   public void Quit()

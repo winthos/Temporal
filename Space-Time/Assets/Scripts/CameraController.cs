@@ -94,12 +94,13 @@ public class CameraController : MonoBehaviour
     CharacterTargetRot = CentrePoint.transform.localRotation;
     CameraTargetRot = transform.localRotation;
     Distance = Vector3.Distance(transform.position, CentrePoint.transform.position);
+    Cursor.visible = true;
   }
   
   // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3))
+    if (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown)
       return;
     
     defaultTimer += TimeZone.DeltaTime(false);

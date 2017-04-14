@@ -26,6 +26,7 @@ public class FadeTransition : MonoBehaviour
     KeyCode userInAlt = KeyCode.None;
 
     CanvasGroup group;
+    Coroutine currentCoroutine;
 
     void Awake()
     {
@@ -36,7 +37,7 @@ public class FadeTransition : MonoBehaviour
     void Start()
     {
         if (fadeIn)
-            StartCoroutine(FadeIn());
+            currentCoroutine = StartCoroutine(FadeIn());
         else
             ShowScreen();
     }
@@ -45,10 +46,10 @@ public class FadeTransition : MonoBehaviour
     {
         if (UseKeyInput)
         {
-            if (Input.GetKeyUp(userIn) || Input.GetKeyUp(userInAlt))
+            if (Input.GetKeyUp(userIn) || Input.GetKeyUp(userInAlt) || Input.anyKey || Input.GetMouseButtonDown(0))
             {
                 LoadNextScene = true;
-                StartCoroutine(FadeOut());
+                QuickLoadNextScreen();
             }
         }
     }
@@ -65,7 +66,7 @@ public class FadeTransition : MonoBehaviour
             }
         }
 
-        StartCoroutine(ShowScreen());
+        currentCoroutine = StartCoroutine(ShowScreen());
     }
 
 
@@ -98,12 +99,12 @@ public class FadeTransition : MonoBehaviour
 
     public float CallFadein()
     {
-        StartCoroutine(FadeIn());
+        currentCoroutine = StartCoroutine(FadeIn());
         return fadeInTime;
     }
     public float CallFadeout()
     {
-        StartCoroutine(FadeOut());
+        currentCoroutine = StartCoroutine(FadeOut());
         return fadeOutTime;
     }
 
@@ -115,8 +116,14 @@ public class FadeTransition : MonoBehaviour
 
     public void LoadAScene(string _sceneName)
     {
-        StartCoroutine(FadeOut());
+        currentCoroutine = StartCoroutine(FadeOut());
         SceneManager.LoadScene(_sceneName);
+    }
+
+    public void QuickLoadNextScreen()
+    {
+        StopCoroutine(currentCoroutine);
+        LoadTheScene();
     }
 
     /*

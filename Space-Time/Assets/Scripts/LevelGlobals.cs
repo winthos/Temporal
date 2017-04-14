@@ -8,6 +8,7 @@ using System.Collections;
 
 public class LevelGlobals : MonoBehaviour 
 {
+  
   public GameObject Player;
   public GameObject CentrePoint;
   public GameObject Camera;
@@ -25,6 +26,8 @@ public class LevelGlobals : MonoBehaviour
   [SerializeField]
   GameObject SpeedLines;
   
+  public static bool PlayerDown;
+  
   
 
 	// Use this for initialization
@@ -36,7 +39,8 @@ public class LevelGlobals : MonoBehaviour
     Camera = GameObject.FindWithTag("MainCamera");
     Player = GameObject.FindWithTag("Player");
     CentrePoint = GameObject.FindWithTag("Centrepoint");
-    Cursor.lockState = CursorLockMode.Locked;
+    //Cursor.lockState = CursorLockMode.Locked;
+    PlayerDown = false;
 	}
 	
 	// Update is called once per frame
@@ -55,6 +59,8 @@ public class LevelGlobals : MonoBehaviour
     }
     if (Input.GetKeyDown("k"))
       Debugging = !Debugging;
+    if (Input.GetKeyDown("l"))
+      Player.GetComponent<Health>().DecrementHealth(20);
     //if (Input.GetKey("escape"))
             //Application.Quit();
     if (PauseController.Paused() || CameraController.GetPTime() || Tutorial.TutorialOccuring)

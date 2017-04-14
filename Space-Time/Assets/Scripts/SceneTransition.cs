@@ -32,6 +32,8 @@ public class SceneTransition : MonoBehaviour
       GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, Color.black, Time.deltaTime * 2.0f);
     
     }
+    if (Input.anyKey || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+      Application.LoadLevel(ToLoad);
 	}
   
   IEnumerator FadeIn()
