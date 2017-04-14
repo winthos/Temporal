@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/1_TeamLogo.unity
+- path: Assets/scene1.unity
   isLoaded: 1
   isActive: 1

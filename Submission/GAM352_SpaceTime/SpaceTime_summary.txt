@@ -1,0 +1,8 @@
+Space/Time (Endless Runner/Flyer, Action)
+
+Space/Time is an endless space flyer where players must gather pickups and dodge
+hazards using their unique Time-Stopping ability.
+
+Jordan Yong - Tech Lead, Designer, Gameplay Programmer
+Kaila Harris - Producer, Audio Implementation, Designer
+Winson Han - Game Director, Audio Composition, Designer
