@@ -40,14 +40,14 @@ public class BarVisulization : MonoBehaviour
         visualsCanvas.transform.position = new Vector3(0, -5, -2);
         visualsCanvas.transform.Rotate(new Vector3(8.331f, 0, 0));
 
-        visualsCanvas.gameObject.transform.SetParent(GameObject.Find("Bruh").transform);
+        visualsCanvas.gameObject.transform.SetParent(GameObject.Find("Main Camera").transform);
     }
 
     void Update ()
     {
         //if(PauseController.Paused())
             Visualization(source, 1024, 40, 30);
-        print(visualsCanvas.transform.rotation);
+        //print(visualsCanvas.transform.rotation);
     }
 
     void Visualization(AudioSource _source, int _sampleNumber, float _sampleMultiplier, float _timeMultiplier)

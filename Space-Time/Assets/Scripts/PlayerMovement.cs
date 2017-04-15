@@ -267,6 +267,8 @@ public class PlayerMovement : MonoBehaviour
       SoundHub.PlayPickup();
       Scoring.pickupsCollected += 1;
       StartCoroutine(HUDController.HUDControl.RiftGet());
+      HUDStageController.HUDstage.PulsePickups();
+      HUDStageController.HUDstage.UpdateStages(SpeedStacks);
     }
     else if (other.gameObject.tag == "Hazard")
     {
@@ -274,6 +276,7 @@ public class PlayerMovement : MonoBehaviour
       GetComponent<Health>().DecrementHealth();
       
       SoundHub.PlayAsteroidExplosion();
+      HUDStageController.HUDstage.PulseHealth();
 
       if(PlayerTookDamageExplosion.GetComponent<ParticleSystem>().isPlaying == true)
       {
