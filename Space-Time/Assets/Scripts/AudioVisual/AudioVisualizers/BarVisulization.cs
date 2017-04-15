@@ -62,4 +62,9 @@ public class BarVisulization : MonoBehaviour
             bars2[i].GetComponent<SpriteRenderer>().transform.localScale = new Vector3(samples[i] * widthMultiplier, heightScale, 1);
         }
 	}
+
+    public void OnDestroy()
+    {
+        Destroy(visualsCanvas);
+    }
 }

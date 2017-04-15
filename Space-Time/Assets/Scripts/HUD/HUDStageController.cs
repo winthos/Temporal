@@ -64,7 +64,7 @@ public class HUDStageController : MonoBehaviour
     }
 
 
-    void CreatePulses()
+    public void CreatePulses()
     {
         if (pulseItems.Count != 0)
         {
@@ -84,37 +84,19 @@ public class HUDStageController : MonoBehaviour
     {
         GameObject.Find("MultiplierImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
     }
-
     public void PulseTopRight()
     {
         GameObject.Find("ScoreImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
     }
-
+    public void PulseTopLeft()
+    {
+        GameObject.Find("SpeedImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
     public void PulseTime()
     {
         GameObject.Find("TimeOutline").GetComponent<ElementPulse>().CreatePulse(3);
     }
-
-    public void PulseTopRight()
-    {
-        GameObject.Find("SpeedImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
-    }
-
-    /*
-    void RiftStages(int _rifts)
-    {
-        if (_rifts == 1)
-            currentStage = 1;
-        else if (_rifts == 3)
-            currentStage = 2;
-        else if (_rifts == 5)
-            currentStage = 3;
-        else if (_rifts >= 6)
-            currentStage = 4;
-        else
-            currentStage = 0;
-    }
-    */
+    
 
     public void UpdateStages(int _rifts)
     {
@@ -128,22 +110,7 @@ public class HUDStageController : MonoBehaviour
             currentStage = 1;
         if (_rifts < 5)
             currentStage = 0;
-
-
-        /*
-        if (_rifts < 5)
-            currentStage = 0;
-        else if (_rifts == 5)
-            currentStage = 1;
-        else if (_rifts == 10)
-            currentStage = 2;
-        else if (_rifts == 15)
-            currentStage = 3;
-        else if (_rifts >= 20)
-            currentStage = 4;
-            */
-        /*else
-            currentStage = 0;*/
+        
         print(currentStage);
 
         if (currentStage != previousStage || currentStage >= 3)

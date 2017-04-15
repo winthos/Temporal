@@ -38,7 +38,7 @@ public class SoundHub : MonoBehaviour
     AudioClip ui_select;
     AudioClip ui_hover;
 
-    AudioClip bgm;
+    public AudioClip bgm;
 
     List<AudioClip> moveDirection;
 
@@ -46,7 +46,7 @@ public class SoundHub : MonoBehaviour
     AudioClip timeResume;
     AudioClip timeWobble;
     AudioClip tickingClock;
-    
+
     AudioClip playerDamage;
     AudioClip playerDeath;
     AudioClip pickupRift;
@@ -60,12 +60,13 @@ public class SoundHub : MonoBehaviour
     {
         // programatically load audio clips
         //sound = Resources.Load<AudioClip>(path);
-        logoScreen  = Resources.Load<AudioClip>("Sound/bgm/Intro_Splashscreen");
-        ui_select   = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
-        ui_hover    = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
+        logoScreen = Resources.Load<AudioClip>("Sound/bgm/Intro_Splashscreen");
+        ui_select = Resources.Load<AudioClip>("Sound/ui/Menu_Select");
+        ui_hover = Resources.Load<AudioClip>("Sound/ui/Menu_Hover");
 
         //bgm = Resources.Load<AudioClip>("Sound/bgm/Space-Time_a.groves_StylePiece");
-        bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
+        if (bgm == null)
+            bgm = Resources.Load<AudioClip>("Sound/SpaceTime");
 
         moveDirection = new List<AudioClip>();
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_01"));
@@ -74,10 +75,10 @@ public class SoundHub : MonoBehaviour
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_04"));
         moveDirection.Add(Resources.Load<AudioClip>("Sound/sfx/Direction_Change_05"));
 
-        timeStop        = Resources.Load<AudioClip>("Sound/sfx/TimeSlowsSound");
-        timeResume      = Resources.Load<AudioClip>("Sound/sfx/TimeSpeedsUpSound");
-        timeWobble      = Resources.Load<AudioClip>("Sound/sfx/boopsound");
-        tickingClock    = Resources.Load<AudioClip>("Sound/sfx/persistantClockTick");
+        timeStop = Resources.Load<AudioClip>("Sound/sfx/TimeSlowsSound");
+        timeResume = Resources.Load<AudioClip>("Sound/sfx/TimeSpeedsUpSound");
+        timeWobble = Resources.Load<AudioClip>("Sound/sfx/boopsound");
+        tickingClock = Resources.Load<AudioClip>("Sound/sfx/persistantClockTick");
 
         playerDamage = Resources.Load<AudioClip>("Sound/sfx/Sinematic - Complex Tech Hits -04");
         playerDeath = Resources.Load<AudioClip>("Sound/sfx/EndSoundEffect");
@@ -108,6 +109,12 @@ public class SoundHub : MonoBehaviour
         AudioVisualManager.PlaySFX(GetInstance().gunshot, _obj, 1);
     }
     */
+    /*
+        public static void PlayBackgroundAudio()
+        {
+            source_bgm = null;
+            source_bgm = AudioVisualManager.PlayBGM(GetInstance().bgm, false, 0, -0.3f);
+        }*/
 
     public static void PlaySplashScreenAudio()
     {
@@ -152,7 +159,7 @@ public class SoundHub : MonoBehaviour
 
     public static void PlayerMoves(GameObject _obj)
     {
-        AudioVisualManager.PlaySFXRandomized(GetInstance().moveDirection[0], null, 0, +0.3f,0.8f,1.3f);
+        AudioVisualManager.PlaySFXRandomized(GetInstance().moveDirection[0], null, 0, +0.3f, 0.8f, 1.3f);
         //AudioVisualManager.PlaySFXRandomizedFromList(GetInstance().moveDirection, _obj, 1);
     }
 
@@ -235,7 +242,7 @@ public class SoundHub : MonoBehaviour
     //enemy charging
     //enemy fires
     // collide with asteroids
-    
+
 
     public void ResetAllAudio()
     {
