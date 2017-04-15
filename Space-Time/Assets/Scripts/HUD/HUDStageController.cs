@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Kaila Harris
+//	Authors: Kaila Harris, and Winson a little bit
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
@@ -26,6 +26,8 @@ public class HUDStageController : MonoBehaviour
     public static int previousStage = 0;
     //public int nextStage = 0;
 
+    private float TimeBetweenPulsesKailaYouMadeMeDoThis = 0.005f;
+
     private void Awake()
     {
         HUDstage = GetComponent<HUDStageController>();
@@ -50,6 +52,23 @@ public class HUDStageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //WINSON WAS HERE, In case... you didn't realize it... yeah
+        if(CameraController.GetPTime() == true)
+        {
+            if(TimeBetweenPulsesKailaYouMadeMeDoThis > 0)
+            {
+                TimeBetweenPulsesKailaYouMadeMeDoThis -= Time.deltaTime;
+                
+            }
+
+            if(TimeBetweenPulsesKailaYouMadeMeDoThis <= 0)
+            {
+                HUDStageController.HUDstage.PulseTime();
+                TimeBetweenPulsesKailaYouMadeMeDoThis = 0.005f;
+            }
+
+        }
+        //winson has left the building
 
         if (!PauseController.Paused())
         {
@@ -100,15 +119,15 @@ public class HUDStageController : MonoBehaviour
 
     public void UpdateStages(int _rifts)
     {
-        if(_rifts >=20)
+        if(_rifts >= 30)
             currentStage = 4;
-        if (_rifts < 20)
+        if (_rifts < 30)
             currentStage = 3;
-        if (_rifts < 15)
+        if (_rifts < 25)
             currentStage = 2;
-        if (_rifts < 10)
+        if (_rifts < 20)
             currentStage = 1;
-        if (_rifts < 5)
+        if (_rifts < 10)
             currentStage = 0;
         
         print(currentStage);
