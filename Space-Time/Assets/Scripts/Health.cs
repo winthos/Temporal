@@ -102,6 +102,7 @@ public class Health : MonoBehaviour
       {
         //AkSoundEngine.PostEvent("event_playerDeath", this.gameObject);
         DamageFlash.SetActive(false);
+        HUDStageController.HUDstage.CreatePulses();
       }
       
       
