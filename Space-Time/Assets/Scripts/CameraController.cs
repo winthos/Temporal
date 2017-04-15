@@ -409,7 +409,7 @@ public class CameraController : MonoBehaviour
     while(Camera.main.fieldOfView > 76 && Loading)
     {
       Camera.main.fieldOfView =  Mathf.Lerp(Camera.main.fieldOfView, 75, 0.05f);
-      print(Camera.main.fieldOfView);
+      //print(Camera.main.fieldOfView);
       yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.0125f));
       if (Camera.main.fieldOfView < 76)
       {

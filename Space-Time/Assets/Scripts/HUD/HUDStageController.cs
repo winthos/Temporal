@@ -13,7 +13,7 @@ public class HUDStageController : MonoBehaviour
     public static HUDStageController HUDstage;
 
     public bool TestModeOn = false;
-    
+
     List<GameObject> stage0 = new List<GameObject>();
     List<GameObject> stage1 = new List<GameObject>();
     List<GameObject> stage2 = new List<GameObject>();
@@ -23,7 +23,8 @@ public class HUDStageController : MonoBehaviour
     List<GameObject> pulseItems = new List<GameObject>();
 
     public static int currentStage = 0;
-    public int nextStage = 0;
+    public static int previousStage = 0;
+    //public int nextStage = 0;
 
     private void Awake()
     {
@@ -31,23 +32,23 @@ public class HUDStageController : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         currentStage = 0;
-        nextStage = 0;
+        previousStage = 0;
 
         stage0 = GameObject.FindGameObjectsWithTag("stage0").ToList<GameObject>();
         stage1 = GameObject.FindGameObjectsWithTag("stage1").ToList<GameObject>();
         stage2 = GameObject.FindGameObjectsWithTag("stage2").ToList<GameObject>();
         stage3 = GameObject.FindGameObjectsWithTag("stage3").ToList<GameObject>();
-        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();  
+        stage4 = GameObject.FindGameObjectsWithTag("stage4").ToList<GameObject>();
 
         pulseItems = GameObject.FindGameObjectsWithTag("pulse").ToList<GameObject>();
     }
 
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 
         if (!PauseController.Paused())
@@ -57,35 +58,13 @@ public class HUDStageController : MonoBehaviour
 
             //RiftStages(Scoring.pickupsCollected);
 
-            if (currentStage != nextStage)
-                StartCoroutine(UpdateStages());
+            //if (currentStage != nextStage)
+                //StartCoroutine(UpdateStages());
         }
     }
 
-    void RiftStages(int _rifts)
-    {
-        if (_rifts == 1)
-            currentStage = 1;
-        else if (_rifts == 3)
-            currentStage = 2;
-        else if (_rifts == 5)
-            currentStage = 3;
-        else if (_rifts >= 6)
-            currentStage = 4;
-        else
-            currentStage = 0;
-    }
 
-    IEnumerator UpdateStages()
-    {
-        currentStage = nextStage;
-        StageUp(currentStage);
-       
-        yield return 0;
-    }
-
-
-    void CreatePulses()
+    public void CreatePulses()
     {
         if (pulseItems.Count != 0)
         {
@@ -97,25 +76,55 @@ public class HUDStageController : MonoBehaviour
         }
     }
 
-    public void StageElements(List<GameObject> _list, bool _elementsActive)
+    public void PulseHealth()
     {
-        if (_elementsActive)
-        {
-            foreach (GameObject o in _list)
-                o.SetActive(true);
-        }
-        else
-        {
-            foreach (GameObject o in _list)
-                o.SetActive(false);
-        }
+        GameObject.Find("Health_outline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
+    public void PulsePickups()
+    {
+        GameObject.Find("MultiplierImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
+    public void PulseTopRight()
+    {
+        GameObject.Find("ScoreImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
+    public void PulseTopLeft()
+    {
+        GameObject.Find("SpeedImg_outline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
+    public void PulseTime()
+    {
+        GameObject.Find("TimeOutline").GetComponent<ElementPulse>().CreatePulse(3);
+    }
+    
+
+    public void UpdateStages(int _rifts)
+    {
+        if(_rifts >=20)
+            currentStage = 4;
+        if (_rifts < 20)
+            currentStage = 3;
+        if (_rifts < 15)
+            currentStage = 2;
+        if (_rifts < 10)
+            currentStage = 1;
+        if (_rifts < 5)
+            currentStage = 0;
+        
+        print(currentStage);
+
+        if (currentStage != previousStage || currentStage >= 3)
+            StageUp(currentStage);
+
+        previousStage = currentStage;
+
     }
 
 
     public void StageUp(int _stage)
     {
         CreatePulses();
-        SoundHub.PlayStageChange();
+        //SoundHub.PlayStageChange();
         
         switch (_stage)
         {
@@ -137,7 +146,7 @@ public class HUDStageController : MonoBehaviour
             default:
                 break;
         }
-
+        /*
         switch (_stage)
         {
             case 0:
@@ -157,9 +166,25 @@ public class HUDStageController : MonoBehaviour
                 break;
             default:
                 break;
-
+                
+        }
+        */
+    }
+    
+    public void StageElements(List<GameObject> _list, bool _elementsActive)
+    {
+        if (_elementsActive)
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(true);
+        }
+        else
+        {
+            foreach (GameObject o in _list)
+                o.SetActive(false);
         }
     }
+
 
     //show all guidance
     void Stage0(bool _visibile = true)
@@ -226,15 +251,15 @@ public class HUDStageController : MonoBehaviour
     void Testing()
     {
         if (Input.GetKeyUp(KeyCode.Alpha5))
-            nextStage = 0;
+            currentStage = 0;
         else if (Input.GetKeyUp(KeyCode.Alpha1))
-            nextStage = 1;
+            currentStage = 1;
         else if (Input.GetKeyUp(KeyCode.Alpha2))
-            nextStage = 2;
+            currentStage = 2;
         else if (Input.GetKeyUp(KeyCode.Alpha3))
-            nextStage = 3;
+            currentStage = 3;
         else if (Input.GetKeyUp(KeyCode.Alpha4))
-            nextStage = 4;
+            currentStage = 4;
     }
 
 }
