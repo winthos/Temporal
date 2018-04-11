@@ -4,39 +4,63 @@ using UnityEngine.UI;
 
 public class MenuButton : MonoBehaviour
 {
+    //public Button btn;
+    public Image btnImg;
+    public Text btnTxt;
+
+    [Space()]
+
     public Sprite defaultSprite;
     public Sprite selectedSprite;
-    public Color defaultColor;
-    public Color selectedColor;
 
-    private Button btn;
-    private Image img;
+    [Space()]
+    public string nextScene;
+
+    [HideInInspector]
+    public Color defaultColor;
+    //public Color selectedColor;
+    //public Color clickedColor;
+    
 
     void Awake()
     {
-        btn = GetComponent<Button>();
-        img = GetComponent<Image>();
+        //btn = GetComponent<Button>();
     }
 
     // Use this for initialization
     void Start()
     {
-        btn.OnPointerEnter(MouseOver());
-
-        img.sprite = defaultSprite;
-        img.color = defaultColor;
+        defaultColor = btnTxt.color;
+        UseDefaults();
     }
 
-    private void MouseOver()
+    public void UseDefaults()
     {
-        img.sprite = selectedSprite;
-        img.color = selectedColor;
-        Debug.Log("hover");
+        btnImg.sprite = defaultSprite;
+        btnImg.color = defaultColor;
+        btnTxt.color = defaultColor;
+
+        this.transform.localScale = new Vector3(1, 1, 1);
     }
 
-    private void OnMouseExit()
+    public void UseHover()
     {
-        img.sprite = defaultSprite;
-        img.color = defaultColor;
+        btnImg.sprite = selectedSprite;
+        btnImg.color = Color.white;
+        btnTxt.color = Color.black;
+        
+        this.transform.localScale = new Vector3(1.18f, 1.18f, 1.18f);
+
+        //Debug.Log("hover");
+    }
+
+    public void UseClick()
+    {
+        StartCoroutine(FlashColors());
+    }
+
+    public IEnumerator FlashColors()
+    {
+        return null;
     }
 }
