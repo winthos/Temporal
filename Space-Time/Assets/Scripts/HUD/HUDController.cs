@@ -1,5 +1,6 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //  Authors: Jordan Yong
+//  Edits: Kaila Harris
 //  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -38,10 +39,10 @@ public class HUDController : MonoBehaviour
   GameObject TimeStopFilter;
   
   [SerializeField]
-  GameObject PauseBlock;
+  GameObject PauseScreen;
   
-  [SerializeField]
-  GameObject DefaultPauseScreen;
+  //[SerializeField]
+  //GameObject DefaultPauseScreen;
   
   [SerializeField]
   GameObject DestructiveActionScreen;
@@ -63,25 +64,25 @@ public class HUDController : MonoBehaviour
   GameObject HTPScreen;
   
   [SerializeField]
-  GameObject LoseScreen;
+  GameObject RetryScreen;
   
-  [SerializeField]
-  GameObject OptionsScreen;
+  //[SerializeField]
+  //GameObject OptionsScreen;
   
-  [SerializeField]
-  GameObject CreditsScreen;
+  //[SerializeField]
+  //GameObject CreditsScreen;
   
   [SerializeField]
   GameObject DebugText;
   
-  [SerializeField]
-  GameObject DistTraveled;
+  //[SerializeField]
+  //GameObject DistTraveled;
   
   //[SerializeField]
   //GameObject Score;
   
-  [SerializeField]
-  GameObject TimePassed;
+  //[SerializeField]
+  //GameObject TimePassed;
   
   [SerializeField]
   AudioSource[] MenuSounds;
@@ -106,16 +107,21 @@ public class HUDController : MonoBehaviour
   float independentTime;
   float startTime = 0.0f;
   
-  // Use this for initialization
-  
   
   void Start () 
   {
-    HUDControl = GetComponent<HUDController>();
+    HUDControl = this;
     independentTime = Time.time;
     PauseController.SetPause(false);
     RiftImageColour = RiftImage.color;
-  }
+        
+    DisableCanvas(PauseScreen);
+    DisableCanvas(HTPScreen);
+    DisableCanvas(RetryScreen);
+    DisableCanvas(DestructiveActionScreen);
+    DisableCanvas(RestartActionScreen);
+        
+    }
   
   // Update is called once per frame
   void Update () 
@@ -132,27 +138,27 @@ public class HUDController : MonoBehaviour
     {
       //Cursor.lockState = CursorLockMode.None;
       Cursor.visible = true;
-      LoseScreen.SetActive(true);
+      RetryScreen.SetActive(true);
       return;
     }
     else if (PauseController.Paused())
     {
       //print("Currently paused");
-      PauseBlock.SetActive(true);
+      PauseScreen.SetActive(true);
       //Cursor.lockState = CursorLockMode.None;
       Cursor.visible = true;
       return;
     }
     else
     {
-      DefaultPauseScreen.SetActive(true);
-      PauseBlock.SetActive(false);
+      //DefaultPauseScreen.SetActive(true);
+      PauseScreen.SetActive(false);
       //sCursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
     }
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
-    TimeBarUpdate();
+    if(TimeBarPlayer != null) TimeBarUpdate();
     SpeedUpdate();
     TimeAlter();
     OtherUpdate();
@@ -292,71 +298,68 @@ public class HUDController : MonoBehaviour
   
   public void HowToPlayOn()
   {
+    PauseScreen.SetActive(false);
     HTPScreen.SetActive(true);
-    DefaultPauseScreen.SetActive(false);
+    RetryScreen.SetActive(false);
     DestructiveActionScreen.SetActive(false);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
     RestartActionScreen.SetActive(false);
+
     MenuSounds[1].Play();
   }
   
   public void Resume()
   {
-    //DefaultPauseScreen.SetActive(true);
+    PauseScreen.SetActive(false);
     HTPScreen.SetActive(false);
-    PauseController.SetPause(false);
+    RetryScreen.SetActive(false);
     DestructiveActionScreen.SetActive(false);
-    print("BUTTON CLICKED");
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
     RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
+        
+    PauseController.SetPause(false);
   }
   
   public void DefaultPauseOn()
   {
+    PauseScreen.SetActive(true);
     HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(true);
+    RetryScreen.SetActive(false);
     DestructiveActionScreen.SetActive(false);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
     RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
   public void DestructiveActionOn()
   {
+    PauseScreen.SetActive(false);
     HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(false);
+    RetryScreen.SetActive(false);
     DestructiveActionScreen.SetActive(true);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
     RestartActionScreen.SetActive(false);
     MenuSounds[1].Play();
   }
   
   public void RestartActionOn()
   {
+    PauseScreen.SetActive(false);
     HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(false);
+    RetryScreen.SetActive(false);
     DestructiveActionScreen.SetActive(false);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
     RestartActionScreen.SetActive(true);
+
     MenuSounds[1].Play();
   }
   
   public void Retry()
   {
-    PauseController.SetPause(false);
-    PauseBlock.SetActive(false);
+    PauseScreen.SetActive(false);
     HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(false);
-    LoseScreen.SetActive(false);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(false);
+    RetryScreen.SetActive(false);
+    DestructiveActionScreen.SetActive(false);
     RestartActionScreen.SetActive(false);
+
+    PauseController.SetPause(false);
+
     LevelGlobals.calcHighScores();
     EnemySpawner.ResetOccupancies();
     MenuSounds[1].Play();
@@ -365,28 +368,6 @@ public class HUDController : MonoBehaviour
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     
     //do other retry things
-  }
-  
-  public void OptionsOn()
-  {
-    HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    OptionsScreen.SetActive(true);
-    CreditsScreen.SetActive(false);
-    RestartActionScreen.SetActive(false);
-    MenuSounds[1].Play();
-  }
-  
-  public void CreditsOn()
-  {
-    HTPScreen.SetActive(false);
-    DefaultPauseScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    OptionsScreen.SetActive(false);
-    CreditsScreen.SetActive(true);
-    RestartActionScreen.SetActive(false);
-    MenuSounds[1].Play();
   }
   
   public void ReturnToTitle()
@@ -399,6 +380,27 @@ public class HUDController : MonoBehaviour
     MenuSounds[0].Play();
   }
   
+  public void DisableCanvas(GameObject _canvas)
+  { 
+    DisableCanvas(_canvas.GetComponent<CanvasGroup>());
+  }
+  public void DisableCanvas(CanvasGroup _canvas)
+  { 
+    _canvas.alpha = 0;
+    _canvas.blocksRaycasts = false;
+    _canvas.interactable = false;
+  }
+  public void EnableCanvas(GameObject _canvas)
+  { 
+    EnableCanvas(_canvas.GetComponent<CanvasGroup>());
+  }
+  public void EnableCanvas(CanvasGroup _canvas)
+  { 
+    _canvas.alpha = 1;
+    _canvas.blocksRaycasts = true;
+    _canvas.interactable = true;
+  }
+    
   public void Quit()
   {
     Application.Quit();
