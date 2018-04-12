@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +18,9 @@ public class BarVisulization : MonoBehaviour
     public int numberOfObjects = 40;
     public GameObject[] bars1;
     public GameObject[] bars2;
+
+    public float[] samples;
+    public float[] buffer;
 
     AudioSource source;
     private static float globalVizScaler = 1;
@@ -57,9 +60,12 @@ public class BarVisulization : MonoBehaviour
             Visualization(source, 1024, 40, 30);
     }
 
+
+
     void Visualization(AudioSource _source, int _sampleNumber, float _sampleMultiplier, float _timeMultiplier)
     {
-        float[] samples = new float[_sampleNumber];
+        samples = new float[_sampleNumber];
+        buffer = new float[_sampleNumber];
 
         _source.GetSpectrumData(samples, 0, FFTWindow.Triangle);
 

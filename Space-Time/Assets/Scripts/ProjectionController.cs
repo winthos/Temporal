@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -26,13 +26,13 @@ public class ProjectionController : MonoBehaviour
   [SerializeField]
   float MaxRayDistance = 200.0f;
 
-  Renderer renderer;
+  Renderer rend;
 	// Use this for initialization
 	void Start () 
   {
     
-    renderer = GetComponent<Renderer>();
-    DefaultColour = renderer.material.color;
+    rend = GetComponent<Renderer>();
+    DefaultColour = rend.material.color;
 	}
 	
 	// Update is called once per frame
@@ -47,13 +47,13 @@ public class ProjectionController : MonoBehaviour
       {
         if (hit.collider.gameObject.tag == "Hazard")
         {
-          renderer.material.SetColor("_Color", HazardColour);
+          rend.material.SetColor("_Color", HazardColour);
           
           HighlightTargetHazard(hit.distance);
         }
         else if (hit.collider.gameObject.tag == "Rift")
         {
-          renderer.material.SetColor("_Color", RiftColour);
+          rend.material.SetColor("_Color", RiftColour);
           HighlightTargetPickup(hit.distance);
         }
         
@@ -66,7 +66,7 @@ public class ProjectionController : MonoBehaviour
     else
     {
       //if(IsTimeStopped == false)
-      renderer.material.SetColor("_Color", DefaultColour);
+      rend.material.SetColor("_Color", DefaultColour);
       HighlightTargetHazard(0);
       HighlightTargetPickup(0);
     }

@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2018 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -6,8 +6,9 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class MenuButton : MonoBehaviour
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     //public Button btn;
     public Image btnImg;
@@ -20,6 +21,7 @@ public class MenuButton : MonoBehaviour
 
     [Space()]
     public string nextScene;
+    public bool loadScene = false;
 
     [HideInInspector]
     public Color defaultColor;
@@ -53,6 +55,7 @@ public class MenuButton : MonoBehaviour
     }
 
 
+
     public void UseDefaults()
     {
         btnImg.sprite = defaultSprite;
@@ -73,11 +76,12 @@ public class MenuButton : MonoBehaviour
         //this.transform.localScale = new Vector3(1.18f, 1.18f, 1.18f);
 
         selected = true;
-        //Debug.Log("hover");
+        SoundHub.PlayButtonHover();
     }
 
     public void UseClick()
     {
+        SoundHub.PlayButtonClick();
         StartCoroutine(FlashColors());
     }
 
@@ -89,10 +93,35 @@ public class MenuButton : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(nextScene);
-        if (nextScene == null || nextScene == string.Empty)
+        if (nextScene == null || loadScene)
         {
+            SceneManager.LoadScene(nextScene);
             Debug.Log("Quit Game");
         }
+        else
+        {
+
+        }
+    }
+
+
+
+
+
+    /// <summary>
+    /// mouse stuff
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        UseHover();
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        UseDefaults();
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        UseClick();
     }
 }

@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //  Authors: Jordan Yong
 //  Edits: Kaila Harris
 //  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
@@ -13,6 +13,8 @@ public class HUDController : MonoBehaviour
 {
   
   public static HUDController HUDControl;
+
+    [Header("Constant Elements")]
 
   [SerializeField]
   GameObject TimeBarPlayer;
@@ -38,6 +40,9 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject TimeStopFilter;
   
+    [Space(15)]
+    [Header("Pause Canvases")]
+
   [SerializeField]
   GameObject PauseScreen;
   
@@ -49,16 +54,6 @@ public class HUDController : MonoBehaviour
   
   [SerializeField]
   GameObject RestartActionScreen;
-  /*
-  [SerializeField]
-  GameObject HTPButton;
-  
-  [SerializeField]
-  GameObject ResumeButton;
-  
-  [SerializeField]
-  GameObject TitleButton;
-  */
   
   [SerializeField]
   GameObject HTPScreen;
@@ -66,26 +61,10 @@ public class HUDController : MonoBehaviour
   [SerializeField]
   GameObject RetryScreen;
   
-  //[SerializeField]
-  //GameObject OptionsScreen;
-  
-  //[SerializeField]
-  //GameObject CreditsScreen;
-  
+        [Space(15)]
+
   [SerializeField]
   GameObject DebugText;
-  
-  //[SerializeField]
-  //GameObject DistTraveled;
-  
-  //[SerializeField]
-  //GameObject Score;
-  
-  //[SerializeField]
-  //GameObject TimePassed;
-  
-  [SerializeField]
-  AudioSource[] MenuSounds;
   
   [SerializeField]
   Image RiftImage;
@@ -97,11 +76,6 @@ public class HUDController : MonoBehaviour
   ParticleSystem RiftGetParticle;
   
   
-  
-  /*
-  [SerializeField]
-  GameObject RetryButton;
-  */
   
   int dTime = 0;
   float independentTime;
@@ -115,25 +89,22 @@ public class HUDController : MonoBehaviour
     PauseController.SetPause(false);
     RiftImageColour = RiftImage.color;
         
-    DisableCanvas(PauseScreen);
-    DisableCanvas(HTPScreen);
-    DisableCanvas(RetryScreen);
-    DisableCanvas(DestructiveActionScreen);
-    DisableCanvas(RestartActionScreen);
-        
+    DisableAllPauseCanvases();
     }
   
   // Update is called once per frame
   void Update () 
   {
-    if (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
+    if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
     {
       PauseController.TogglePause();
       if (!PauseController.Paused())
-    {
-    DefaultPauseOn();
+        {
+        Screen_Pause();
+        }
     }
-    }
+
+
     if (Player.GetComponent<Health>().health <= 0 && LevelGlobals.PlayerDown)
     {
       //Cursor.lockState = CursorLockMode.None;
@@ -156,6 +127,8 @@ public class HUDController : MonoBehaviour
       //sCursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
     }
+
+
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
     if(TimeBarPlayer != null) TimeBarUpdate();
@@ -167,9 +140,6 @@ public class HUDController : MonoBehaviour
   
   public void HealthBarUpdate()
   {
-    //HealthBarPlayer.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 
-                                    //Player.GetComponent<Health>().health * 100.0f);
-
     
     for (int i = 0; i < 5; i++)
     {
@@ -238,22 +208,6 @@ public class HUDController : MonoBehaviour
     else
       DebugText.SetActive(false);
     
-    //DistTraveled.GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
-    //DistTraveled.transform.GetChild(0).GetComponent<Text>().text = "Distance: " + (int)LevelGlobals.distanceTraveled + " km";
-    
-    //TimePassed.GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
-                                                    //+ Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
-    //TimePassed.transform.GetChild(0).GetComponent<Text>().text = "Time: " + Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":"
-                                                    //+ Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00");
-                                                    
-                                                    
-    //TimePassed.GetComponent<Text>().text = Mathf.Floor(LevelGlobals.runningTime / 60).ToString("00") + ":" + Mathf.Floor(LevelGlobals.runningTime % 60).ToString("00"); 
-    
-    //TimePassed.GetComponent<Text>().text = "" + (int)(LevelGlobals.distanceTraveled * LevelGlobals.runningTime);
-    
- 
-    
-    //Score.GetComponent<Text>().text = 
   }
   
   public IEnumerator PlayerDestroyed()
@@ -296,73 +250,59 @@ public class HUDController : MonoBehaviour
     yield return new WaitForSeconds(1.0f);
   }
   
-  public void HowToPlayOn()
+  public void Screen_HowToPlay()
   {
-    PauseScreen.SetActive(false);
-    HTPScreen.SetActive(true);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    RestartActionScreen.SetActive(false);
-
-    MenuSounds[1].Play();
+    DisableCanvas(PauseScreen);
+    EnableCanvas(HTPScreen);
+    DisableCanvas(RetryScreen);
+    DisableCanvas(DestructiveActionScreen);
+    DisableCanvas(RestartActionScreen);
   }
   
-  public void Resume()
+  public void Action_Resume()
   {
-    PauseScreen.SetActive(false);
-    HTPScreen.SetActive(false);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    RestartActionScreen.SetActive(false);
-    MenuSounds[1].Play();
-        
+    DisableAllPauseCanvases();
+       
     PauseController.SetPause(false);
   }
   
-  public void DefaultPauseOn()
+  public void Screen_Pause()
   {
-    PauseScreen.SetActive(true);
-    HTPScreen.SetActive(false);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    RestartActionScreen.SetActive(false);
-    MenuSounds[1].Play();
+    EnableCanvas(PauseScreen);
+    DisableCanvas(HTPScreen);
+    DisableCanvas(RetryScreen);
+    DisableCanvas(DestructiveActionScreen);
+    DisableCanvas(RestartActionScreen);
   }
   
-  public void DestructiveActionOn()
+  public void Screen_Confirm_DestructiveAction()
   {
-    PauseScreen.SetActive(false);
-    HTPScreen.SetActive(false);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(true);
-    RestartActionScreen.SetActive(false);
-    MenuSounds[1].Play();
-  }
-  
-  public void RestartActionOn()
-  {
-    PauseScreen.SetActive(false);
-    HTPScreen.SetActive(false);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    RestartActionScreen.SetActive(true);
 
-    MenuSounds[1].Play();
+    DisableCanvas(PauseScreen);
+    DisableCanvas(HTPScreen);
+    DisableCanvas(RetryScreen);
+    EnableCanvas(DestructiveActionScreen);
+    DisableCanvas(RestartActionScreen);
   }
   
-  public void Retry()
+  public void Screen_Confirm_RestartGame()
   {
-    PauseScreen.SetActive(false);
-    HTPScreen.SetActive(false);
-    RetryScreen.SetActive(false);
-    DestructiveActionScreen.SetActive(false);
-    RestartActionScreen.SetActive(false);
+    DisableCanvas(PauseScreen);
+    DisableCanvas(HTPScreen);
+    DisableCanvas(RetryScreen);
+    DisableCanvas(DestructiveActionScreen);
+    EnableCanvas(RestartActionScreen);
+  }
+    
+  public void Action_Retry_Restart()
+  {
+    DisableAllPauseCanvases();
 
     PauseController.SetPause(false);
 
     LevelGlobals.calcHighScores();
     EnemySpawner.ResetOccupancies();
-    MenuSounds[1].Play();
+
     LevelGlobals.PlayerDown = false;
     print(LevelGlobals.PlayerDown);
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -370,38 +310,41 @@ public class HUDController : MonoBehaviour
     //do other retry things
   }
   
-  public void ReturnToTitle()
+  public void Action_ReturnToMainMenu()
   {
     SceneManager.LoadScene("2_MainMenu");
   }
   
-  public void MouseHover()
-  {
-    MenuSounds[0].Play();
-  }
-  
-  public void DisableCanvas(GameObject _canvas)
+  void DisableCanvas(GameObject _canvas)
   { 
     DisableCanvas(_canvas.GetComponent<CanvasGroup>());
   }
-  public void DisableCanvas(CanvasGroup _canvas)
+  void DisableCanvas(CanvasGroup _canvas)
   { 
     _canvas.alpha = 0;
     _canvas.blocksRaycasts = false;
     _canvas.interactable = false;
   }
-  public void EnableCanvas(GameObject _canvas)
+    void DisableAllPauseCanvases()
+    {
+        DisableCanvas(PauseScreen);
+        DisableCanvas(HTPScreen);
+        DisableCanvas(RetryScreen);
+        DisableCanvas(DestructiveActionScreen);
+        DisableCanvas(RestartActionScreen);
+    }
+  void EnableCanvas(GameObject _canvas)
   { 
     EnableCanvas(_canvas.GetComponent<CanvasGroup>());
   }
-  public void EnableCanvas(CanvasGroup _canvas)
+  void EnableCanvas(CanvasGroup _canvas)
   { 
     _canvas.alpha = 1;
     _canvas.blocksRaycasts = true;
     _canvas.interactable = true;
   }
     
-  public void Quit()
+  public void Action_Quit()
   {
     Application.Quit();
   }
