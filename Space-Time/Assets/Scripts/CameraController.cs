@@ -93,12 +93,16 @@ public class CameraController : MonoBehaviour
     y = transform.eulerAngles.y;
     
     levelGlobals = GameObject.FindWithTag("Globals");
-    Player = levelGlobals.GetComponent<LevelGlobals>().Player;
-    CentrePoint = levelGlobals.GetComponent<LevelGlobals>().CentrePoint;
-      
-    CharacterTargetRot = CentrePoint.transform.localRotation;
+    if (levelGlobals != null)
+    {
+        Player = levelGlobals.GetComponent<LevelGlobals>().Player;
+        CentrePoint = levelGlobals.GetComponent<LevelGlobals>().CentrePoint;
+
+        CharacterTargetRot = CentrePoint.transform.localRotation;
+    
     CameraTargetRot = transform.localRotation;
     Distance = Vector3.Distance(transform.position, CentrePoint.transform.position);
+    }
     Cursor.visible = true;
     StartCoroutine(ZoomIn());
     
@@ -108,7 +112,7 @@ public class CameraController : MonoBehaviour
   void Update () 
   {
     
-    if (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown)
+    if (Player != null && (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown))
       return;
     
     defaultTimer += TimeZone.DeltaTime(false);
@@ -132,26 +136,29 @@ public class CameraController : MonoBehaviour
     
     if (!GetPTime() && !GetETime())
     {
-      if (Vector3.Distance(Player.transform.position, CentrePoint.transform.position) > 0.01)
-      {
-       //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Player.transform.position + CentrePoint.transform.position)/2), CamSnapSpeed * 5);
-        //transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
-        transform.LookAt(CentrePoint.transform.position);
-      }
-      else
-      {
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(CentrePoint.transform.position), CamSnapSpeed * 5);
-        transform.LookAt(CentrePoint.transform.position);
-      }
-      
-      if (IsTimeTransitioning())
-      {
-        transform.position = Vector3.Lerp(transform.position, CamSnapBackDistance, (defaultTimer - lerpTime) * CamSnapSpeed);
-        if (Vector3.Distance(transform.position, CamSnapBackDistance) < 0.01f)
-        {
-          CamSnapBackDistance = Vector3.zero;
-        }
-      }
+            if (Player != null && CentrePoint != null)
+            {
+                if (Vector3.Distance(Player.transform.position, CentrePoint.transform.position) > 0.01)
+                {
+                    //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Player.transform.position + CentrePoint.transform.position)/2), CamSnapSpeed * 5);
+                    //transform.LookAt((Player.transform.position + CentrePoint.transform.position)/2);
+                    transform.LookAt(CentrePoint.transform.position);
+                }
+                else
+                {
+                    //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(CentrePoint.transform.position), CamSnapSpeed * 5);
+                    transform.LookAt(CentrePoint.transform.position);
+                }
+
+                if (IsTimeTransitioning())
+                {
+                    transform.position = Vector3.Lerp(transform.position, CamSnapBackDistance, (defaultTimer - lerpTime) * CamSnapSpeed);
+                    if (Vector3.Distance(transform.position, CamSnapBackDistance) < 0.01f)
+                    {
+                        CamSnapBackDistance = Vector3.zero;
+                    }
+                }
+            }
     
     }
     else if (GetPTime() && Tutorial.tutorial.IsActivatedMechanic(4))
@@ -323,8 +330,8 @@ public class CameraController : MonoBehaviour
       
     }
       
-    
-    Player.GetComponent<PlayerMovement>().ResetDashDestination();
+    if(Player != null)
+        Player.GetComponent<PlayerMovement>().ResetDashDestination();
      
     if (PTimeStop)
     {

@@ -17,7 +17,7 @@ public class VizualizerScaler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float vizScale = Mathf.Min(BarVisulization.GlobalVizScaler * 2, maxScaleMod);
+        float vizScale = Mathf.Min(AudioPeer.GlobalScaler * 0.5f, maxScaleMod);
         GetComponent<RectTransform>().localScale = Vector3.one + new Vector3(vizScale, vizScale, 1);
     }
 }

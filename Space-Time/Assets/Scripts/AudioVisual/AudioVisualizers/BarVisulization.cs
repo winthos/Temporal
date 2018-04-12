@@ -50,7 +50,7 @@ public class BarVisulization : MonoBehaviour
             visualsCanvas.transform.position = new Vector3(0, -5, -2);
             visualsCanvas.transform.Rotate(new Vector3(8.331f, 0, 0));
 
-            visualsCanvas.gameObject.transform.SetParent(GameObject.Find("Main Camera").transform);
+            visualsCanvas.gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("MainCamera").transform);
         }
     }
 

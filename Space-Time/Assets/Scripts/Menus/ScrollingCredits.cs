@@ -16,6 +16,7 @@ public class ScrollingCredits : MonoBehaviour
     float creditsEndY = 3500f;
     List<Vector3> startingPosition;
     public float scrollSpeed = 2f;
+    public string goToScene;
 
     Coroutine current;
     bool isRunning;
@@ -47,10 +48,15 @@ public class ScrollingCredits : MonoBehaviour
             for (int i = 0; i < credits.Count; i++)
                 credits[i].GetComponent<Transform>().position += Vector3.up * scrollSpeed;
 
-            print(endOfCredits.GetComponent<Transform>().position.y);
-            
+            //print(endOfCredits.GetComponent<Transform>().position.y);
+
             if (endOfCredits.GetComponent<Transform>().position.y > creditsEndY)
-                ResetToStartingPositions();
+            {
+                if (goToScene == null)
+                    ResetToStartingPositions();
+                else
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(goToScene);
+            }
         }
     }
 }

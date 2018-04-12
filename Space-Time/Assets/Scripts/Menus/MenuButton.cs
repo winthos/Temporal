@@ -44,7 +44,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (selected)
         {
-            float vizScale = Mathf.Min(BarVisulization.GlobalVizScaler * 10, visualizerMax);
+            float vizScale = Mathf.Min(AudioPeer.GlobalScaler, visualizerMax);
             btnImg.GetComponent<RectTransform>().localScale = Vector3.one + new Vector3(vizScale, vizScale, 1);
             //Todo: add audio buffer
         }
@@ -106,12 +106,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
 
 
-
-
-    /// <summary>
-    /// mouse stuff
-    /// </summary>
-    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         UseHover();
