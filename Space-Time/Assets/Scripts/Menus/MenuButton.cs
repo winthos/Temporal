@@ -1,6 +1,11 @@
-﻿using UnityEngine;
+﻿////////////////////////////////////////////////////////////////////////////////
+//	Authors: Kaila Harris
+//	Copyright © 2018 DigiPen (USA) Corp. and its owners. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -18,21 +23,35 @@ public class MenuButton : MonoBehaviour
 
     [HideInInspector]
     public Color defaultColor;
-    //public Color selectedColor;
-    //public Color clickedColor;
-    
 
-    void Awake()
-    {
-        //btn = GetComponent<Button>();
-    }
+    [HideInInspector]
+    public bool selected;
+    AudioSource source;
+    public float visualizerMax = 0.18f;
 
     // Use this for initialization
     void Start()
     {
+        source = SoundHub.source_bgm;
         defaultColor = btnTxt.color;
         UseDefaults();
     }
+
+    public void Update()
+    {
+
+        if (selected)
+        {
+            float vizScale = Mathf.Min(BarVisulization.GlobalVizScaler * 10, visualizerMax);
+            btnImg.GetComponent<RectTransform>().localScale = Vector3.one + new Vector3(vizScale, vizScale, 1);
+            //Todo: add audio buffer
+        }
+        else
+        {
+            btnImg.transform.localScale = Vector3.one;
+        }
+    }
+
 
     public void UseDefaults()
     {
@@ -40,7 +59,9 @@ public class MenuButton : MonoBehaviour
         btnImg.color = defaultColor;
         btnTxt.color = defaultColor;
 
-        this.transform.localScale = new Vector3(1, 1, 1);
+        //this.transform.localScale = new Vector3(1, 1, 1);
+
+        selected = false;
     }
 
     public void UseHover()
@@ -49,8 +70,9 @@ public class MenuButton : MonoBehaviour
         btnImg.color = Color.white;
         btnTxt.color = Color.black;
         
-        this.transform.localScale = new Vector3(1.18f, 1.18f, 1.18f);
+        //this.transform.localScale = new Vector3(1.18f, 1.18f, 1.18f);
 
+        selected = true;
         //Debug.Log("hover");
     }
 
@@ -61,6 +83,16 @@ public class MenuButton : MonoBehaviour
 
     public IEnumerator FlashColors()
     {
-        return null;
+        yield return new WaitForSeconds(2f);
+        LoadNextScene();
+    }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(nextScene);
+        if (nextScene == null || nextScene == string.Empty)
+        {
+            Debug.Log("Quit Game");
+        }
     }
 }

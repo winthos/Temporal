@@ -20,34 +20,41 @@ public class BarVisulization : MonoBehaviour
     public GameObject[] bars2;
 
     AudioSource source;
-    
+    private static float globalVizScaler = 1;
+    public static float GlobalVizScaler {
+        get { return globalVizScaler; }
+    }
+
     void Start()
     {
-        for (int i = 0; i < numberOfObjects; i++)
-        {
-            Vector3 pos1 = startPos1 + new Vector3(0, i * offset, 0);
-            Vector3 pos2 = startPos2 + new Vector3(0, i * offset, 0);
-
-            Instantiate(prefab1, pos1, Quaternion.identity, visualsCanvas.transform);
-            Instantiate(prefab2, pos2, Quaternion.identity, visualsCanvas.transform);
-        }
-
-        bars1 = GameObject.FindGameObjectsWithTag("bar1");
-        bars2 = GameObject.FindGameObjectsWithTag("bar2");
-
         source = SoundHub.source_bgm;
 
-        visualsCanvas.transform.position = new Vector3(0, -5, -2);
-        visualsCanvas.transform.Rotate(new Vector3(8.331f, 0, 0));
+        if (visualsCanvas != null)
+        {
+            for (int i = 0; i < numberOfObjects; i++)
+            {
+                Vector3 pos1 = startPos1 + new Vector3(0, i * offset, 0);
+                Vector3 pos2 = startPos2 + new Vector3(0, i * offset, 0);
 
-        visualsCanvas.gameObject.transform.SetParent(GameObject.Find("Main Camera").transform);
+                Instantiate(prefab1, pos1, Quaternion.identity, visualsCanvas.transform);
+                Instantiate(prefab2, pos2, Quaternion.identity, visualsCanvas.transform);
+            }
+
+            bars1 = GameObject.FindGameObjectsWithTag("bar1");
+            bars2 = GameObject.FindGameObjectsWithTag("bar2");
+
+
+            visualsCanvas.transform.position = new Vector3(0, -5, -2);
+            visualsCanvas.transform.Rotate(new Vector3(8.331f, 0, 0));
+
+            visualsCanvas.gameObject.transform.SetParent(GameObject.Find("Main Camera").transform);
+        }
     }
 
     void Update ()
     {
         //if(PauseController.Paused())
             Visualization(source, 1024, 40, 30);
-        //print(visualsCanvas.transform.rotation);
     }
 
     void Visualization(AudioSource _source, int _sampleNumber, float _sampleMultiplier, float _timeMultiplier)
@@ -58,13 +65,19 @@ public class BarVisulization : MonoBehaviour
 
         for (int i = 0; i < numberOfObjects; i++)
         {
-            bars1[i].GetComponent<SpriteRenderer>().transform.localScale = new Vector3(samples[i] * widthMultiplier, heightScale, 1);
-            bars2[i].GetComponent<SpriteRenderer>().transform.localScale = new Vector3(samples[i] * widthMultiplier, heightScale, 1);
+            if (visualsCanvas != null)
+            {
+                bars1[i].GetComponent<SpriteRenderer>().transform.localScale = new Vector3(samples[i] * widthMultiplier, heightScale, 1);
+                bars2[i].GetComponent<SpriteRenderer>().transform.localScale = new Vector3(samples[i] * widthMultiplier, heightScale, 1);
+            }
+
+            if (i == numberOfObjects - 2) globalVizScaler = samples[i];
         }
 	}
 
     public void OnDestroy()
     {
-        Destroy(visualsCanvas);
+        if (visualsCanvas != null)
+            Destroy(visualsCanvas);
     }
 }
