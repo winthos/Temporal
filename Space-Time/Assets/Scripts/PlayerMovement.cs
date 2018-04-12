@@ -1,5 +1,6 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
+//  Edits: Kaila Harris
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -60,199 +61,42 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-      // if we're in normal time
-    //if (!Camcontrol.GetPTime() && !Camcontrol.GetETime() && !Camcontrol.IsTimeTransitioning())
-    //{
-      //Vector3 dir = new Vector3();
-      //allow WASD input yay
-      //dir = transform.position;
       if (PauseController.Paused() || Tutorial.TutorialOccuring)
         return;
       if (Input.anyKey && DashTo == null)
       {
-        /*
-        //Vector3 up = transform.position * transform.up;
-        //Vector3 centrup = CentrePoint.transform.position * transform.up;
-         //if transform (up) is less than CentrePoint's transform (up)
-        print(transform.up);
-        if (Input.GetKey("w") && CalcBound(0))
-        {
-           dir += transform.up * MovementSpeed;
-        }
-        else if (Input.GetKey("s") && CalcBound(1))
-        {
-          dir -= transform.up * MovementSpeed;
-        }
-        if (Input.GetKey("a") && CalcBound(2))
-        {
-          dir -= transform.right * MovementSpeed;
-        }
-        else if (Input.GetKey("d") && CalcBound(3))
-        {
-          dir += transform.right * MovementSpeed;
-        }
-        else if (Input.GetKey("space")) // if middle mouse
-        {
-          dir = CentrePoint.transform.position;
-        }
-        */
-        /*
-        if (Input.GetKeyDown("w") && Input.GetKeyDown("a"))
-        {
-          DashTo = CalcNextGridPos(5); //upperleft
-          
-        }
-        else if (Input.GetKeyDown("w") && Input.GetKeyDown("d"))
-        {
-          DashTo = CalcNextGridPos(9); //upperight
-          
-        } 
-        else if (Input.GetKeyDown("s") && Input.GetKeyDown("a"))
-        {
-          DashTo = CalcNextGridPos(6); //lowerleft
-          
-        } 
-        else if (Input.GetKeyDown("s") && Input.GetKeyDown("d"))
-        {
-          DashTo = CalcNextGridPos(10); //lowerright
-        } 
-        else */
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow))
         {
           DashTo = CalcNextGridPos(1); //up
-          
         }
-        else if (Input.GetKeyDown("s"))
+        else if (Input.GetKeyDown("s") || Input.GetKeyDown(KeyCode.DownArrow))
         {
           DashTo = CalcNextGridPos(2); //down
-          
         }
-        else if (Input.GetKeyDown("a"))
+        else if (Input.GetKeyDown("a") || Input.GetKeyDown(KeyCode.LeftArrow))
         {
           DashTo = CalcNextGridPos(4); //left
-          
         }
-        else if (Input.GetKeyDown("d"))
+        else if (Input.GetKeyDown("d") || Input.GetKeyDown(KeyCode.RightArrow))
         {
           DashTo = CalcNextGridPos(8); //right
         }
-
-          
-          moveTime = Time.time;
         
-          
-        
-      }
-      //else
-       // dir = CentrePoint.transform.position;
-      
-      
-      if (DashTo != null && DashDestination != DashTo.transform.position)
-        DashDestination = DashTo.transform.position;
-      
-      if (DashTo != null && DashDestination != Vector3.zero && transform.position != DashDestination)
-      {
-        //print(DashDestination);
-        transform.position = Vector3.Lerp(transform.position, DashDestination, MovementSpeed * TimeZone.DeltaTime(false));
-        if (Vector3.Distance(transform.position,DashDestination) < 0.1)
-        {
-          //CentrePoint.transform.position = transform.position;
-          //DashDestination = Vector3.zero;
-          DashTo = null;
-          
-        }
-      }
-      
-      //transform.position = Vector3.MoveTowards(transform.position, dir, TimeZone.DeltaTime(false) * MovementSpeed);
-      
-      
-    //}
-    /*
-    else if (Camcontrol.GetPTime() || (Camcontrol.GetPTime() && Camcontrol.GetETime()))
-    {
-      //key pressed -> store grid location -> quickly lerp over -> new location!
-      if (Input.anyKey && DashTo == null && Camcontrol.GetPTimeStopTimer() > MinDashTimeNeeded)
-      {
-        
-        if (Input.GetKeyDown("w") && Input.GetKeyDown("a")) // 1
-        {
-          DashDestination = CentrePoint.transform.Find("1").transform.position;
-          DashTo = CentrePoint.transform.Find("1").gameObject;
-          GridPos = 1;
-        }
-        else if (Input.GetKeyDown("w") && Input.GetKeyDown("d")) //3
-        {
-          DashDestination = CentrePoint.transform.Find("3").transform.position;
-          DashTo = CentrePoint.transform.Find("3").gameObject;
-          GridPos = 3;
-        } 
-        else if (Input.GetKeyDown("s") && Input.GetKeyDown("a")) //7
-        {
-          DashDestination = CentrePoint.transform.Find("7").transform.position;
-          DashTo = CentrePoint.transform.Find("7").gameObject;
-          GridPos = 7;
-        } 
-        else if (Input.GetKeyDown("s") && Input.GetKeyDown("d")) //9
-        {
-          DashDestination = CentrePoint.transform.Find("9").transform.position;
-          DashTo = CentrePoint.transform.Find("9").gameObject;
-          GridPos = 9;
-        } 
-        else if (Input.GetKeyDown("w")) //2
-        {
-          DashDestination = CentrePoint.transform.Find("2").transform.position;
-          DashTo = CentrePoint.transform.Find("2").gameObject;
-          GridPos = 2;
-        }
-        else if (Input.GetKeyDown("s")) //8
-        {
-          DashDestination = CentrePoint.transform.Find("8").transform.position;
-          DashTo = CentrePoint.transform.Find("8").gameObject;
-          GridPos = 8;
-        }
-        else if (Input.GetKeyDown("a")) //4
-        {
-          DashDestination = CentrePoint.transform.Find("4").transform.position;
-          DashTo = CentrePoint.transform.Find("4").gameObject;
-          GridPos = 4;
-        }
-        else if (Input.GetKeyDown("d")) //6
-        {
-          DashDestination = CentrePoint.transform.Find("6").transform.position;
-          DashTo = CentrePoint.transform.Find("6").gameObject;
-          GridPos = 6;
-        }
-        else if (Input.GetKeyDown("space")) //5
-        {
-          DashDestination = CentrePoint.transform.position;
-          DashTo = CentrePoint;
-          GridPos = 5;
-        }
         moveTime = Time.time;
       }
       
+      
       if (DashTo != null && DashDestination != DashTo.transform.position)
         DashDestination = DashTo.transform.position;
       
       if (DashTo != null && DashDestination != Vector3.zero && transform.position != DashDestination)
       {
-        print(DashDestination);
-        transform.position = Vector3.Lerp(transform.position, DashDestination, 0.125f);
+        transform.position = Vector3.Lerp(transform.position, DashDestination, MovementSpeed * TimeZone.DeltaTime(false));
         if (Vector3.Distance(transform.position,DashDestination) < 0.1)
         {
-          //CentrePoint.transform.position = transform.position;
-          //DashDestination = Vector3.zero;
           DashTo = null;
-          
         }
       }
-      
-    }
-    */
-    //if in normal time
-      //if keys WASD are held, move toward a specific direction
-      //if no keys are held, gravitate back toward the centre
-    
   }
   
 
@@ -290,16 +134,6 @@ public class PlayerMovement : MonoBehaviour
       }
       Destroy(other.gameObject);
     }
-    /*
-    else if (other.gameObject.tag == "Spacer" && CameraController.GetPTime())
-    {
-      print("Collided with spacer");
-      other.gameObject.GetComponent<Health>().DecrementHealth();
-      
-      SoundHub.PlayEnemyTimeBomb();
-      Scoring.enemiesDestroyed += 1;
-    }
-    */
   }
   
   void OnTriggerStay(Collider other)
@@ -317,12 +151,7 @@ public class PlayerMovement : MonoBehaviour
       }
     }
   }
-  
-  void RecalculateBounds()
-  {
     
-  }
-  
   bool CalcBound(int edge) //0 = up, 1 = down, 2 = left, 3 = right
   {
     if (edge == 0)
@@ -409,9 +238,6 @@ public class PlayerMovement : MonoBehaviour
       
       if (GridPos < 7)
         GridPos += 3;
-      //if (GridPos > 9)
-        //GridPos = 9;
-      
       
       
       if (oldPos == 1)

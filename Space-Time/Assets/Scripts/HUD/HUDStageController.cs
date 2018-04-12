@@ -68,17 +68,12 @@ public class HUDStageController : MonoBehaviour
             }
 
         }
-        //winson has left the building
 
         if (!PauseController.Paused())
         {
             if (TestModeOn)
                 Testing();
-
-            //RiftStages(Scoring.pickupsCollected);
-
-            //if (currentStage != nextStage)
-                //StartCoroutine(UpdateStages());
+            
         }
     }
 
@@ -119,20 +114,21 @@ public class HUDStageController : MonoBehaviour
 
     public void UpdateStages(int _rifts)
     {
-        if(_rifts >= 30)
-            currentStage = 4;
-        if (_rifts < 30)
-            currentStage = 3;
-        if (_rifts < 25)
-            currentStage = 2;
-        if (_rifts < 20)
-            currentStage = 1;
-        if (_rifts < 10)
-            currentStage = 0;
+        if (_rifts >= 0 && _rifts < 5)
+            currentStage = 0; // show everything
+        if (_rifts >= 5 && _rifts < 10)
+            currentStage = 1; // grids disappear
+        if (_rifts >= 10 && _rifts < 15)
+            currentStage = 2; // icons disappear
+        if (_rifts >= 15 && _rifts < 20)
+            currentStage = 3; // sidebars disappears
+        if ( _rifts >= 20)
+            currentStage = 4; // lower bars disappear
         
-        print(currentStage);
+        
+        //print(currentStage);
 
-        if (currentStage != previousStage || currentStage >= 3)
+        if (currentStage != previousStage)
             StageUp(currentStage);
 
         previousStage = currentStage;
@@ -165,29 +161,6 @@ public class HUDStageController : MonoBehaviour
             default:
                 break;
         }
-        /*
-        switch (_stage)
-        {
-            case 0:
-                Stage0();
-                goto case 1;
-            case 1:
-                Stage1();
-                goto case 2;
-            case 2:
-                Stage2();
-                goto case 3;
-            case 3:
-                Stage3();
-                goto case 4;
-            case 4:
-                Stage4();
-                break;
-            default:
-                break;
-                
-        }
-        */
     }
     
     public void StageElements(List<GameObject> _list, bool _elementsActive)
@@ -208,6 +181,12 @@ public class HUDStageController : MonoBehaviour
     //show all guidance
     void Stage0(bool _visibile = true)
     {
+    }
+
+    // drop crosshairs
+    void Stage1(bool _visibile = true)
+    {
+
         if (stage0.Count > 0)
         {
             if (_visibile)
@@ -217,8 +196,8 @@ public class HUDStageController : MonoBehaviour
         }
     }
 
-    // drop crosshairs
-    void Stage1(bool _visibile = true)
+    // drop tageting icons
+    void Stage2(bool _visibile = true)
     {
         if (stage1.Count > 0)
         {
@@ -229,9 +208,10 @@ public class HUDStageController : MonoBehaviour
         }
     }
 
-    // drop tageting icons
-    void Stage2(bool _visibile = true)
+    // drop sidebars
+    void Stage3(bool _visibile = true)
     {
+
         if (stage2.Count > 0)
         {
             if (_visibile)
@@ -241,8 +221,8 @@ public class HUDStageController : MonoBehaviour
         }
     }
 
-    // drop sidebars
-    void Stage3(bool _visibile = true)
+    // drop base bar
+    void Stage4(bool _visibile = true)
     {
 
         if (stage3.Count > 0)
@@ -254,10 +234,8 @@ public class HUDStageController : MonoBehaviour
         }
     }
 
-    // drop base bar
-    void Stage4(bool _visibile = true)
+    void Stage5(bool _visibile = true)
     {
-
         if (stage4.Count > 0)
         {
             if (_visibile)
