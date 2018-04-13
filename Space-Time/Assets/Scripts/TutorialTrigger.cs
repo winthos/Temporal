@@ -30,7 +30,7 @@ public class TutorialTrigger : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (TriggerCondition == TriggerType.Time && !Tutorial.TutorialOccuring && !PauseController.Paused() &&!LevelGlobals.PlayerDown)
+    if (TriggerCondition == TriggerType.Time && !Tutorial.TutorialOccuring && !PauseController.GamePaused &&!LevelGlobals.PlayerDown)
     {
       ActivationTimer += TimeZone.DeltaTime(false);
       if (Tutorial.tutorial.GetTutorialIndex() - 1 < ActivationTime.Length && ActivationTimer >= ActivationTime[Tutorial.tutorial.GetTutorialIndex() - 1])

@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
 	void Update () 
 	{
     //IsTimeStopped = GameObject.Find("LevelGlobals").GetComponent<LevelGlobals>().TimeStopped;
-    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused())
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.GamePaused)
       return;
     RaycastHit hit;
     transform.LookAt(Player.transform);

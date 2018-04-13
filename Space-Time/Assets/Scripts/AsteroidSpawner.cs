@@ -61,7 +61,7 @@ public class AsteroidSpawner : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.Paused() || Tutorial.TutorialOccuring || 
+    if (CameraController.GetPTime() || CameraController.GetETime() || PauseController.GamePaused || Tutorial.TutorialOccuring || 
         !Tutorial.tutorial.IsActivatedMechanic(1) || LevelGlobals.PlayerDown)
       return;
     

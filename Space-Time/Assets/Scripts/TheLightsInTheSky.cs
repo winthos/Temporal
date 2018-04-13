@@ -42,7 +42,7 @@ public class TheLightsInTheSky : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (PauseController.Paused())
+    if (PauseController.GamePaused)
       return;
     if (points == null) 
       CreateStars();

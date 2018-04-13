@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (PauseController.Paused() || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(2))
+    if (PauseController.GamePaused || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(2))
       return;
     if (!Spawning && NumOccupancies() < 9)
     {

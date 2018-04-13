@@ -1,62 +1,68 @@
-﻿////////////////////////////////////////////////////////////////////////////////
-//	Authors: Jordan Yong
-//  Edits: Kaila Harris, 2018
-//	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
-////////////////////////////////////////////////////////////////////////////////
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class PauseController : MonoBehaviour
 {
-    private static bool paused = false;
+    private static bool paused;
+    public static bool GamePaused { get { return paused; } }
 
-    // Use this for initialization
+    
+    private static CanvasGroup group;
+
+
     void Start()
     {
-        PauseVolume();
+        group = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<CanvasGroup>();
+        HidePauseScreen();
+        paused = false;
     }
-    
-    public static bool Paused()
+
+    public static void SetPause(bool _paused)
     {
-        //PauseVolume();
-        return paused;
+        paused = _paused;
     }
 
     public static void TogglePause()
     {
-        if (LevelGlobals.PlayerDown)
-            return;
-
         paused = !paused;
-        PauseVolume();
+
+        if (group != null)
+        {
+            if (GamePaused)
+                ShowPauseScreen();
+            else
+                HidePauseScreen();
+        }
+
+        //Debug.Log("Game Paused: " + GamePaused);
     }
 
-    public static void SetPause(bool pause)
+    // pause game
+    public static void ShowPauseScreen()
     {
-        if (LevelGlobals.PlayerDown)
-            return;
+        group.alpha = 1;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+        
+        //AudioListener.volume = 0;
+        //Time.timeScale = 0;
 
-        paused = pause;
-        PauseVolume();
+        paused = true;
     }
 
-    void OnApplicationFocus(bool hasFocus)
+    // resume game
+    public static void HidePauseScreen()
     {
-        paused = !hasFocus;
-        PauseVolume();
-    }
+        group.alpha = 0;
+        group.interactable = false;
+        group.blocksRaycasts = false;
 
-    void OnApplicationPause(bool pauseStatus)
-    {
-        paused = pauseStatus;
-    }
+        //AudioListener.volume = 1;
+        //Time.timeScale = 1;
 
-    private static void PauseVolume()
-    {
-        if (paused)
-            SoundHub.GetInstance().EnterPauseState(0.25f);
-        else
-            SoundHub.GetInstance().ExitPauseState();
+        paused = false;
     }
 }

@@ -98,7 +98,7 @@ public class HUDController : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
     {
       PauseController.TogglePause();
-      if (!PauseController.Paused())
+      if (!PauseController.GamePaused)
         {
         Screen_Pause();
         }
@@ -112,7 +112,7 @@ public class HUDController : MonoBehaviour
       RetryScreen.SetActive(true);
       return;
     }
-    else if (PauseController.Paused())
+    else if (PauseController.GamePaused)
     {
       //print("Currently paused");
       PauseScreen.SetActive(true);

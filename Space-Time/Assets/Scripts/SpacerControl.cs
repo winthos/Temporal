@@ -81,7 +81,7 @@ public class SpacerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (!Active || PauseController.Paused() || Tutorial.TutorialOccuring)
+    if (!Active || PauseController.GamePaused || Tutorial.TutorialOccuring)
       return;
     
     if (PlayerOnPos())

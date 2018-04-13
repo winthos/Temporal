@@ -42,7 +42,7 @@ public class CentrePointMovement : MonoBehaviour
     // Update is called once per frame
   void Update () 
   {
-    if (PauseController.Paused()  || Tutorial.TutorialOccuring || LevelGlobals.PlayerDown || Player.GetComponent<Health>().health <= 0)
+    if (PauseController.GamePaused || Tutorial.TutorialOccuring || LevelGlobals.PlayerDown || Player.GetComponent<Health>().health <= 0)
       return;
     if (!CameraController.GetPTime() && !CameraController.GetETime() && !Camcontrol.IsTimeTransitioning())
     {

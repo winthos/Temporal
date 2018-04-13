@@ -112,7 +112,7 @@ public class CameraController : MonoBehaviour
   void Update () 
   {
     
-    if (Player != null && (PauseController.Paused()  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown))
+    if (Player != null && (PauseController.GamePaused  || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(3) || LevelGlobals.PlayerDown))
       return;
     
     defaultTimer += TimeZone.DeltaTime(false);

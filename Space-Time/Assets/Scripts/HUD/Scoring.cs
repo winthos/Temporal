@@ -83,7 +83,7 @@ public class Scoring : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (!PauseController.Paused() && !Tutorial.TutorialOccuring && !LevelGlobals.PlayerDown)
+        if (!PauseController.GamePaused && !Tutorial.TutorialOccuring && !LevelGlobals.PlayerDown)
         {
             //TimeScore();
             //SpeedScore();

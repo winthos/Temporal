@@ -69,7 +69,7 @@ public class HUDStageController : MonoBehaviour
 
         }
 
-        if (!PauseController.Paused())
+        if (!PauseController.GamePaused)
         {
             if (TestModeOn)
                 Testing();

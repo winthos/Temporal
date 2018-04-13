@@ -56,7 +56,7 @@ public class BarVisulization : MonoBehaviour
 
     void Update ()
     {
-        //if(PauseController.Paused())
+        //if(PauseController.GamePaused)
             Visualization(source, 1024, 40, 30);
     }
 
