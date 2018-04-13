@@ -102,7 +102,7 @@ public class RiftSpawner : MonoBehaviour
     
     SpawnPos += offset;
     */
-    //Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
+    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
     
     /*int CreationChance = (int)Mathf.Clamp(Random.Range(0.0f,100.0f + Player.GetComponent<PlayerMovement>().SpeedStacks),
                                           0, 300); //max craziness limiter to prevent only large Rifts from spawning
@@ -120,6 +120,6 @@ public class RiftSpawner : MonoBehaviour
       GameObject Rift = (GameObject)Instantiate(LargeRift, SpawnPos, Quaternion.identity);
     }
     */
-    //GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Player.transform.rotation);
+    GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Player.transform.rotation);
   }
 }

@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -92,29 +92,6 @@ public class SoundHub : MonoBehaviour
         bgmVolume = source_bgm.volume;
     }
 
-    // Use this for initialization
-    void Start()
-    {
-    }
-
-    /*
-    public static AudioSource GetBGMSource()
-    {
-        return source_bgm;
-    }
-    */
-    /*
-    public static void FireWeapon(GameObject _obj)
-    {
-        AudioVisualManager.PlaySFX(GetInstance().gunshot, _obj, 1);
-    }
-    */
-    /*
-        public static void PlayBackgroundAudio()
-        {
-            source_bgm = null;
-            source_bgm = AudioVisualManager.PlayBGM(GetInstance().bgm, false, 0, -0.3f);
-        }*/
 
     public static void PlaySplashScreenAudio()
     {

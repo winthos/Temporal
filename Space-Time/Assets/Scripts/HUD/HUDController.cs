@@ -100,7 +100,7 @@ public class HUDController : MonoBehaviour
     {
       //Cursor.lockState = CursorLockMode.None;
       Cursor.visible = true;
-      RetryScreen.SetActive(true);
+      EnableCanvas(RetryScreen);
       return;
     }
 

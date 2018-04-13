@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 //  Attatch to Canvas with a opaque black Panel. Requires canvas group.
@@ -10,20 +10,14 @@ using System.Collections;
 [RequireComponent (typeof(CanvasGroup))]
 public class FadeTransition : MonoBehaviour
 {
-    public bool fadeIn = true;
-    public float fadeInTime = 1f;
+    public bool fadeIn = true, fadeOut = true;
+    public float fadeInTime = 1f, waitTime = 2f, fadeOutTime = 1f;
 
-    public bool fadeOut = true;
-    public float fadeOutTime = 1f;
+    [Space(15)]
 
-    public bool LoadNextScene = false;
     public string SceneToLoad;
-    public float waitTime = 2f;
+    public bool LoadNextScene = false;
     public bool UseKeyInput = false;
-    [SerializeField]
-    KeyCode userIn = KeyCode.Return;
-    [SerializeField]
-    KeyCode userInAlt = KeyCode.None;
 
     CanvasGroup group;
     Coroutine currentCoroutine;
@@ -44,13 +38,11 @@ public class FadeTransition : MonoBehaviour
 
     void Update()
     {
-        if (UseKeyInput)
+        if (UseKeyInput && (Input.anyKey || Input.GetMouseButtonDown(0)))
         {
-            if (Input.GetKeyUp(userIn) || Input.GetKeyUp(userInAlt) || Input.anyKey || Input.GetMouseButtonDown(0))
-            {
-                LoadNextScene = true;
-                QuickLoadNextScreen();
-            }
+            LoadTheScene();
+            LoadNextScene = true;
+            QuickLoadNextScreen();
         }
     }
 
@@ -125,20 +117,5 @@ public class FadeTransition : MonoBehaviour
         StopCoroutine(currentCoroutine);
         LoadTheScene();
     }
-
-    /*
-    public void ForceFadeOut(string _sceneToLoad)
-    {
-        group.alpha = 0;
-
-        for (float t = 0; t < 1; t += Time.deltaTime / fadeOutTime)
-        {
-            group.alpha = Mathf.Lerp(group.alpha, 1, t);
-        }
-
-        group.alpha = 1;
-
-        SceneManager.LoadScene(_sceneToLoad);
-    }
-    */
+    
 }
