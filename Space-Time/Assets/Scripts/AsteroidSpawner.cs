@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ public class AsteroidSpawner : MonoBehaviour
   GameObject CentrePoint;
   GameObject Player;
   GameObject Camera;
-  CameraController Camcontrol;
+  //CameraController Camcontrol;
   
   PlayerMovement pMove;
   
@@ -50,7 +50,7 @@ public class AsteroidSpawner : MonoBehaviour
     Player = tLevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = tLevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = tLevelGlobals.GetComponent<LevelGlobals>().Camera;
-    Camcontrol = Camera.GetComponent<CameraController>();
+    //Camcontrol = Camera.GetComponent<CameraController>();
     SpawnTimer = SpawnTime;
     pMove = Player.GetComponent<PlayerMovement>();
     /*
@@ -72,7 +72,7 @@ public class AsteroidSpawner : MonoBehaviour
       SpawnTimeCalc();
     }
 
-    if(Input.GetKeyDown("j"))
+    if(Input.GetKeyDown(KeyCode.J))
         {
             LaunchAsteroid(3);
         }
@@ -88,7 +88,7 @@ public class AsteroidSpawner : MonoBehaviour
   public void LaunchAsteroid(int spawntype) // 0 = normal, 1 = small, 2 = medium, 3 = large
   {
     Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
-    print("Asteroid at " + SpawnPos);
+    //print("Asteroid at " + SpawnPos);
     
     /*
     float offsetx = pMiove[Random.Range(0, pMove.Points.Size)];

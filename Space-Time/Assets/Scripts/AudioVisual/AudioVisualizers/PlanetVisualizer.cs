@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlanetVisualizer : MonoBehaviour
 {
     //float sampleMultiplier = 40;
-    float timeMultiplier = 30;
+    //float timeMultiplier = 30;
     Vector3 scaleMinimum;
 
     GameObject[] objects;

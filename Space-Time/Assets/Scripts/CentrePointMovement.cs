@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +56,7 @@ public class CentrePointMovement : MonoBehaviour
       {
         SpeedUp = false;
         SpeedTime = Time.time;
-        print("SpeedDown");
+        //print("SpeedDown");
       }
       transform.position += transform.forward * GetTrueSpeed();
       tLevelGlobals.GetComponent<LevelGlobals>().Camera.transform.position += transform.forward * GetTrueSpeed();

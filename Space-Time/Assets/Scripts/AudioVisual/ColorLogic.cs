@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //  Goes on every visible object in the game
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
@@ -8,7 +8,7 @@ using UnityEngine;
 public class ColorLogic : MonoBehaviour
 {
     Renderer rend;
-    Color previousColor;
+    //Color previousColor;
     Color currentColor;
     Color nextColor;
 
@@ -47,7 +47,7 @@ public class ColorLogic : MonoBehaviour
             if (_fade)
             {
                 transitionTime = _transitionTime;
-                previousColor = rend.material.color;
+                //previousColor = rend.material.color;
                 nextColor = _color;
                 colorFade = true;
                 //StartCoroutine(LerpColor(_transitionTime));

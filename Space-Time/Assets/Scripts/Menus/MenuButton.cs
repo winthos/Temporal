@@ -28,13 +28,11 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     [HideInInspector]
     public bool selected;
-    AudioSource source;
     public float visualizerMax = 0.18f;
 
     // Use this for initialization
     void Start()
     {
-        source = SoundHub.source_bgm;
         defaultColor = btnTxt.color;
         UseDefaults();
     }

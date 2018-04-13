@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,8 +35,8 @@ public class Scoring : MonoBehaviour
     // individual scores
     float timeScore;    //based on time alive
     float speedScore;   //have speed score based off max speed
-    float enemyScore;   // based on enemies destroyed
-    float pickupScore;  //based on pickups collected
+    //float enemyScore;   // based on enemies destroyed
+    //float pickupScore;  //based on pickups collected
     public static int enemiesDestroyed;
     public static int pickupsCollected;
 
@@ -47,10 +47,10 @@ public class Scoring : MonoBehaviour
     float pickupScoreRate = 5f;
 
     // thresholds
-    List<float> times;
-    List<float> speeds;
-    List<float> enemies;
-    List<float> pickups;
+    //List<float> times;
+    //List<float> speeds;
+    //List<float> enemies;
+    //List<float> pickups;
 
     // Style Ratings
     string timeRating;
@@ -70,10 +70,10 @@ public class Scoring : MonoBehaviour
         pickupsCollected = 0;
 
         // style ratings            S       A       B       C       D       F
-        times   = new List<float> { 120f,   90f,    60f,    30f,    15f,    0f };
-        speeds  = new List<float> { 120f,   90f,    60f,    30f,    15f,    0f };
-        enemies = new List<float> { 20,     10,     7,      3,      1,      0f };
-        pickups = new List<float> { 20,     10,     7,      3,      1,      0f  };
+        //times   = new List<float> { 120f,   90f,    60f,    30f,    15f,    0f };
+        //speeds  = new List<float> { 120f,   90f,    60f,    30f,    15f,    0f };
+        //enemies = new List<float> { 20,     10,     7,      3,      1,      0f };
+        //pickups = new List<float> { 20,     10,     7,      3,      1,      0f  };
 
         scoreField.text = totalScore.ToString();
         multiplierField.text = "" + pickupsCollected;
@@ -123,12 +123,12 @@ public class Scoring : MonoBehaviour
 
     public void UpdateEnemyScore()
     {
-        enemyScore = enemiesDestroyed * enemyScoreRate;
+        //enemyScore = enemiesDestroyed * enemyScoreRate;
         //totalScore += enemyScore;
     }
     public void UpdatePickupScore()
     {
-        pickupScore = PlayerMovement.pMove.SpeedStacks * pickupScoreRate;
+        //pickupScore = PlayerMovement.pMove.SpeedStacks * pickupScoreRate;
         //totalScore += pickupScore;
         Debug.Log("pickup");
     }

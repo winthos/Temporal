@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //  Authors: Jordan Yong
 //  Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,8 +30,8 @@ public class CameraController : MonoBehaviour
   GameObject Player;
   GameObject CentrePoint;
   
-  float xSpeed = 120.0f;
-  float ySpeed = 120.0f;
+  //float xSpeed = 120.0f;
+  //float ySpeed = 120.0f;
   
   Vector3 DefaultCamRotation; // 8.5673,0,0
   //Vector3 DefaultCamOffset; // 0,1.55,-6.62
@@ -42,30 +42,30 @@ public class CameraController : MonoBehaviour
   float x = 0.0f;
   float y = 0.0f;
   
-  [SerializeField]
-  float minxMove = 0.2f;
-  [SerializeField]
-  float minyMove = 0.2f;
+  //[SerializeField]
+  //float minxMove = 0.2f;
+  //[SerializeField]
+  //float minyMove = 0.2f;
   
   float Distance = 15.0f;
 
-  bool TimeRegen = false;
+  //bool TimeRegen = false;
   float lerpTime = 0.0f;
   Vector3 CamSnapBackDistance;
   
   [SerializeField]
   float CamSnapSpeed = 1.5f;
     
-  [SerializeField]
-  float yClamp = 70.0f;
+  //[SerializeField]
+  //float yClamp = 70.0f;
     
   int TimeMove = 0;
   
-  [SerializeField]
-  bool CameraMouseMovement = true;
+  //[SerializeField]
+  //bool CameraMouseMovement = true;
   
-  [SerializeField]
-  float MouseSensitivity = 1.0f;
+  //[SerializeField]
+  //float MouseSensitivity = 1.0f;
 
   [SerializeField]
   float InvertX = 1;
@@ -76,8 +76,8 @@ public class CameraController : MonoBehaviour
 
   Quaternion CharacterTargetRot;
   Quaternion CameraTargetRot;
-  bool smooth = false;
-  float smoothTime = 5f;
+  //bool smooth = false;
+  //float smoothTime = 5f;
   
   bool Loading = true;
   
@@ -129,7 +129,7 @@ public class CameraController : MonoBehaviour
         TimeMove = 0;
     }
     
-    if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) // if right mouse is clicked
+    if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space)) // if right mouse is clicked
     {
       ToggleTimeStop();
     }

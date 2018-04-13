@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Kaila Harris
 //	Copyright © 2017 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -191,8 +191,12 @@ namespace AudioVisualization
 
         IEnumerator RemoveSFXSource(AudioSource _sfxSource)
         {
-
-            yield return new WaitForSeconds(_sfxSource.clip.length);
+            float waitTime;
+            if (_sfxSource.clip != null)
+                waitTime = _sfxSource.clip.length;
+            else
+                waitTime = 1;
+            yield return new WaitForSeconds(waitTime);
             sfxSources.Remove(_sfxSource);
             Destroy(_sfxSource);
 

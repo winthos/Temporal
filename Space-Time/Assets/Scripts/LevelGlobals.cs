@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -57,9 +57,9 @@ public class LevelGlobals : MonoBehaviour
         distanceTraveled += CentrePoint.GetComponent<CentrePointMovement>().GetTrueSpeed() / 2.0f;
       }
     }
-    if (Input.GetKeyDown("k"))
+    if (Input.GetKeyDown(KeyCode.K))
       Debugging = !Debugging;
-    if (Input.GetKeyDown("l"))
+    if (Input.GetKeyDown(KeyCode.L))
       Player.GetComponent<Health>().DecrementHealth(20);
     //if (Input.GetKey("escape"))
             //Application.Quit();

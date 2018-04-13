@@ -86,7 +86,6 @@ public class HUDController : MonoBehaviour
   {
     HUDControl = this;
     independentTime = Time.time;
-    PauseController.SetPause(false);
     RiftImageColour = RiftImage.color;
         
     DisableAllPauseCanvases();
@@ -95,15 +94,7 @@ public class HUDController : MonoBehaviour
   // Update is called once per frame
   void Update () 
   {
-    if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
-    {
-      PauseController.TogglePause();
-      if (!PauseController.GamePaused)
-        {
-        Screen_Pause();
-        }
-    }
-
+        PauseLogic();
 
     if (Player.GetComponent<Health>().health <= 0 && LevelGlobals.PlayerDown)
     {
@@ -112,22 +103,6 @@ public class HUDController : MonoBehaviour
       RetryScreen.SetActive(true);
       return;
     }
-    else if (PauseController.GamePaused)
-    {
-      //print("Currently paused");
-      PauseScreen.SetActive(true);
-      //Cursor.lockState = CursorLockMode.None;
-      Cursor.visible = true;
-      return;
-    }
-    else
-    {
-      //DefaultPauseScreen.SetActive(true);
-      PauseScreen.SetActive(false);
-      //sCursor.lockState = CursorLockMode.Locked;
-      Cursor.visible = false;
-    }
-
 
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
@@ -138,6 +113,27 @@ public class HUDController : MonoBehaviour
     RiftUpdate();
   }
   
+
+    public void PauseLogic()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+            PauseController.TogglePause();
+
+
+        if (PauseController.GamePaused)
+        {
+            PauseScreen.SetActive(true);
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            Screen_Pause();
+            PauseScreen.SetActive(false);
+            Cursor.visible = false;
+        }
+    } 
+
   public void HealthBarUpdate()
   {
     
@@ -304,7 +300,7 @@ public class HUDController : MonoBehaviour
     EnemySpawner.ResetOccupancies();
 
     LevelGlobals.PlayerDown = false;
-    print(LevelGlobals.PlayerDown);
+    //print(LevelGlobals.PlayerDown);
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     
     //do other retry things
@@ -327,6 +323,9 @@ public class HUDController : MonoBehaviour
   }
     void DisableAllPauseCanvases()
     {
+        GameObject myEventSystem = GameObject.Find("EventSystem");
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+
         DisableCanvas(PauseScreen);
         DisableCanvas(HTPScreen);
         DisableCanvas(RetryScreen);

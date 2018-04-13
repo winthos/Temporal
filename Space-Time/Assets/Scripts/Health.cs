@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
   [SerializeField]
   private int hp = 1;
     // Maximum HP of the character
-  private int mhp;
+  //private int mhp;
   
   bool Boom;
   bool CoroutineProcessing = false;
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
   {
     if (hp < 0)
       hp = 1;
-    mhp = hp;
+    //mhp = hp;
   }
     
     // Update is called once per frame
@@ -94,8 +94,8 @@ public class Health : MonoBehaviour
       
       if (gameObject.tag == "Spacer")
       {
-        EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
-        PlayerMovement.pMove.Points[GetComponent<SpacerControl>().GetID() - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
+        //EnemySpawner.SetOccupancy(GetComponent<SpacerControl>().GetID(), false);
+        //PlayerMovement.pMove.Points[GetComponent<SpacerControl>().GetID() - 1].transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = "";
       }
 
       if(gameObject.tag == "Player")

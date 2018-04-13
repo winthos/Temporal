@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
   {
-    if (PauseController.GamePaused || Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(2))
+    if (/*PauseController.GamePaused || */Tutorial.TutorialOccuring || !Tutorial.tutorial.IsActivatedMechanic(2))
       return;
     if (!Spawning && NumOccupancies() < 9)
     {
@@ -110,9 +110,9 @@ public class EnemySpawner : MonoBehaviour
       spawnpoint = 7;
     if (!CheckOccupancy(spawnpoint))
     {
-      GameObject en = (GameObject)Instantiate(Spacer[spawnpoint], transform.position, Quaternion.identity);
+      //GameObject en = (GameObject)Instantiate(Spacer[spawnpoint], transform.position, Quaternion.identity);
 
-      SetOccupancy(en.GetComponent<SpacerControl>().GetID(), true);
+      //SetOccupancy(en.GetComponent<SpacerControl>().GetID(), true);
       //print("Occupied at " + en.GetComponent<SpacerControl>().GetID());
     }
     

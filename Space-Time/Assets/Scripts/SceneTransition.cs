@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour 
 {
@@ -33,7 +34,7 @@ public class SceneTransition : MonoBehaviour
     
     }
     if (Input.anyKey || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-      Application.LoadLevel(ToLoad);
+      SceneManager.LoadScene(ToLoad);
 	}
   
   IEnumerator FadeIn()
@@ -55,6 +56,6 @@ public class SceneTransition : MonoBehaviour
     FaderOut = true;
     yield return new WaitForSeconds(3.0f); 
     FaderOut = false;
-    Application.LoadLevel(ToLoad);
+    SceneManager.LoadScene(ToLoad);
   }
 }

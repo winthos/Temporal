@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ public class RiftSpawner : MonoBehaviour
   GameObject CentrePoint;
   GameObject Player;
   GameObject Camera;
-  CameraController CameraController;
+  //CameraController CameraController;
   
   PlayerMovement pMove;
   
@@ -36,7 +36,7 @@ public class RiftSpawner : MonoBehaviour
     Player = tLevelGlobals.GetComponent<LevelGlobals>().Player;
     CentrePoint = tLevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = tLevelGlobals.GetComponent<LevelGlobals>().Camera;
-    CameraController = Camera.GetComponent<CameraController>();
+    //CameraController = Camera.GetComponent<CameraController>();
     SpawnTimer = SpawnTime;
     pMove = Player.GetComponent<PlayerMovement>();
   }
@@ -55,7 +55,7 @@ public class RiftSpawner : MonoBehaviour
       SpawnTimeCalc();
     }
     
-    if (Input.GetKeyDown("u"))
+    if (Input.GetKeyDown(KeyCode.U))
     {
       LaunchRift();
     }
@@ -102,7 +102,7 @@ public class RiftSpawner : MonoBehaviour
     
     SpawnPos += offset;
     */
-    Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
+    //Vector3 SpawnPos = pMove.Points[Random.Range(0,pMove.Points.Length)].transform.position + CentrePoint.transform.forward*500;
     
     /*int CreationChance = (int)Mathf.Clamp(Random.Range(0.0f,100.0f + Player.GetComponent<PlayerMovement>().SpeedStacks),
                                           0, 300); //max craziness limiter to prevent only large Rifts from spawning
@@ -120,6 +120,6 @@ public class RiftSpawner : MonoBehaviour
       GameObject Rift = (GameObject)Instantiate(LargeRift, SpawnPos, Quaternion.identity);
     }
     */
-    GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Player.transform.rotation);
+    //GameObject tRift = (GameObject)Instantiate(Rift, SpawnPos, Player.transform.rotation);
   }
 }

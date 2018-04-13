@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //	Authors: Jordan Yong
 //  Edits: Kaila Harris
 //	Copyright © 2016 DigiPen (USA) Corp. and its owners. All Rights Reserved.
@@ -23,15 +23,15 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField]
   public GameObject[] Points;
   GameObject Camera;
-  CameraController Camcontrol;
+  //CameraController Camcontrol;
   
   Vector3 DashDestination;
   GameObject DashTo;
   
-  float moveTime = 0.0f;
+  //float moveTime = 0.0f;
   
-  [SerializeField]
-  float MinDashTimeNeeded = 1.0f;
+  //[SerializeField]
+  //float MinDashTimeNeeded = 1.0f;
   
   float VerticalBound;
   float HorizontalBound;
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     LevelGlobals = GameObject.FindWithTag("Globals");
     CentrePoint = LevelGlobals.GetComponent<LevelGlobals>().CentrePoint;
     Camera = LevelGlobals.GetComponent<LevelGlobals>().Camera;
-    Camcontrol = Camera.GetComponent<CameraController>();
+    //Camcontrol = Camera.GetComponent<CameraController>();
     VerticalBound = CentrePoint.transform.position.y;
     HorizontalBound = CentrePoint.transform.position.x;
   }
@@ -65,24 +65,24 @@ public class PlayerMovement : MonoBehaviour
         return;
       if (Input.anyKey && DashTo == null)
       {
-        if (Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
           DashTo = CalcNextGridPos(1); //up
         }
-        else if (Input.GetKeyDown("s") || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
           DashTo = CalcNextGridPos(2); //down
         }
-        else if (Input.GetKeyDown("a") || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
           DashTo = CalcNextGridPos(4); //left
         }
-        else if (Input.GetKeyDown("d") || Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
           DashTo = CalcNextGridPos(8); //right
         }
         
-        moveTime = Time.time;
+        //moveTime = Time.time;
       }
       
       
