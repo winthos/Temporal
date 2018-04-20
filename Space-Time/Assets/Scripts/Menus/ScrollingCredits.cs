@@ -41,7 +41,7 @@ public class ScrollingCredits : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (credits.Count != 0)
         {
@@ -50,13 +50,17 @@ public class ScrollingCredits : MonoBehaviour
 
             //print(endOfCredits.GetComponent<Transform>().position.y);
 
-            if (endOfCredits.GetComponent<Transform>().position.y > creditsEndY)
+            if (endOfCredits.GetComponent<Transform>().localPosition.y > creditsEndY)
             {
                 if (goToScene == null)
                     ResetToStartingPositions();
                 else
                     UnityEngine.SceneManagement.SceneManager.LoadScene(goToScene);
             }
+        }
+        if(Input.anyKey)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(goToScene);
         }
     }
 }

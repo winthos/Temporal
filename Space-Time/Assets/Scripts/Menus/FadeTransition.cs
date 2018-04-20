@@ -102,7 +102,7 @@ public class FadeTransition : MonoBehaviour
 
     public void LoadTheScene()
     {
-        if (LoadNextScene)
+        if (LoadNextScene && SceneToLoad != null)
             SceneManager.LoadScene(SceneToLoad);
     }
 

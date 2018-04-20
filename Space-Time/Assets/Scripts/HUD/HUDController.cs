@@ -16,8 +16,8 @@ public class HUDController : MonoBehaviour
 
     [Header("Constant Elements")]
 
-  [SerializeField]
-  GameObject TimeBarPlayer;
+  //[SerializeField]
+  //GameObject TimeBarPlayer;
   
   [SerializeField]
   GameObject[] TimeBar2;
@@ -106,7 +106,8 @@ public class HUDController : MonoBehaviour
 
     independentTime += TimeZone.DeltaTime(false);
     HealthBarUpdate();
-    if(TimeBarPlayer != null) TimeBarUpdate();
+    //if(TimeBarPlayer != null)
+      TimeBarUpdate();
     SpeedUpdate();
     TimeAlter();
     OtherUpdate();
@@ -151,12 +152,13 @@ public class HUDController : MonoBehaviour
   public void TimeBarUpdate()
   {
     
-    TimeBarPlayer.GetComponent<Image>().fillAmount = Timer.GetComponent<CameraController>().GetTimeRatio();
+    //TimeBarPlayer.GetComponent<Image>().fillAmount = Timer.GetComponent<CameraController>().GetTimeRatio();
     
     for (int i = 0; i < 5; i++)
     {
-      TimeBar2[i].transform.GetChild(0).gameObject.SetActive( Timer.GetComponent<CameraController>().GetTimeRatio() > i * 0.2f );
-
+      //print(i * 0.2f);
+      bool timeBarActive = (Timer.GetComponent<CameraController>().GetTimeRatio() > i * 0.2f) ? true : false;
+      TimeBar2[i].transform.GetChild(0).gameObject.SetActive( timeBarActive);
     }
   }
   
