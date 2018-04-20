@@ -254,7 +254,7 @@ public class CameraController : MonoBehaviour
       {
         if (!LevelGlobals.Debugging)
           PTimeStopTimer -= TimeZone.DeltaTime(false);
-                print(PTimeStopTimer);
+                //print(PTimeStopTimer);
         if (PTimeStopTimer <= 0.0f && PTimeStop)
         {
           ToggleTimeStop();
@@ -372,7 +372,9 @@ public class CameraController : MonoBehaviour
   
   public float GetTimeRatio()
   {
-    return PTimeStopTimer / PTimeStopTime;
+    float ratio = PTimeStopTimer / PTimeStopTime;
+    //print(ratio);
+    return ratio;
   }
   
   public void InvertAllMaterialColors() 
