@@ -94,7 +94,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (nextScene == null || loadScene)
         {
             SceneManager.LoadScene(nextScene);
-            Debug.Log("Quit Game");
+            //Debug.Log("Quit Game");
         }
         else
         {

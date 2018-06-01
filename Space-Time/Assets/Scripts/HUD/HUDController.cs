@@ -294,15 +294,7 @@ public class HUDController : MonoBehaviour
     
   public void Action_Retry_Restart()
   {
-    DisableAllPauseCanvases();
-
-    PauseController.SetPause(false);
-
-    LevelGlobals.calcHighScores();
-    EnemySpawner.ResetOccupancies();
-
-    LevelGlobals.PlayerDown = false;
-    //print(LevelGlobals.PlayerDown);
+    ResetGameSpace();
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     
     //do other retry things
@@ -310,7 +302,8 @@ public class HUDController : MonoBehaviour
   
   public void Action_ReturnToMainMenu()
   {
-    SceneManager.LoadScene("2_MainMenu");
+        ResetGameSpace();
+        SceneManager.LoadScene(2);
   }
   
   void DisableCanvas(GameObject _canvas)
@@ -343,6 +336,18 @@ public class HUDController : MonoBehaviour
     _canvas.alpha = 1;
     _canvas.blocksRaycasts = true;
     _canvas.interactable = true;
+  }
+
+  private void ResetGameSpace()
+  {
+    DisableAllPauseCanvases();
+
+    PauseController.SetPause(false);
+
+    LevelGlobals.calcHighScores();
+    EnemySpawner.ResetOccupancies();
+
+    LevelGlobals.PlayerDown = false;
   }
     
   public void Action_Quit()

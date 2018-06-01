@@ -15,7 +15,7 @@ public class FadeTransition : MonoBehaviour
 
     [Space(15)]
 
-    public string SceneToLoad;
+    public string SceneToLoad = "null";
     public bool LoadNextScene = false;
     public bool UseKeyInput = false;
 
@@ -102,7 +102,7 @@ public class FadeTransition : MonoBehaviour
 
     public void LoadTheScene()
     {
-        if (LoadNextScene && SceneToLoad != null)
+        if (LoadNextScene && SceneToLoad != "null")
             SceneManager.LoadScene(SceneToLoad);
     }
 
